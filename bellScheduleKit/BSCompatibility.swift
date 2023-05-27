@@ -10,10 +10,9 @@ import Foundation
 public struct BSCompatibility {
     public static func convert() {
         let jsonEncoder = JSONEncoder();
-        let persistence = BSPersistence();
         if let defaults = BSPersistence.defaults {
             // Check for key lastVersionUsed
-            if let lastVersionUsed = defaults.string(forKey: persistence.lastVersionUsedKey) {
+            if let lastVersionUsed = defaults.string(forKey: BSPersistence.lastVersionUsedKey) {
                 if(lastVersionUsed == "3.0.0") {
                     return;
                 }
@@ -33,8 +32,8 @@ public struct BSCompatibility {
                 // Save new keys
                 do {
                     let encodedSymbols = try jsonEncoder.encode(newSymbols)
-                    defaults.set(encodedSymbols, forKey: persistence.customSymbolsKey);
-                    defaults.set("3.0.0", forKey: persistence.lastVersionUsedKey);
+                    defaults.set(encodedSymbols, forKey: BSPersistence.customSymbolsKey);
+                    defaults.set("3.0.0", forKey: BSPersistence.lastVersionUsedKey);
                 } catch {
                     print("Unable to encode new symbols: \(error)");
                 }

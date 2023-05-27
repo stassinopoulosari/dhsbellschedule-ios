@@ -15,10 +15,42 @@ public struct BSPeriod {
     public var startTime: BSTime;
     public var endTime: BSTime;
     public var name: String;
+    public var key: String;
 }
 
 public struct BSScheduleTable {
+    
     public var schedules: [String: BSSchedule];
+    
+    public func toString() -> String? {
+        var scheduleTableObject = [String: [String: Any]]();
+        
+        schedules.forEach { (key, schedule) in
+            var scheduleObject = [String: Any]();
+            scheduleObject["name"] = schedule.name;
+            schedule.periods.forEach { period in
+                var periodObject = [String:Any]();
+                periodObject["name"] = period.name;
+                periodObject["startTime"] = period.startTime.time;
+                periodObject["endTime"] = period.endTime.time;
+                scheduleObject[period.key] = periodObject;
+            }
+            scheduleTableObject[key] = scheduleObject;
+        }
+        
+        do {
+            let data = try JSONSerialization.data(withJSONObject: scheduleTableObject)
+            if let scheduleTableString = String(data: data, encoding: .utf8) {
+                return scheduleTableString;
+            } else {
+                return nil;
+            }
+        } catch {
+            return nil;
+        }
+        
+        
+    }
     
     public static func from(dictionary scheduleTableDictionary: [String: Any]) -> BSScheduleTable {
         var schedules = [String: BSSchedule]();
@@ -53,7 +85,7 @@ public struct BSSchedule {
     
     public static func from(dictionary scheduleObject: [String: Any]) -> BSSchedule? {
         var periods = [BSPeriod]();
-        if let hidden = scheduleObject["hidden"] {
+        if scheduleObject["hidden"] != nil {
             return nil;
         }
         if let scheduleName = scheduleObject["name"] as? String {
@@ -69,7 +101,10 @@ public struct BSSchedule {
                     periods.append(
                         BSPeriod(
                             startTime: BSTime(time: startString),
-                            endTime: BSTime(time: endString), name: periodName)
+                            endTime: BSTime(time: endString),
+                            name: periodName,
+                            key: key
+                        )
                     );
                 }
             }

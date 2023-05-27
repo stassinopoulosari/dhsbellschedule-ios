@@ -26,25 +26,6 @@ struct bellScheduleApp: App {
     }
 }
 
-//struct Symbol: Hashable {
-//    public var defaultValue: String;
-//    public var symbol: String;
-//    private var storedValue: String?;
-//    var value: String {
-//        set {
-//            storedValue = (newValue.trimmingCharacters(in: .whitespacesAndNewlines)) == "" ? nil : newValue
-//        }
-//        get {
-//            storedValue ?? ""
-//        }
-//    }
-//    public init(defaultValue: String, symbol: String, storedValue: String? = nil) {
-//        self.defaultValue = defaultValue
-//        self.symbol = symbol
-//        self.storedValue = storedValue
-//    }
-//}
-
 struct BellScheduleAppView: View {
     
     @State var firstTimeUser: Bool

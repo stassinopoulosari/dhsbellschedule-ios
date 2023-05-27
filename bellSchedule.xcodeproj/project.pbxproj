@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		021432B22A202B8600549DF9 /* BSSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021432B12A202B8600549DF9 /* BSSymbol.swift */; };
 		021432B42A202B9C00549DF9 /* BSSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021432B32A202B9C00549DF9 /* BSSchedule.swift */; };
-		021432B62A202BBE00549DF9 /* BSCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021432B52A202BBE00549DF9 /* BSCalendar.swift */; };
 		021432B82A202BDE00549DF9 /* BSPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021432B72A202BDE00549DF9 /* BSPersistence.swift */; };
 		021432BA2A21921100549DF9 /* BSCompatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021432B92A21921100549DF9 /* BSCompatibility.swift */; };
 		021432BC2A21924100549DF9 /* BSNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021432BB2A21924100549DF9 /* BSNetwork.swift */; };
@@ -20,7 +19,9 @@
 		029C67C22A116975004484F4 /* TodayScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029C67C12A116975004484F4 /* TodayScheduleView.swift */; };
 		029C67C42A116AB4004484F4 /* AllScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029C67C32A116AB4004484F4 /* AllScheduleView.swift */; };
 		029C67C62A11764A004484F4 /* AccessoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029C67C52A11764A004484F4 /* AccessoriesView.swift */; };
-		029C67D32A117760004484F4 /* BSKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029C67D22A117760004484F4 /* BSKit.swift */; };
+		02A0E8A02A22CC4600C06C89 /* BSCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A0E89F2A22CC4600C06C89 /* BSCalendar.swift */; };
+		02A0E8A22A22CC5400C06C89 /* BSCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A0E8A12A22CC5400C06C89 /* BSCalendar.swift */; };
+		02A0E8A42A22CC7200C06C89 /* BSKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A0E8A32A22CC7100C06C89 /* BSKit.swift */; };
 		02E502682A10624A008FCD1F /* BellScheduleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E502672A10624A008FCD1F /* BellScheduleApp.swift */; };
 		02E5026A2A10624A008FCD1F /* HomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E502692A10624A008FCD1F /* HomeScreenView.swift */; };
 		02E5026C2A10624A008FCD1F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02E5026B2A10624A008FCD1F /* Assets.xcassets */; };
@@ -54,7 +55,6 @@
 /* Begin PBXFileReference section */
 		021432B12A202B8600549DF9 /* BSSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSSymbol.swift; sourceTree = "<group>"; };
 		021432B32A202B9C00549DF9 /* BSSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSSchedule.swift; sourceTree = "<group>"; };
-		021432B52A202BBE00549DF9 /* BSCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSCalendar.swift; sourceTree = "<group>"; };
 		021432B72A202BDE00549DF9 /* BSPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSPersistence.swift; sourceTree = "<group>"; };
 		021432B92A21921100549DF9 /* BSCompatibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSCompatibility.swift; sourceTree = "<group>"; };
 		021432BB2A21924100549DF9 /* BSNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSNetwork.swift; sourceTree = "<group>"; };
@@ -64,7 +64,9 @@
 		029C67C32A116AB4004484F4 /* AllScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllScheduleView.swift; sourceTree = "<group>"; };
 		029C67C52A11764A004484F4 /* AccessoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessoriesView.swift; sourceTree = "<group>"; };
 		029C67CB2A117744004484F4 /* libBellScheduleKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBellScheduleKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		029C67D22A117760004484F4 /* BSKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSKit.swift; sourceTree = "<group>"; };
+		02A0E89F2A22CC4600C06C89 /* BSCalendar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSCalendar.swift; sourceTree = "<group>"; };
+		02A0E8A12A22CC5400C06C89 /* BSCalendar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSCalendar.swift; sourceTree = "<group>"; };
+		02A0E8A32A22CC7100C06C89 /* BSKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSKit.swift; sourceTree = "<group>"; };
 		02E502642A10624A008FCD1F /* BellSchedule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BellSchedule.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02E502672A10624A008FCD1F /* BellScheduleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BellScheduleApp.swift; sourceTree = "<group>"; };
 		02E502692A10624A008FCD1F /* HomeScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenView.swift; sourceTree = "<group>"; };
@@ -106,10 +108,11 @@
 			isa = PBXGroup;
 			children = (
 				021432B72A202BDE00549DF9 /* BSPersistence.swift */,
-				029C67D22A117760004484F4 /* BSKit.swift */,
 				021432BB2A21924100549DF9 /* BSNetwork.swift */,
+				02A0E8A32A22CC7100C06C89 /* BSKit.swift */,
 				021432B92A21921100549DF9 /* BSCompatibility.swift */,
-				021432B52A202BBE00549DF9 /* BSCalendar.swift */,
+				02A0E89F2A22CC4600C06C89 /* BSCalendar.swift */,
+				02A0E8A12A22CC5400C06C89 /* BSCalendar.swift */,
 				021432B12A202B8600549DF9 /* BSSymbol.swift */,
 				021432B32A202B9C00549DF9 /* BSSchedule.swift */,
 			);
@@ -265,8 +268,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				021432B22A202B8600549DF9 /* BSSymbol.swift in Sources */,
-				029C67D32A117760004484F4 /* BSKit.swift in Sources */,
-				021432B62A202BBE00549DF9 /* BSCalendar.swift in Sources */,
+				02A0E8A22A22CC5400C06C89 /* BSCalendar.swift in Sources */,
+				02A0E8A02A22CC4600C06C89 /* BSCalendar.swift in Sources */,
+				02A0E8A42A22CC7200C06C89 /* BSKit.swift in Sources */,
 				021432B82A202BDE00549DF9 /* BSPersistence.swift in Sources */,
 				021432B42A202B9C00549DF9 /* BSSchedule.swift in Sources */,
 				021432BC2A21924100549DF9 /* BSNetwork.swift in Sources */,

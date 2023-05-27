@@ -56,11 +56,10 @@ struct AccessoriesView: View {
                                         infoShown = false;
                                     }
                                     .fontWeight(.bold)
-                                    
                                 }
                                 ToolbarItem(placement:.navigationBarTrailing) {
                                     NavigationLink("All Schedules") {
-                                        AllScheduleView()
+                                        AllScheduleView(context: context)
                                             .navigationTitle("All schedules")
                                     }
                                 }

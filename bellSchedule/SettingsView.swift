@@ -37,8 +37,8 @@ struct SettingsView: View {
             switch settingsLink {
             case .editClassNames:
                 NavigationLink{
-                    EditClassNamesView(symbolTable: context.symbolTable)
-                    .navigationTitle("Edit class names")
+                    EditClassNamesView(context: context)
+                        .navigationTitle("Edit class names")
                 } label: {
                     Text("Edit class names")
                 }
@@ -89,25 +89,42 @@ Hello from beautiful San Diego, California!
 }
 
 struct SymbolEditTextField: View {
-    @State public var symbol: BSSymbol;
+    @State public var context: BSContext;
+    @State public var key: String;
     
     var body: some View {
-        TextField(symbol.defaultValue, text: $symbol.configuredValue)
+        let configuredValue = Binding(
+            get: { () -> String in
+                if let symbol = context.symbolTable.symbolsDict[key] {
+                    return symbol.configuredValue;
+                }
+                return "";
+            },
+            set: { value in
+                if context.symbolTable.symbolsDict[key] != nil {
+                    context.symbolTable.symbolsDict[key]?.configuredValue = value;
+                    context.saveCustomSchedules();
+                }
+            }
+        )
+        TextField(context.symbolTable.symbolsDict[key]!.configuredValue, text: configuredValue);
     }
     
 }
 
 struct EditClassNamesView: View {
-    public var symbolTable: BSSymbolTable;
-    private var symbols: [BSSymbol] {
-        return symbolTable.symbolsDict.values.filter { symbol in
-            return symbol.configurable;
-        }
+    public var context: BSContext;
+    private var symbols: [String] {
+        return Array(
+            context.symbolTable.symbolsDict.filter { key, symbol in
+                return symbol.configurable;
+            }.keys
+        )
     }
     var body: some View {
         List(symbols, id: \.self) {
             symbol in
-            SymbolEditTextField(symbol: symbol)
+            SymbolEditTextField(context: context, key: symbol)
         }
     }
 }

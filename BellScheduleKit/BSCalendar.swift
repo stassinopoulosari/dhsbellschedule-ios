@@ -8,8 +8,29 @@
 import Foundation
 
 public struct BSCalendar {
+    public struct BSCalendarExportable {
+        public var scheduleTableString: String;
+        public var calendarString: String;
+        public static func from(calendar: BSCalendar) -> BSCalendarExportable? {
+            do {
+                if let calendarString = String(data:try JSONSerialization.data(withJSONObject: calendar.calendar), encoding: .utf8),
+                   let scheduleTableString = calendar.scheduleTable.toString() {
+                    return BSCalendarExportable(scheduleTableString: scheduleTableString, calendarString: calendarString);
+                } else {
+                    return nil;
+                }
+            } catch {
+                return nil;
+            }
+        }
+    }
+    
     public var scheduleTable: BSScheduleTable;
     public var calendar: [String: String];
+    
+    public func export() -> BSCalendarExportable? {
+        return BSCalendarExportable.from(calendar: self);
+    }
     
     public static func from(dictionary calendarDictionary: [String: Any], withScheduleTable scheduleTable: BSScheduleTable) -> BSCalendar {
         var calendar = [String: String]();
@@ -30,6 +51,7 @@ public struct BSCalendar {
         }
         return BSCalendar(scheduleTable: scheduleTable, calendar: calendar);
     }
+    
     
     public static func from(string calendarString: String, withScheduleTable scheduleTable:BSScheduleTable) -> BSCalendar? {
         do {

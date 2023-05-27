@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct BSSymbol: Hashable {
+public struct BSSymbol {
     public var key: String;
     public var defaultValue: String;
     public var configurable: Bool;
@@ -47,6 +47,47 @@ public struct BSSymbol: Hashable {
 }
 
 public struct BSSymbolTable {
+    public struct BSSymbolTableExportable {
+        public var symbolTableString: String;
+        public var customSymbolsString: String;
+        
+        public static func from(symbolTable: BSSymbolTable) -> BSSymbolTableExportable? {
+            var symbolTableObject = [String: Any]();
+            symbolTable.symbolsDict.forEach { (key: String, symbol: BSSymbol) in
+                var symbolObject = [String: Any]();
+                symbolObject["configurable"] = symbol.configurable;
+                symbolObject["value"] = symbol.defaultValue;
+                symbolTableObject[key] = symbolObject;
+            }
+            
+            var customSymbolsObject = [String: String]();
+            symbolTable.symbolsDict.values.filter { symbol in
+                symbol.configurable
+            }.forEach { symbol in
+                if(symbol.configuredValue != "") {
+                    customSymbolsObject[symbol.key] = symbol.configuredValue;
+                }
+            }
+            
+            do {
+                let symbolTableData = try JSONSerialization.data(withJSONObject: symbolTableObject);
+                let customSymbolsData = try JSONSerialization.data(withJSONObject: customSymbolsObject);
+                if let symbolTableString = String(data: symbolTableData, encoding: .utf8),
+                   let customSymbolsString = String(data: customSymbolsData, encoding: .utf8) {
+                    return BSSymbolTableExportable(symbolTableString: symbolTableString, customSymbolsString: customSymbolsString)
+                } else {
+                    return nil;
+                }
+            } catch {
+                return nil;
+            }
+        }
+    }
+    
+    public func export() -> BSSymbolTableExportable? {
+        return BSSymbolTableExportable.from(symbolTable: self);
+    }
+    
     public var symbolsDict: [String: BSSymbol];
     private var symbols: [BSSymbol] {
         return Array(symbolsDict.values);

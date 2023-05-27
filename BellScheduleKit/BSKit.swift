@@ -22,6 +22,10 @@ public class BSContext {
         self.lastUpdated = lastUpdated;
     }
     
+    public func saveCustomSchedules() {
+        BSPersistence.save(softUpdateOfContext: self);
+    }
+    
     public var calendar: BSCalendar;
     public var symbolTable: BSSymbolTable;
     public var type: BSContextType;
@@ -75,11 +79,10 @@ public class BSContextWrapper: ObservableObject {
 
 public struct BSKit {
     public static func getNewestContext(withDatabaseReference databaseReference: DatabaseReference?, callback: @escaping (_ currentContext: BSContext?, _ errors: [Error]) -> Void) {
-        let network = BSNetwork(databaseReference: databaseReference),
-            persistence = BSPersistence();
+        let network = BSNetwork(databaseReference: databaseReference);
         network.checkLastUpdated(callback: {networkLastUpdated in
-            if let persistenceLastUpdated = persistence.contextLastUpdated,
-               let savedContext = persistence.load(),
+            if let persistenceLastUpdated = BSPersistence.contextLastUpdated,
+               let savedContext = BSPersistence.loadContext(),
                persistenceLastUpdated > networkLastUpdated {
                 return callback(
                     savedContext,
@@ -87,13 +90,13 @@ public struct BSKit {
                 );
             }
             network.downloadContext(callback: { networkContext in
-                persistence.save(context: networkContext)
+                BSPersistence.save(hardUpdateOfContext: networkContext)
                 return callback(
                     networkContext,
                     []
                 );
             }, error: {errors in
-                if let savedContext = persistence.load() {
+                if let savedContext = BSPersistence.loadContext() {
                     return callback(
                         savedContext,
                         errors
@@ -107,7 +110,7 @@ public struct BSKit {
             })
         }, errorCallback: {
             error in
-            if let savedContext = persistence.load() {
+            if let savedContext = BSPersistence.loadContext() {
                 return callback(
                     savedContext,
                     [error]

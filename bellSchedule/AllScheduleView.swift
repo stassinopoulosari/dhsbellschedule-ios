@@ -6,15 +6,18 @@
 //
 
 import SwiftUI
+import BellScheduleKit
 
 struct AllScheduleView: View {
+    public var context: BSContext;
+    
     var body: some View {
         List {}
     }
 }
 
-struct AllScheduleView_Previews: PreviewProvider {
-    static var previews: some View {
-        AllScheduleView()
-    }
-}
+//struct AllScheduleView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AllScheduleView()
+//    }
+//}
