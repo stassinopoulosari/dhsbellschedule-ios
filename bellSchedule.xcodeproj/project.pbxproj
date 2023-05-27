@@ -7,77 +7,123 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		02E502682A10624A008FCD1F /* bellScheduleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E502672A10624A008FCD1F /* bellScheduleApp.swift */; };
-		02E5026A2A10624A008FCD1F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E502692A10624A008FCD1F /* ContentView.swift */; };
+		021432B22A202B8600549DF9 /* BSSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021432B12A202B8600549DF9 /* BSSymbol.swift */; };
+		021432B42A202B9C00549DF9 /* BSSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021432B32A202B9C00549DF9 /* BSSchedule.swift */; };
+		021432B62A202BBE00549DF9 /* BSCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021432B52A202BBE00549DF9 /* BSCalendar.swift */; };
+		021432B82A202BDE00549DF9 /* BSPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021432B72A202BDE00549DF9 /* BSPersistence.swift */; };
+		021432BA2A21921100549DF9 /* BSCompatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021432B92A21921100549DF9 /* BSCompatibility.swift */; };
+		021432BC2A21924100549DF9 /* BSNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021432BB2A21924100549DF9 /* BSNetwork.swift */; };
+		021432BE2A21944800549DF9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 021432BD2A21944800549DF9 /* GoogleService-Info.plist */; };
+		021432C22A21962F00549DF9 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 021432C12A21962F00549DF9 /* FirebaseAnalyticsWithoutAdIdSupport */; };
+		021432C42A21962F00549DF9 /* FirebaseDatabaseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 021432C32A21962F00549DF9 /* FirebaseDatabaseSwift */; };
+		0299C1302A1A7F8C00CA2AB6 /* libbellScheduleKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 029C67CB2A117744004484F4 /* libbellScheduleKit.a */; };
+		029C67C22A116975004484F4 /* TodayScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029C67C12A116975004484F4 /* TodayScheduleView.swift */; };
+		029C67C42A116AB4004484F4 /* AllScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029C67C32A116AB4004484F4 /* AllScheduleView.swift */; };
+		029C67C62A11764A004484F4 /* AccessoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029C67C52A11764A004484F4 /* AccessoriesView.swift */; };
+		029C67D32A117760004484F4 /* BSKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029C67D22A117760004484F4 /* BSKit.swift */; };
+		02E502682A10624A008FCD1F /* BellScheduleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E502672A10624A008FCD1F /* BellScheduleApp.swift */; };
+		02E5026A2A10624A008FCD1F /* HomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E502692A10624A008FCD1F /* HomeScreenView.swift */; };
 		02E5026C2A10624A008FCD1F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02E5026B2A10624A008FCD1F /* Assets.xcassets */; };
 		02E5026F2A10624A008FCD1F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02E5026E2A10624A008FCD1F /* Preview Assets.xcassets */; };
-		02E502792A10624A008FCD1F /* bellScheduleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E502782A10624A008FCD1F /* bellScheduleTests.swift */; };
-		02E502832A10624A008FCD1F /* bellScheduleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E502822A10624A008FCD1F /* bellScheduleUITests.swift */; };
-		02E502852A10624A008FCD1F /* bellScheduleUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E502842A10624A008FCD1F /* bellScheduleUITestsLaunchTests.swift */; };
+		02E502922A107680008FCD1F /* NewUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E502912A107680008FCD1F /* NewUserView.swift */; };
+		02E502942A1078E5008FCD1F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E502932A1078E5008FCD1F /* SettingsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		02E502752A10624A008FCD1F /* PBXContainerItemProxy */ = {
+		0299C1312A1A7F8C00CA2AB6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 02E5025C2A10624A008FCD1F /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 02E502632A10624A008FCD1F;
-			remoteInfo = bellSchedule;
-		};
-		02E5027F2A10624A008FCD1F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 02E5025C2A10624A008FCD1F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 02E502632A10624A008FCD1F;
-			remoteInfo = bellSchedule;
+			remoteGlobalIDString = 029C67CA2A117744004484F4;
+			remoteInfo = bellScheduleKit;
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		029C67C92A117744004484F4 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		021432B12A202B8600549DF9 /* BSSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSSymbol.swift; sourceTree = "<group>"; };
+		021432B32A202B9C00549DF9 /* BSSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSSchedule.swift; sourceTree = "<group>"; };
+		021432B52A202BBE00549DF9 /* BSCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSCalendar.swift; sourceTree = "<group>"; };
+		021432B72A202BDE00549DF9 /* BSPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSPersistence.swift; sourceTree = "<group>"; };
+		021432B92A21921100549DF9 /* BSCompatibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSCompatibility.swift; sourceTree = "<group>"; };
+		021432BB2A21924100549DF9 /* BSNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSNetwork.swift; sourceTree = "<group>"; };
+		021432BD2A21944800549DF9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0299C12E2A1A7F2E00CA2AB6 /* bellSchedule.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = bellSchedule.entitlements; sourceTree = "<group>"; };
+		029C67C12A116975004484F4 /* TodayScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayScheduleView.swift; sourceTree = "<group>"; };
+		029C67C32A116AB4004484F4 /* AllScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllScheduleView.swift; sourceTree = "<group>"; };
+		029C67C52A11764A004484F4 /* AccessoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessoriesView.swift; sourceTree = "<group>"; };
+		029C67CB2A117744004484F4 /* libbellScheduleKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libbellScheduleKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		029C67D22A117760004484F4 /* BSKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSKit.swift; sourceTree = "<group>"; };
 		02E502642A10624A008FCD1F /* bellSchedule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bellSchedule.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		02E502672A10624A008FCD1F /* bellScheduleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bellScheduleApp.swift; sourceTree = "<group>"; };
-		02E502692A10624A008FCD1F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		02E502672A10624A008FCD1F /* BellScheduleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BellScheduleApp.swift; sourceTree = "<group>"; };
+		02E502692A10624A008FCD1F /* HomeScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenView.swift; sourceTree = "<group>"; };
 		02E5026B2A10624A008FCD1F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		02E5026E2A10624A008FCD1F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		02E502742A10624A008FCD1F /* bellScheduleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = bellScheduleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		02E502782A10624A008FCD1F /* bellScheduleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bellScheduleTests.swift; sourceTree = "<group>"; };
-		02E5027E2A10624A008FCD1F /* bellScheduleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = bellScheduleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		02E502822A10624A008FCD1F /* bellScheduleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bellScheduleUITests.swift; sourceTree = "<group>"; };
-		02E502842A10624A008FCD1F /* bellScheduleUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bellScheduleUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		02E502912A107680008FCD1F /* NewUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewUserView.swift; sourceTree = "<group>"; };
+		02E502932A1078E5008FCD1F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		029C67C82A117744004484F4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		02E502612A10624A008FCD1F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		02E502712A10624A008FCD1F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		02E5027B2A10624A008FCD1F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				021432C42A21962F00549DF9 /* FirebaseDatabaseSwift in Frameworks */,
+				0299C1302A1A7F8C00CA2AB6 /* libbellScheduleKit.a in Frameworks */,
+				021432C22A21962F00549DF9 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0299C12F2A1A7F8C00CA2AB6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		029C67CC2A117744004484F4 /* bellScheduleKit */ = {
+			isa = PBXGroup;
+			children = (
+				029C67D22A117760004484F4 /* BSKit.swift */,
+				021432BB2A21924100549DF9 /* BSNetwork.swift */,
+				021432B92A21921100549DF9 /* BSCompatibility.swift */,
+				021432B52A202BBE00549DF9 /* BSCalendar.swift */,
+				021432B12A202B8600549DF9 /* BSSymbol.swift */,
+				021432B32A202B9C00549DF9 /* BSSchedule.swift */,
+			);
+			path = bellScheduleKit;
+			sourceTree = "<group>";
+		};
 		02E5025B2A10624A008FCD1F = {
 			isa = PBXGroup;
 			children = (
+				021432B72A202BDE00549DF9 /* BSPersistence.swift */,
+				029C67C52A11764A004484F4 /* AccessoriesView.swift */,
 				02E502662A10624A008FCD1F /* bellSchedule */,
-				02E502772A10624A008FCD1F /* bellScheduleTests */,
-				02E502812A10624A008FCD1F /* bellScheduleUITests */,
+				029C67CC2A117744004484F4 /* bellScheduleKit */,
 				02E502652A10624A008FCD1F /* Products */,
+				0299C12F2A1A7F8C00CA2AB6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -85,8 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				02E502642A10624A008FCD1F /* bellSchedule.app */,
-				02E502742A10624A008FCD1F /* bellScheduleTests.xctest */,
-				02E5027E2A10624A008FCD1F /* bellScheduleUITests.xctest */,
+				029C67CB2A117744004484F4 /* libbellScheduleKit.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -94,8 +139,14 @@
 		02E502662A10624A008FCD1F /* bellSchedule */ = {
 			isa = PBXGroup;
 			children = (
-				02E502672A10624A008FCD1F /* bellScheduleApp.swift */,
-				02E502692A10624A008FCD1F /* ContentView.swift */,
+				021432BD2A21944800549DF9 /* GoogleService-Info.plist */,
+				0299C12E2A1A7F2E00CA2AB6 /* bellSchedule.entitlements */,
+				029C67C12A116975004484F4 /* TodayScheduleView.swift */,
+				029C67C32A116AB4004484F4 /* AllScheduleView.swift */,
+				02E502932A1078E5008FCD1F /* SettingsView.swift */,
+				02E502912A107680008FCD1F /* NewUserView.swift */,
+				02E502672A10624A008FCD1F /* BellScheduleApp.swift */,
+				02E502692A10624A008FCD1F /* HomeScreenView.swift */,
 				02E5026B2A10624A008FCD1F /* Assets.xcassets */,
 				02E5026D2A10624A008FCD1F /* Preview Content */,
 			);
@@ -110,26 +161,26 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		02E502772A10624A008FCD1F /* bellScheduleTests */ = {
-			isa = PBXGroup;
-			children = (
-				02E502782A10624A008FCD1F /* bellScheduleTests.swift */,
-			);
-			path = bellScheduleTests;
-			sourceTree = "<group>";
-		};
-		02E502812A10624A008FCD1F /* bellScheduleUITests */ = {
-			isa = PBXGroup;
-			children = (
-				02E502822A10624A008FCD1F /* bellScheduleUITests.swift */,
-				02E502842A10624A008FCD1F /* bellScheduleUITestsLaunchTests.swift */,
-			);
-			path = bellScheduleUITests;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		029C67CA2A117744004484F4 /* bellScheduleKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 029C67CF2A117744004484F4 /* Build configuration list for PBXNativeTarget "bellScheduleKit" */;
+			buildPhases = (
+				029C67C72A117744004484F4 /* Sources */,
+				029C67C82A117744004484F4 /* Frameworks */,
+				029C67C92A117744004484F4 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = bellScheduleKit;
+			productName = bellScheduleKit;
+			productReference = 029C67CB2A117744004484F4 /* libbellScheduleKit.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 		02E502632A10624A008FCD1F /* bellSchedule */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 02E502882A10624A008FCD1F /* Build configuration list for PBXNativeTarget "bellSchedule" */;
@@ -141,47 +192,16 @@
 			buildRules = (
 			);
 			dependencies = (
+				0299C1322A1A7F8C00CA2AB6 /* PBXTargetDependency */,
 			);
 			name = bellSchedule;
+			packageProductDependencies = (
+				021432C12A21962F00549DF9 /* FirebaseAnalyticsWithoutAdIdSupport */,
+				021432C32A21962F00549DF9 /* FirebaseDatabaseSwift */,
+			);
 			productName = bellSchedule;
 			productReference = 02E502642A10624A008FCD1F /* bellSchedule.app */;
 			productType = "com.apple.product-type.application";
-		};
-		02E502732A10624A008FCD1F /* bellScheduleTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 02E5028B2A10624A008FCD1F /* Build configuration list for PBXNativeTarget "bellScheduleTests" */;
-			buildPhases = (
-				02E502702A10624A008FCD1F /* Sources */,
-				02E502712A10624A008FCD1F /* Frameworks */,
-				02E502722A10624A008FCD1F /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				02E502762A10624A008FCD1F /* PBXTargetDependency */,
-			);
-			name = bellScheduleTests;
-			productName = bellScheduleTests;
-			productReference = 02E502742A10624A008FCD1F /* bellScheduleTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		02E5027D2A10624A008FCD1F /* bellScheduleUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 02E5028E2A10624A008FCD1F /* Build configuration list for PBXNativeTarget "bellScheduleUITests" */;
-			buildPhases = (
-				02E5027A2A10624A008FCD1F /* Sources */,
-				02E5027B2A10624A008FCD1F /* Frameworks */,
-				02E5027C2A10624A008FCD1F /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				02E502802A10624A008FCD1F /* PBXTargetDependency */,
-			);
-			name = bellScheduleUITests;
-			productName = bellScheduleUITests;
-			productReference = 02E5027E2A10624A008FCD1F /* bellScheduleUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
@@ -193,16 +213,12 @@
 				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
+					029C67CA2A117744004484F4 = {
+						CreatedOnToolsVersion = 14.3;
+						LastSwiftMigration = 1430;
+					};
 					02E502632A10624A008FCD1F = {
 						CreatedOnToolsVersion = 14.3;
-					};
-					02E502732A10624A008FCD1F = {
-						CreatedOnToolsVersion = 14.3;
-						TestTargetID = 02E502632A10624A008FCD1F;
-					};
-					02E5027D2A10624A008FCD1F = {
-						CreatedOnToolsVersion = 14.3;
-						TestTargetID = 02E502632A10624A008FCD1F;
 					};
 				};
 			};
@@ -215,13 +231,15 @@
 				Base,
 			);
 			mainGroup = 02E5025B2A10624A008FCD1F;
+			packageReferences = (
+				021432C02A21962F00549DF9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 02E502652A10624A008FCD1F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				02E502632A10624A008FCD1F /* bellSchedule */,
-				02E502732A10624A008FCD1F /* bellScheduleTests */,
-				02E5027D2A10624A008FCD1F /* bellScheduleUITests */,
+				029C67CA2A117744004484F4 /* bellScheduleKit */,
 			);
 		};
 /* End PBXProject section */
@@ -233,68 +251,79 @@
 			files = (
 				02E5026F2A10624A008FCD1F /* Preview Assets.xcassets in Resources */,
 				02E5026C2A10624A008FCD1F /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		02E502722A10624A008FCD1F /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		02E5027C2A10624A008FCD1F /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				021432BE2A21944800549DF9 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		029C67C72A117744004484F4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				021432B22A202B8600549DF9 /* BSSymbol.swift in Sources */,
+				029C67D32A117760004484F4 /* BSKit.swift in Sources */,
+				021432B62A202BBE00549DF9 /* BSCalendar.swift in Sources */,
+				021432B82A202BDE00549DF9 /* BSPersistence.swift in Sources */,
+				021432B42A202B9C00549DF9 /* BSSchedule.swift in Sources */,
+				021432BC2A21924100549DF9 /* BSNetwork.swift in Sources */,
+				021432BA2A21921100549DF9 /* BSCompatibility.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		02E502602A10624A008FCD1F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				02E5026A2A10624A008FCD1F /* ContentView.swift in Sources */,
-				02E502682A10624A008FCD1F /* bellScheduleApp.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		02E502702A10624A008FCD1F /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				02E502792A10624A008FCD1F /* bellScheduleTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		02E5027A2A10624A008FCD1F /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				02E502852A10624A008FCD1F /* bellScheduleUITestsLaunchTests.swift in Sources */,
-				02E502832A10624A008FCD1F /* bellScheduleUITests.swift in Sources */,
+				029C67C22A116975004484F4 /* TodayScheduleView.swift in Sources */,
+				029C67C62A11764A004484F4 /* AccessoriesView.swift in Sources */,
+				029C67C42A116AB4004484F4 /* AllScheduleView.swift in Sources */,
+				02E5026A2A10624A008FCD1F /* HomeScreenView.swift in Sources */,
+				02E502942A1078E5008FCD1F /* SettingsView.swift in Sources */,
+				02E502922A107680008FCD1F /* NewUserView.swift in Sources */,
+				02E502682A10624A008FCD1F /* BellScheduleApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		02E502762A10624A008FCD1F /* PBXTargetDependency */ = {
+		0299C1322A1A7F8C00CA2AB6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 02E502632A10624A008FCD1F /* bellSchedule */;
-			targetProxy = 02E502752A10624A008FCD1F /* PBXContainerItemProxy */;
-		};
-		02E502802A10624A008FCD1F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 02E502632A10624A008FCD1F /* bellSchedule */;
-			targetProxy = 02E5027F2A10624A008FCD1F /* PBXContainerItemProxy */;
+			target = 029C67CA2A117744004484F4 /* bellScheduleKit */;
+			targetProxy = 0299C1312A1A7F8C00CA2AB6 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		029C67D02A117744004484F4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		029C67D12A117744004484F4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		02E502862A10624A008FCD1F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -414,26 +443,31 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = bellSchedule/bellSchedule.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"bellSchedule/Preview Content\"";
+				DEVELOPMENT_TEAM = Z44L282QM9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 3.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Stassinopoulos.Ari.bellSchedule;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -442,104 +476,46 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = bellSchedule/bellSchedule.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"bellSchedule/Preview Content\"";
+				DEVELOPMENT_TEAM = Z44L282QM9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 3.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Stassinopoulos.Ari.bellSchedule;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		02E5028C2A10624A008FCD1F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.Stassinopoulos.Ari.bellScheduleTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/bellSchedule.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/bellSchedule";
-			};
-			name = Debug;
-		};
-		02E5028D2A10624A008FCD1F /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.Stassinopoulos.Ari.bellScheduleTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/bellSchedule.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/bellSchedule";
-			};
-			name = Release;
-		};
-		02E5028F2A10624A008FCD1F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.Stassinopoulos.Ari.bellScheduleUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = bellSchedule;
-			};
-			name = Debug;
-		};
-		02E502902A10624A008FCD1F /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.Stassinopoulos.Ari.bellScheduleUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = bellSchedule;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		029C67CF2A117744004484F4 /* Build configuration list for PBXNativeTarget "bellScheduleKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				029C67D02A117744004484F4 /* Debug */,
+				029C67D12A117744004484F4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		02E5025F2A10624A008FCD1F /* Build configuration list for PBXProject "bellSchedule" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -558,25 +534,31 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		02E5028B2A10624A008FCD1F /* Build configuration list for PBXNativeTarget "bellScheduleTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				02E5028C2A10624A008FCD1F /* Debug */,
-				02E5028D2A10624A008FCD1F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		02E5028E2A10624A008FCD1F /* Build configuration list for PBXNativeTarget "bellScheduleUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				02E5028F2A10624A008FCD1F /* Debug */,
-				02E502902A10624A008FCD1F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		021432C02A21962F00549DF9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		021432C12A21962F00549DF9 /* FirebaseAnalyticsWithoutAdIdSupport */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 021432C02A21962F00549DF9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsWithoutAdIdSupport;
+		};
+		021432C32A21962F00549DF9 /* FirebaseDatabaseSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 021432C02A21962F00549DF9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabaseSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 02E5025C2A10624A008FCD1F /* Project object */;
 }
