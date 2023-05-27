@@ -64,14 +64,7 @@ public struct BSPersistence {
                    let customSymbolsData = customSymbolsString.data(using: .utf8),
                    let customSymbolsObject = try JSONSerialization.jsonObject(with: customSymbolsData) as? [String: Any]
                 {
-                    customSymbolsObject.forEach { (customSymbolKey, customSymbolValueObject) in
-                        if symbolTable.symbolsDict.keys.contains(customSymbolKey),
-                           symbolTable.symbolsDict[customSymbolsKey]!.configurable,
-                           let customSymbolValue = customSymbolValueObject as? String
-                        {
-                            symbolTable.symbolsDict[customSymbolKey]?.configuredValue = customSymbolValue
-                        }
-                    }
+                    symbolTable.register(customSymbols: loadCustomSymbols(fromDefaults: defaults))
                 }
             } catch {
                 print(error);
@@ -81,7 +74,24 @@ public struct BSPersistence {
             return nil;
         }
     }
-    
+    public func loadCustomSymbols(fromDefaults defaults: UserDefaults) -> [String: String] {
+        var customSymbolsDictionary = [String: String]();
+        do {
+            if let customSymbolsString = defaults.string(forKey: customSymbolsKey),
+               let customSymbolsData = customSymbolsString.data(using: .utf8),
+               let customSymbolsObject = try JSONSerialization.jsonObject(with: customSymbolsData) as? [String: Any]
+            {
+                customSymbolsObject.forEach { (customSymbolKey, customSymbolValueObject) in
+                    if let customSymbolValue = customSymbolValueObject as? String {
+                        customSymbolsDictionary[customSymbolKey] = customSymbolValue;
+                    }
+                }
+            }
+        } catch {
+            print(error);
+        }
+        return customSymbolsDictionary;
+    }
     public func load() -> BSContext? {
         if let defaults = BSPersistence.defaults {
             // Load calendar

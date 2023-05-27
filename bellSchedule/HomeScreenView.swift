@@ -6,8 +6,11 @@
 //
 
 import SwiftUI
+import BellScheduleKit
 
 struct HomeScreenView: View {
+    
+    public var contextWrapper: BSContextWrapper;
     
     //    var app: BellScheduleAppView
     @State var startTime = ""
@@ -19,7 +22,7 @@ struct HomeScreenView: View {
             Color("AppColors")
                 .ignoresSafeArea()
             VStack {
-                AccessoriesView()
+                AccessoriesView(contextWrapper: contextWrapper);
                 Spacer()
                 VStack {
                     Text(startTime)

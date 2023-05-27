@@ -7,6 +7,8 @@
 
 import SwiftUI
 import FirebaseCore
+import FirebaseDatabase
+import BellScheduleKit
 
 class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
@@ -24,33 +26,36 @@ struct bellScheduleApp: App {
     }
 }
 
-struct Symbol: Hashable {
-    public var defaultValue: String;
-    public var symbol: String;
-    private var storedValue: String?;
-    var value: String {
-        set {
-            storedValue = (newValue.trimmingCharacters(in: .whitespacesAndNewlines)) == "" ? nil : newValue
-        }
-        get {
-            storedValue ?? ""
-        }
-    }
-    public init(defaultValue: String, symbol: String, storedValue: String? = nil) {
-        self.defaultValue = defaultValue
-        self.symbol = symbol
-        self.storedValue = storedValue
-    }
-}
+//struct Symbol: Hashable {
+//    public var defaultValue: String;
+//    public var symbol: String;
+//    private var storedValue: String?;
+//    var value: String {
+//        set {
+//            storedValue = (newValue.trimmingCharacters(in: .whitespacesAndNewlines)) == "" ? nil : newValue
+//        }
+//        get {
+//            storedValue ?? ""
+//        }
+//    }
+//    public init(defaultValue: String, symbol: String, storedValue: String? = nil) {
+//        self.defaultValue = defaultValue
+//        self.symbol = symbol
+//        self.storedValue = storedValue
+//    }
+//}
 
 struct BellScheduleAppView: View {
     
     @State var firstTimeUser: Bool
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    var contextWrapper: BSContextWrapper = BSContextWrapper.from(databaseReference: Database.database().reference()) {
+        
+    };
     
     var body: some View {
         
-        HomeScreenView()
+        HomeScreenView(contextWrapper: contextWrapper)
             .sheet(isPresented: $firstTimeUser) {
                 NewUserView(app: self)
                     .interactiveDismissDisabled()

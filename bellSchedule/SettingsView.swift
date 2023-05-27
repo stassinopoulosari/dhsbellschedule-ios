@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import BellScheduleKit
 
 enum Setting {
     case editClassNames
@@ -16,6 +17,12 @@ enum Setting {
 
 struct SettingsView: View {
     //    @Binding var settingsShown: Bool;
+    
+    public var context: BSContext;
+    
+    public init(context: BSContext) {
+        self.context = context
+    }
     
     private var settings: [Setting] = [
         .editClassNames,
@@ -30,13 +37,7 @@ struct SettingsView: View {
             switch settingsLink {
             case .editClassNames:
                 NavigationLink{
-                    EditClassNamesView(symbols: [
-                        Symbol(defaultValue: "Period 0", symbol: "per0"),
-                        Symbol(defaultValue: "Period 1", symbol: "per1"),
-                        Symbol(defaultValue: "Period 2", symbol: "per2"),
-                        Symbol(defaultValue: "Period 3", symbol: "per3"),
-                        Symbol(defaultValue: "Period 4", symbol: "per4")
-                    ])
+                    EditClassNamesView(symbolTable: context.symbolTable)
                     .navigationTitle("Edit class names")
                 } label: {
                     Text("Edit class names")
@@ -88,15 +89,21 @@ Hello from beautiful San Diego, California!
 }
 
 struct SymbolEditTextField: View {
-    @State var symbol: Symbol;
+    @State public var symbol: BSSymbol;
     
     var body: some View {
-        TextField(symbol.defaultValue, text: $symbol.value)
+        TextField(symbol.defaultValue, text: $symbol.configuredValue)
     }
+    
 }
 
 struct EditClassNamesView: View {
-    @State var symbols: [Symbol]
+    public var symbolTable: BSSymbolTable;
+    private var symbols: [BSSymbol] {
+        return symbolTable.symbolsDict.values.filter { symbol in
+            return symbol.configurable;
+        }
+    }
     var body: some View {
         List(symbols, id: \.self) {
             symbol in

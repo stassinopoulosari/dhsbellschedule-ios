@@ -6,8 +6,11 @@
 //
 
 import SwiftUI
+import BellScheduleKit
 
 struct TodayScheduleView: View {
+    
+    @State public var context: BSContext;
     
     var body: some View {
         List {
