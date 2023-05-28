@@ -15,6 +15,9 @@
 		021432CA2A219CCA00549DF9 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 021432C92A219CCA00549DF9 /* FirebaseDatabase */; };
 		021432CC2A219CD500549DF9 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 021432CB2A219CD500549DF9 /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		026CC76C2A22D593005A0808 /* BSSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026CC76B2A22D593005A0808 /* BSSymbol.swift */; };
+		026CC76F2A2317EF005A0808 /* SchedulePeriodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026CC76D2A2317CA005A0808 /* SchedulePeriodView.swift */; };
+		0295F95D2A23AAC400B3A4DB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0295F95C2A23AAC400B3A4DB /* LaunchScreen.storyboard */; };
+		0295F95F2A23D09C00B3A4DB /* BSContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0295F95E2A23D09C00B3A4DB /* BSContext.swift */; };
 		0299C1302A1A7F8C00CA2AB6 /* libBellScheduleKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 029C67CB2A117744004484F4 /* libBellScheduleKit.a */; };
 		029C67C22A116975004484F4 /* TodayScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029C67C12A116975004484F4 /* TodayScheduleView.swift */; };
 		029C67C42A116AB4004484F4 /* AllScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029C67C32A116AB4004484F4 /* AllScheduleView.swift */; };
@@ -58,6 +61,9 @@
 		021432BB2A21924100549DF9 /* BSNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSNetwork.swift; sourceTree = "<group>"; };
 		021432BD2A21944800549DF9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		026CC76B2A22D593005A0808 /* BSSymbol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSSymbol.swift; sourceTree = "<group>"; };
+		026CC76D2A2317CA005A0808 /* SchedulePeriodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulePeriodView.swift; sourceTree = "<group>"; };
+		0295F95C2A23AAC400B3A4DB /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		0295F95E2A23D09C00B3A4DB /* BSContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSContext.swift; sourceTree = "<group>"; };
 		0299C12E2A1A7F2E00CA2AB6 /* bellSchedule.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = bellSchedule.entitlements; sourceTree = "<group>"; };
 		029C67C12A116975004484F4 /* TodayScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayScheduleView.swift; sourceTree = "<group>"; };
 		029C67C32A116AB4004484F4 /* AllScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllScheduleView.swift; sourceTree = "<group>"; };
@@ -108,6 +114,7 @@
 				021432B72A202BDE00549DF9 /* BSPersistence.swift */,
 				021432BB2A21924100549DF9 /* BSNetwork.swift */,
 				02A0E8A32A22CC7100C06C89 /* BSKit.swift */,
+				0295F95E2A23D09C00B3A4DB /* BSContext.swift */,
 				021432B92A21921100549DF9 /* BSCompatibility.swift */,
 				02A0E8A12A22CC5400C06C89 /* BSCalendar.swift */,
 				026CC76B2A22D593005A0808 /* BSSymbol.swift */,
@@ -138,12 +145,14 @@
 		02E502662A10624A008FCD1F /* bellSchedule */ = {
 			isa = PBXGroup;
 			children = (
+				0295F95C2A23AAC400B3A4DB /* LaunchScreen.storyboard */,
 				029C67C52A11764A004484F4 /* AccessoriesView.swift */,
 				02E502672A10624A008FCD1F /* BellScheduleApp.swift */,
 				021432BD2A21944800549DF9 /* GoogleService-Info.plist */,
 				0299C12E2A1A7F2E00CA2AB6 /* bellSchedule.entitlements */,
 				029C67C12A116975004484F4 /* TodayScheduleView.swift */,
 				029C67C32A116AB4004484F4 /* AllScheduleView.swift */,
+				026CC76D2A2317CA005A0808 /* SchedulePeriodView.swift */,
 				02E502932A1078E5008FCD1F /* SettingsView.swift */,
 				02E502912A107680008FCD1F /* NewUserView.swift */,
 				02E502692A10624A008FCD1F /* HomeScreenView.swift */,
@@ -252,6 +261,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				02E5026F2A10624A008FCD1F /* Preview Assets.xcassets in Resources */,
+				0295F95D2A23AAC400B3A4DB /* LaunchScreen.storyboard in Resources */,
 				02E5026C2A10624A008FCD1F /* Assets.xcassets in Resources */,
 				021432BE2A21944800549DF9 /* GoogleService-Info.plist in Resources */,
 			);
@@ -268,6 +278,7 @@
 				02A0E8A22A22CC5400C06C89 /* BSCalendar.swift in Sources */,
 				02A0E8A42A22CC7200C06C89 /* BSKit.swift in Sources */,
 				021432B82A202BDE00549DF9 /* BSPersistence.swift in Sources */,
+				0295F95F2A23D09C00B3A4DB /* BSContext.swift in Sources */,
 				021432B42A202B9C00549DF9 /* BSSchedule.swift in Sources */,
 				021432BC2A21924100549DF9 /* BSNetwork.swift in Sources */,
 				021432BA2A21921100549DF9 /* BSCompatibility.swift in Sources */,
@@ -284,6 +295,7 @@
 				02E5026A2A10624A008FCD1F /* HomeScreenView.swift in Sources */,
 				02E502942A1078E5008FCD1F /* SettingsView.swift in Sources */,
 				02E502922A107680008FCD1F /* NewUserView.swift in Sources */,
+				026CC76F2A2317EF005A0808 /* SchedulePeriodView.swift in Sources */,
 				02E502682A10624A008FCD1F /* BellScheduleApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -452,11 +464,13 @@
 				DEVELOPMENT_TEAM = Z44L282QM9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BellSchedule/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -485,11 +499,13 @@
 				DEVELOPMENT_TEAM = Z44L282QM9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BellSchedule/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

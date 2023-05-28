@@ -107,7 +107,9 @@ struct SymbolEditTextField: View {
                 }
             }
         )
-        TextField(context.symbolTable.symbolsDict[key]!.defaultValue, text: configuredValue);
+        TextField(context.symbolTable.symbolsDict[key]!.defaultValue, text: configuredValue).onAppear {
+            UITextField.appearance().clearButtonMode = .whileEditing;
+        };
     }
     
 }
@@ -124,9 +126,13 @@ struct EditClassNamesView: View {
         )
     }
     var body: some View {
-        List(symbols, id: \.self) {
-            symbol in
-            SymbolEditTextField(context: context, key: symbol)
-        }
+        List {
+            Section(footer: Text("All changes are saved automatically.")) {
+                ForEach(symbols, id: \.self) {
+                    symbol in
+                    SymbolEditTextField(context: context, key: symbol)
+                }
+            }
+        }.listStyle(.grouped)
     }
 }

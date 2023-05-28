@@ -36,13 +36,13 @@ public struct BSSymbol {
         }
     };
     public var value: String {
-        if configurable {
-            return configuredValue;
+        if configurable, let realConfiguredValue = realConfiguredValue {
+            return realConfiguredValue;
         }
         return defaultValue;
     }
     func render(templateString: String) -> String {
-        return templateString.replacingOccurrences(of: "$(\(key)", with: value);
+        return templateString.replacingOccurrences(of: "$(\(key))", with: value);
     }
 }
 
@@ -83,7 +83,7 @@ public struct BSSymbolTable {
             }
         }
     }
-    
+        
     public func export() -> BSSymbolTableExportable? {
         return BSSymbolTableExportable.from(symbolTable: self);
     }
@@ -92,11 +92,12 @@ public struct BSSymbolTable {
     private var symbols: [BSSymbol] {
         return Array(symbolsDict.values);
     }
-    public func render(templateString: String) {
+    public func render(templateString: String) -> String {
         var renderedString = templateString;
         symbols.forEach { symbol in
             renderedString = symbol.render(templateString: renderedString);
         }
+        return renderedString;
     }
     
     mutating public func register(customSymbols: [String: String]) {

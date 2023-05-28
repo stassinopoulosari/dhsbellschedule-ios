@@ -12,29 +12,9 @@ struct AccessoriesView: View {
     @ObservedObject public var contextWrapper: BSContextWrapper;
     @State var settingsShown =  false
     @State var infoShown = false
-    private var className: Binding<String> {
-        Binding(
-            get: {() -> String in
-                switch contextWrapper.state {
-                case .loading:
-                    return "";
-                case .loadedWithErrors(_), .loadedWithoutErrors:
-                    if let context = contextWrapper.context, let currentSchedule = context.calendar.currentSchedule, let currentPeriod = currentSchedule.currentPeriod {
-                        return currentPeriod.name;
-                    }
-                    return ""
-                case .failed(_):
-                    return "";
-                }
-            }, set: {_,_ in}
-        )
-        
-        
-    }
     
     var body: some View {
         HStack {
-            
             Button (action: showSettings) {
                 Image("baseline_settings_black_24pt")
             }
@@ -57,8 +37,19 @@ struct AccessoriesView: View {
             }
             .tint(.white)
             Spacer()
-            Text(className.wrappedValue)
-                .foregroundColor(.white)
+            switch(contextWrapper.state) {
+            case .loading:
+                Text("")
+            case .loadedWithErrors(_), .loadedWithoutErrors:
+                if let context = contextWrapper.context {
+                    @ObservedObject var contextObserver = BSContextObserver(withContext: context);
+                    ClassNameTextView(contextObserver: contextObserver);
+                } else {
+                    Text("");
+                }
+            case .failed(_):
+                Text("")
+            }
             Spacer()
             Button(action: getInfo) {
                 Image("baseline_info_black_24pt")

@@ -20,7 +20,7 @@ public struct BSTime: Comparable {
             return ldate > rdate;
         }
         return true;
-
+        
     }
     
     public static func == (lhs: BSTime, rhs: BSTime) -> Bool {
@@ -39,15 +39,43 @@ public struct BSTime: Comparable {
         }
         set {
             let dateFormatter = DateFormatter();
-            dateFormatter.dateFormat = "HH:MM";
+            dateFormatter.dateFormat = "HH:mm";
             if let date = newValue {
                 self.string = dateFormatter.string(from: date);
             }
         }
     }
+    
+    public static var usesAMPM: Bool {
+        let locale = NSLocale.current
+        let dateFormat = DateFormatter.dateFormat(fromTemplate: "j", options: 0, locale: locale)!
+        if dateFormat.firstRange(of: "a") != nil {
+            return true
+        }
+        else {
+            return false
+        }
+    }
+    
+    public var localString: String {
+        get {
+            let dateFormatter = DateFormatter()
+            if(BSTime.usesAMPM) {
+                dateFormatter.dateFormat = "h:mm a"
+            } else {
+                dateFormatter.dateFormat = "HH:mm";
+            }
+            if let date = self.date {
+                return dateFormatter.string(from: date)
+            } else {
+                return "Invalid Date";
+            }
+        }
+    }
+    
     private static func hours(fromString time: String) -> Int {
         let hoursString = String(time.split(separator: ":", maxSplits: 1)[0])
-        print(hoursString)
+        //        print(hoursString)
         if let hoursInt = Int(hoursString) {
             return hoursInt;
         }
@@ -55,7 +83,8 @@ public struct BSTime: Comparable {
     }
     private static func minutes(fromString time: String) -> Int {
         let minutesString = String(time.split(separator: ":", maxSplits: 1)[1])
-        print(minutesString)
+        //        print("time: \(time); minutesString: \(minutesString)")
+        //        print(minutesString)
         if let minutesInt = Int(minutesString) {
             return minutesInt;
         }
@@ -70,22 +99,28 @@ public struct BSTime: Comparable {
     
     public init(date: Date) {
         let dateFormatter = DateFormatter();
-        dateFormatter.dateFormat = "HH:MM";
+        dateFormatter.dateFormat = "HH:mm";
         self.string = dateFormatter.string(from: date);
     }
     
     public init(string: String) {
-        print(string);
-        print(BSTime.hours(fromString: string))
-        print(BSTime.minutes(fromString: string))
+        //        print(string);
+        //        print(BSTime.hours(fromString: string))
+        //        print(BSTime.minutes(fromString: string))
+        //        print(Calendar.current.date(
+        //            bySettingHour: BSTime.hours(fromString: string),
+        //            minute: BSTime.minutes(fromString: string),
+        //            second: 0, of: Date.now
+        //        ))
         if Calendar.current.date(
             bySettingHour: BSTime.hours(fromString: string),
             minute: BSTime.minutes(fromString: string),
             second: 0, of: Date.now
         ) != nil {
             self.string = string;
+        } else {
+            self.string = "00:00";
         }
-        self.string = "00:00";
     }
     
     public var string: String;
@@ -163,6 +198,9 @@ public struct BSScheduleTable {
 
 public struct BSSchedule {
     public var name: String;
+    public var displayName: String {
+        return name.replacingOccurrences(of: "![0-9]*( )?", with: "", options: .regularExpression).replacingOccurrences(of: "ZZZ", with: "");
+    };
     public var periods: [BSPeriod];
     
     public var currentPeriod: BSPeriod? {
@@ -180,14 +218,14 @@ public struct BSSchedule {
         if scheduleObject["hidden"] != nil {
             return nil;
         }
-        print("Passed nil test")
+        //        print("Passed nil test")
         if let scheduleName = scheduleObject["name"] as? String {
             scheduleObject.keys.sorted().forEach { key in
                 if(key == "name") {
                     return;
                 }
-                print(key)
-                print(scheduleObject[key]);
+                //                print(key)
+                //                print(scheduleObject[key]);
                 if let period = scheduleObject[key] as? [String: Any],
                    let startString = period["start"] as? String,
                    let endString = period["end"] as? String,
