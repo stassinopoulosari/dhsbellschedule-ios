@@ -14,11 +14,13 @@ public struct BSPersistence {
     static let calendarKey = "bs3-persistence-calendar";
     static let lastUpdatedKey = "bs3-persistance-lastUpdated";
     static let lastVersionUsedKey = "bs3-compatibilityLastVersionUsed";
+    static let firstTimeUserKey = "bs3-firstTimeUser3.0.0-debug1";
+
     
     public static var contextLastUpdated: Date? {
-        if let defaults = defaults, let lastUpdatedString = defaults.string(forKey: BSPersistence.lastUpdatedKey) {
-            let dateFormatter = DateFormatter();
-            return dateFormatter.date(from: lastUpdatedString);
+        if let defaults = defaults {
+            let lastUpdatedInterval = defaults.double(forKey: BSPersistence.lastUpdatedKey)
+            return Date(timeIntervalSince1970: lastUpdatedInterval)
         } else {
             return nil;
         }
@@ -27,9 +29,8 @@ public struct BSPersistence {
     
     public static func save(hardUpdateOfContext context: BSContext) {
         if let defaults = defaults {
-            let dateFormatter = DateFormatter();
-            let lastUpdated = Date();
-            defaults.set(dateFormatter.string(from: lastUpdated), forKey: lastUpdatedKey);
+            let lastUpdatedInterval = Date.now.timeIntervalSince1970;
+            defaults.set(lastUpdatedInterval, forKey: lastUpdatedKey);
             let calendar = context.calendar;
             let symbolTable = context.symbolTable;
             if let calendarExportable = calendar.export(),
@@ -38,15 +39,27 @@ public struct BSPersistence {
                 save(calendarString: calendarExportable.calendarString, toDefaults: defaults);
                 save(scheduleTableString: calendarExportable.scheduleTableString, toDefaults: defaults);
                 save(symbolTableString: symbolTableExportable.symbolTableString, toDefaults: defaults);
-                save(customSymbolsString: symbolTableExportable.symbolTableString, toDefaults: defaults)
+//                save(customSymbolsString: symbolTableExportable.symbolTableString, toDefaults: defaults)
             }
             
         }
     }
     
+    public static func firstTimeUser() -> Bool {
+        if let defaults = defaults {
+            let firstTimeUser = !defaults.bool(forKey: firstTimeUserKey)
+            if firstTimeUser {
+                defaults.set(true, forKey: firstTimeUserKey);
+            }
+            return firstTimeUser;
+        }
+        return true;
+    }
+    
     public static func save(softUpdateOfContext context: BSContext) {
         if let defaults = defaults {
             if let symbolTableExportable = context.symbolTable.export() {
+//                print(symbolTableExportable.customSymbolsString)
                 save(customSymbolsString: symbolTableExportable.customSymbolsString, toDefaults: defaults);
             }
         }
@@ -61,7 +74,7 @@ public struct BSPersistence {
     }
     
     private static func save(scheduleTableString: String, toDefaults defaults: UserDefaults) {
-        defaults.set(scheduleTableString, forKey: scheduleTableString);
+        defaults.set(scheduleTableString, forKey: scheduleTableKey);
     }
     
     private static func save(customSymbolsString: String, toDefaults defaults: UserDefaults) {
@@ -70,7 +83,9 @@ public struct BSPersistence {
     
     private static func loadCalendar(fromDefaults defaults: UserDefaults) -> BSCalendar? {
         if let scheduleTable = loadScheduleTable(fromDefaults: defaults) {
+//            print("calendar string \(defaults.string(forKey: calendarKey))")
             if let calendarString = defaults.string(forKey: calendarKey) {
+//                print("calendar string \(calendarString)")
                 return BSCalendar.from(string: calendarString, withScheduleTable: scheduleTable)
             } else {
                 // Could not load calendar
@@ -82,6 +97,7 @@ public struct BSPersistence {
         }
     }
     private static func loadScheduleTable(fromDefaults defaults: UserDefaults) -> BSScheduleTable? {
+//        print("schedule table string \(defaults.string(forKey: scheduleTableKey))")
         if let scheduleTableString = defaults.string(forKey: scheduleTableKey) {
             return BSScheduleTable.from(string: scheduleTableString);
         } else {
@@ -93,6 +109,7 @@ public struct BSPersistence {
            var symbolTable = BSSymbolTable.from(string: symbolTableString) {
             // Load custom symbols
             if let customSymbols = loadCustomSymbols() {
+                print(customSymbols)
                 symbolTable.register(customSymbols: customSymbols)
             }
             return symbolTable;
@@ -130,8 +147,10 @@ public struct BSPersistence {
         if let defaults = defaults {
             // Load calendar
             let loadedCalendar = loadCalendar(fromDefaults: defaults);
+//            print("Loaded calendar \(loadedCalendar)");
             // Load symbols
             let loadedSymbolTable = loadSymbolTable(fromDefaults: defaults)
+//            print("Loaded symbol table \(loadedSymbolTable)");
             // Load custom symbols
             if let calendar = loadedCalendar,
                let symbolTable = loadedSymbolTable,

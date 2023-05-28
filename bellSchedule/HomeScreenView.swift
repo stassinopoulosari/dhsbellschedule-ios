@@ -10,14 +10,61 @@ import BellScheduleKit
 
 struct HomeScreenView: View {
     
-    public var contextWrapper: BSContextWrapper;
+    @ObservedObject public var contextWrapper: BSContextWrapper;
     
-    //    var app: BellScheduleAppView
-    @State var startTime = ""
-    @State var endTime = "No class"
-    @State var countdown = ""
+    private var startTime:  Binding<String>{
+        Binding(
+            get: {() -> String in
+                switch contextWrapper.state {
+                case .loading:
+                    return "";
+                case .loadedWithErrors(_), .loadedWithoutErrors:
+                    if let context = contextWrapper.context, let currentSchedule = context.calendar.currentSchedule, let currentPeriod = currentSchedule.currentPeriod {
+                        return currentPeriod.startTime.string;
+                    }
+                    return ""
+                case .failed(_):
+                    return "";
+                }
+            }, set: {_,_ in}
+        )
+    };
+    
+    private var endTime:  Binding<String>{
+        Binding(
+            get: {() -> String in
+                switch contextWrapper.state {
+                case .loading:
+                    return "Loading";
+                case .loadedWithErrors(_), .loadedWithoutErrors:
+                    if let context = contextWrapper.context, let currentSchedule = context.calendar.currentSchedule, let currentPeriod = currentSchedule.currentPeriod {
+                        return currentPeriod.endTime.string;
+                    }
+                    return "No class"
+                case .failed(_):
+                    return "Failed";
+                }
+            }, set: {_,_ in}
+        )
+    };
+    
+    private var countdown: Binding<String> {
+        Binding(
+            get: {() -> String in
+                switch contextWrapper.state {
+                case .loading:
+                    return "";
+                case .loadedWithErrors(_), .loadedWithoutErrors:
+                    return ""
+                case .failed(_):
+                    return "";
+                }
+            }, set: {_,_ in}
+        )
+    }
     
     var body: some View {
+        
         ZStack {
             Color("AppColors")
                 .ignoresSafeArea()
@@ -25,14 +72,14 @@ struct HomeScreenView: View {
                 AccessoriesView(contextWrapper: contextWrapper);
                 Spacer()
                 VStack {
-                    Text(startTime)
+                    Text(startTime.wrappedValue)
                         .font(.system(size: 17))
                         .foregroundColor(.white)
-                    Text(endTime)
+                    Text(endTime.wrappedValue)
                         .font(.system(size: 50, weight:.heavy))
                         .padding([.leading,.trailing], 10)
                         .foregroundColor(.white)
-                    Text(countdown)
+                    Text(countdown.wrappedValue)
                         .font(.system(size: 17))
                         .foregroundColor(.white)
                 }
@@ -42,10 +89,10 @@ struct HomeScreenView: View {
     }
 }
 
-struct HomeScreenView_Preview: PreviewProvider {
-    static var previews: some View {
-        BellScheduleAppView(firstTimeUser: false)
-    }
-}
+//struct HomeScreenView_Preview: PreviewProvider {
+//    static var previews: some View {
+//        BellScheduleAppView(firstTimeUser: false)
+//    }
+//}
 
 

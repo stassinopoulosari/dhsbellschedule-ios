@@ -41,12 +41,13 @@ public struct BSTime: Comparable {
             let dateFormatter = DateFormatter();
             dateFormatter.dateFormat = "HH:MM";
             if let date = newValue {
-                self.time = dateFormatter.string(from: date);
+                self.string = dateFormatter.string(from: date);
             }
         }
     }
     private static func hours(fromString time: String) -> Int {
         let hoursString = String(time.split(separator: ":", maxSplits: 1)[0])
+        print(hoursString)
         if let hoursInt = Int(hoursString) {
             return hoursInt;
         }
@@ -54,36 +55,40 @@ public struct BSTime: Comparable {
     }
     private static func minutes(fromString time: String) -> Int {
         let minutesString = String(time.split(separator: ":", maxSplits: 1)[1])
+        print(minutesString)
         if let minutesInt = Int(minutesString) {
             return minutesInt;
         }
         return 0;
     }
     private var hours: Int {
-        return BSTime.hours(fromString: time);
+        return BSTime.hours(fromString: string);
     }
     private var minutes: Int {
-        return BSTime.minutes(fromString: time);
+        return BSTime.minutes(fromString: string);
     }
     
     public init(date: Date) {
         let dateFormatter = DateFormatter();
         dateFormatter.dateFormat = "HH:MM";
-        self.time = dateFormatter.string(from: date);
+        self.string = dateFormatter.string(from: date);
     }
     
-    public init(time: String) {
+    public init(string: String) {
+        print(string);
+        print(BSTime.hours(fromString: string))
+        print(BSTime.minutes(fromString: string))
         if Calendar.current.date(
-            bySettingHour: BSTime.hours(fromString: time),
-            minute: BSTime.minutes(fromString: time),
+            bySettingHour: BSTime.hours(fromString: string),
+            minute: BSTime.minutes(fromString: string),
             second: 0, of: Date.now
         ) != nil {
-            self.time = time;
+            self.string = string;
         }
-        self.time = "00:00";
+        self.string = "00:00";
     }
     
-    public var time: String;
+    public var string: String;
 }
 
 public struct BSPeriod {
@@ -111,8 +116,8 @@ public struct BSScheduleTable {
             schedule.periods.forEach { period in
                 var periodObject = [String:Any]();
                 periodObject["name"] = period.name;
-                periodObject["startTime"] = period.startTime.time;
-                periodObject["endTime"] = period.endTime.time;
+                periodObject["start"] = period.startTime.string;
+                periodObject["end"] = period.endTime.string;
                 scheduleObject[period.key] = periodObject;
             }
             scheduleTableObject[key] = scheduleObject;
@@ -159,8 +164,15 @@ public struct BSScheduleTable {
 public struct BSSchedule {
     public var name: String;
     public var periods: [BSPeriod];
-    public func getPeriodFor(time: BSTime) -> BSPeriod? {
-        return nil;
+    
+    public var currentPeriod: BSPeriod? {
+        var currentPeriod: BSPeriod? = nil;
+        periods.forEach { period in
+            if(period.isCurrent) {
+                currentPeriod = period;
+            }
+        }
+        return currentPeriod;
     }
     
     public static func from(dictionary scheduleObject: [String: Any]) -> BSSchedule? {
@@ -168,20 +180,24 @@ public struct BSSchedule {
         if scheduleObject["hidden"] != nil {
             return nil;
         }
+        print("Passed nil test")
         if let scheduleName = scheduleObject["name"] as? String {
             scheduleObject.keys.sorted().forEach { key in
                 if(key == "name") {
                     return;
                 }
+                print(key)
+                print(scheduleObject[key]);
                 if let period = scheduleObject[key] as? [String: Any],
                    let startString = period["start"] as? String,
                    let endString = period["end"] as? String,
                    let periodName = period["name"] as? String
                 {
+                    
                     periods.append(
                         BSPeriod(
-                            startTime: BSTime(time: startString),
-                            endTime: BSTime(time: endString),
+                            startTime: BSTime(string: startString),
+                            endTime: BSTime(string: endString),
                             name: periodName,
                             key: key
                         )

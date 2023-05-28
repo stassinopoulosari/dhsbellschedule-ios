@@ -9,9 +9,28 @@ import SwiftUI
 import BellScheduleKit
 
 struct AccessoriesView: View {
-    @State public var contextWrapper: BSContextWrapper;
+    @ObservedObject public var contextWrapper: BSContextWrapper;
     @State var settingsShown =  false
     @State var infoShown = false
+    private var className: Binding<String> {
+        Binding(
+            get: {() -> String in
+                switch contextWrapper.state {
+                case .loading:
+                    return "";
+                case .loadedWithErrors(_), .loadedWithoutErrors:
+                    if let context = contextWrapper.context, let currentSchedule = context.calendar.currentSchedule, let currentPeriod = currentSchedule.currentPeriod {
+                        return currentPeriod.name;
+                    }
+                    return ""
+                case .failed(_):
+                    return "";
+                }
+            }, set: {_,_ in}
+        )
+        
+        
+    }
     
     var body: some View {
         HStack {
@@ -38,7 +57,7 @@ struct AccessoriesView: View {
             }
             .tint(.white)
             Spacer()
-            Text("class0")
+            Text(className.wrappedValue)
                 .foregroundColor(.white)
             Spacer()
             Button(action: getInfo) {

@@ -50,8 +50,8 @@ Thank you for using the Bell Schedule App!
     }
 }
 
-struct NewUserView_Preview: PreviewProvider {
-    static var previews: some View {
-        BellScheduleAppView(firstTimeUser: true)
-    }
-}
+//struct NewUserView_Preview: PreviewProvider {
+//    static var previews: some View {
+//        BellScheduleAppView(firstTimeUser: true)
+//    }
+//}

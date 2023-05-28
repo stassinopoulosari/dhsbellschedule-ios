@@ -19,9 +19,14 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
 @main
 struct bellScheduleApp: App {
+    
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    
     var body: some Scene {
+        let contextWrapper: BSContextWrapper = BSContextWrapper.from(databaseReference: Database.database().reference()) {
+        };
         WindowGroup {
-            BellScheduleAppView(firstTimeUser: true)
+            BellScheduleAppView(firstTimeUser: BSPersistence.firstTimeUser(), contextWrapper: contextWrapper)
         }
     }
 }
@@ -29,13 +34,9 @@ struct bellScheduleApp: App {
 struct BellScheduleAppView: View {
     
     @State var firstTimeUser: Bool
-    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-    var contextWrapper: BSContextWrapper = BSContextWrapper.from(databaseReference: Database.database().reference()) {
-        
-    };
+    @ObservedObject var contextWrapper: BSContextWrapper;
     
     var body: some View {
-        
         HomeScreenView(contextWrapper: contextWrapper)
             .sheet(isPresented: $firstTimeUser) {
                 NewUserView(app: self)

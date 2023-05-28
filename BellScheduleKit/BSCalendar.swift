@@ -13,7 +13,33 @@ public struct BSCalendar {
         public var calendarString: String;
         public static func from(calendar: BSCalendar) -> BSCalendarExportable? {
             do {
-                if let calendarString = String(data:try JSONSerialization.data(withJSONObject: calendar.calendar), encoding: .utf8),
+                var calendarObject = [String: [String: [String]]]();
+                calendar.calendar.forEach { (key: String, scheduleKey: String) in
+                    let keyComponents = key.split(separator: "/");
+                    let year = String(keyComponents[0]);
+                    let month = String(keyComponents[1]);
+                    let index = Int(keyComponents[2]);
+                    if (!calendarObject.keys.contains(year)) {
+                        calendarObject[year] = [String:[String]]();
+                    }
+                    if (!calendarObject[year]!.keys.contains(month)) {
+                        calendarObject[year]![month] = (0...31).map{_ in ""};
+                    }
+                    if let index = index {
+                        calendarObject[year]![month]![index] = scheduleKey;
+                    }
+                }
+                var calendarRepresentation = [String: [String: String]]();
+                calendarObject.forEach { (year: String, value: [String : [String]]) in
+                    value.forEach { (month: String, value: [String]) in
+                        if(!calendarRepresentation.keys.contains(year)) {
+                            calendarRepresentation[year] = [String: String]();
+                        }
+                        calendarRepresentation[year]![month] = value.joined(separator: ",");
+                    }
+                }
+//                print(calendarRepresentation);
+                if let calendarString = String(data:try JSONSerialization.data(withJSONObject: calendarRepresentation), encoding: .utf8),
                    let scheduleTableString = calendar.scheduleTable.toString() {
                     return BSCalendarExportable(scheduleTableString: scheduleTableString, calendarString: calendarString);
                 } else {
@@ -55,6 +81,7 @@ public struct BSCalendar {
                         let monthStringComponents = monthString.split(separator: ",", omittingEmptySubsequences: false);
                         monthStringComponents.enumerated().forEach { (index, component) in
                             if (component != "" && scheduleTable.schedules.keys.contains(String(component))) {
+//                                print("component");
                                 calendar["\(year)/\(month)/\(index)"] = String(component);
                             }
                         }

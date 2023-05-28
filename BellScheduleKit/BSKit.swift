@@ -9,7 +9,7 @@ import Foundation
 import FirebaseCore
 import FirebaseDatabase
 
-public class BSContext {
+public class BSContext: ObservableObject {
     public enum BSContextType {
         case network
         case cache
@@ -26,10 +26,10 @@ public class BSContext {
         BSPersistence.save(softUpdateOfContext: self);
     }
     
-    public var calendar: BSCalendar;
-    public var symbolTable: BSSymbolTable;
-    public var type: BSContextType;
-    public var lastUpdated: Date;
+    @Published public var calendar: BSCalendar;
+    @Published public var symbolTable: BSSymbolTable;
+    @Published public var type: BSContextType;
+    @Published public var lastUpdated: Date;
 }
 
 public class BSContextWrapper: ObservableObject {
@@ -40,8 +40,9 @@ public class BSContextWrapper: ObservableObject {
         case failed([Error])
     }
     
-    public var context: BSContext?;
-    public var state: BSContextWrapperState;
+    @Published public var context: BSContext?;
+    @Published public var state: BSContextWrapperState;
+    
     public var done: Bool {
         switch state {
         case .loading:
@@ -60,15 +61,30 @@ public class BSContextWrapper: ObservableObject {
     
     public static func from(databaseReference: DatabaseReference?, onload: @escaping() -> Void) -> BSContextWrapper {
         let returnValue = BSContextWrapper(state: .loading);
+        BSCompatibility.convert();
         BSKit.getNewestContext(withDatabaseReference: databaseReference) { currentContext, errors in
+            print("In context");
             if let currentContext = currentContext {
-                returnValue.context = currentContext;
-                if errors.count == 0 {
-                    returnValue.state = .loadedWithoutErrors
-                    return;
+                DispatchQueue.main.async {
+                    returnValue.context = currentContext;
+                    print(currentContext.type);
                 }
-                returnValue.state = .loadedWithErrors(errors);
-                return;
+                if errors.count == 0 {
+                    DispatchQueue.main.async {
+                        returnValue.state = .loadedWithoutErrors
+                    }
+                    return onload();
+                }
+                DispatchQueue.main.async {
+                    returnValue.state = .loadedWithErrors(errors);
+                }
+                return onload();
+            } else {
+                DispatchQueue.main.async {
+                    returnValue.state = .failed(errors);
+                }
+                print(errors);
+                return onload();
             }
         }
         return returnValue;
@@ -80,7 +96,9 @@ public class BSContextWrapper: ObservableObject {
 public struct BSKit {
     public static func getNewestContext(withDatabaseReference databaseReference: DatabaseReference?, callback: @escaping (_ currentContext: BSContext?, _ errors: [Error]) -> Void) {
         let network = BSNetwork(databaseReference: databaseReference);
+        
         network.checkLastUpdated(callback: {networkLastUpdated in
+            print(networkLastUpdated);
             if let persistenceLastUpdated = BSPersistence.contextLastUpdated,
                let savedContext = BSPersistence.loadContext(),
                persistenceLastUpdated > networkLastUpdated {
@@ -91,11 +109,13 @@ public struct BSKit {
             }
             network.downloadContext(callback: { networkContext in
                 BSPersistence.save(hardUpdateOfContext: networkContext)
+                print("Downloaded context");
                 return callback(
                     networkContext,
                     []
                 );
             }, error: {errors in
+                print(errors);
                 if let savedContext = BSPersistence.loadContext() {
                     return callback(
                         savedContext,

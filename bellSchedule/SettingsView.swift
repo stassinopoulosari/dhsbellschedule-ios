@@ -89,7 +89,7 @@ Hello from beautiful San Diego, California!
 }
 
 struct SymbolEditTextField: View {
-    @State public var context: BSContext;
+    @ObservedObject public var context: BSContext;
     @State public var key: String;
     
     var body: some View {
@@ -107,18 +107,20 @@ struct SymbolEditTextField: View {
                 }
             }
         )
-        TextField(context.symbolTable.symbolsDict[key]!.configuredValue, text: configuredValue);
+        TextField(context.symbolTable.symbolsDict[key]!.defaultValue, text: configuredValue);
     }
     
 }
 
 struct EditClassNamesView: View {
-    public var context: BSContext;
+    @ObservedObject public var context: BSContext;
     private var symbols: [String] {
         return Array(
             context.symbolTable.symbolsDict.filter { key, symbol in
                 return symbol.configurable;
-            }.keys
+            }.keys.sorted(by: { key1, key2 in
+                return context.symbolTable.symbolsDict[key1]!.defaultValue < context.symbolTable.symbolsDict[key2]!.defaultValue
+            })
         )
     }
     var body: some View {
