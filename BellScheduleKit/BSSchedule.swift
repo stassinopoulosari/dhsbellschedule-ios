@@ -7,7 +7,82 @@
 
 import Foundation
 
-public struct BSTime {
+public struct BSTime: Comparable {
+    public static func < (lhs: BSTime, rhs: BSTime) -> Bool {
+        if let ldate = lhs.date, let rdate = rhs.date {
+            return ldate < rdate;
+        }
+        return false;
+    }
+    
+    public static func > (lhs: BSTime, rhs: BSTime) -> Bool {
+        if let ldate = lhs.date, let rdate = rhs.date {
+            return ldate > rdate;
+        }
+        return true;
+
+    }
+    
+    public static func == (lhs: BSTime, rhs: BSTime) -> Bool {
+        if let ldate = lhs.date, let rdate = rhs.date {
+            return ldate == rdate;
+        }
+        return false;
+    }
+    
+    public var date: Date? {
+        get {
+            if let date = Calendar.current.date(bySettingHour: hours, minute: minutes, second: 0, of: Date.now) {
+                return date;
+            }
+            return nil;
+        }
+        set {
+            let dateFormatter = DateFormatter();
+            dateFormatter.dateFormat = "HH:MM";
+            if let date = newValue {
+                self.time = dateFormatter.string(from: date);
+            }
+        }
+    }
+    private static func hours(fromString time: String) -> Int {
+        let hoursString = String(time.split(separator: ":", maxSplits: 1)[0])
+        if let hoursInt = Int(hoursString) {
+            return hoursInt;
+        }
+        return 0;
+    }
+    private static func minutes(fromString time: String) -> Int {
+        let minutesString = String(time.split(separator: ":", maxSplits: 1)[1])
+        if let minutesInt = Int(minutesString) {
+            return minutesInt;
+        }
+        return 0;
+    }
+    private var hours: Int {
+        return BSTime.hours(fromString: time);
+    }
+    private var minutes: Int {
+        return BSTime.minutes(fromString: time);
+    }
+    
+    public init(date: Date) {
+        let dateFormatter = DateFormatter();
+        dateFormatter.dateFormat = "HH:MM";
+        self.time = dateFormatter.string(from: date);
+    }
+    
+    public init(time: String) {
+        if Calendar.current.date(
+            bySettingHour: BSTime.hours(fromString: time),
+            minute: BSTime.minutes(fromString: time),
+            second: 0, of: Date.now
+        ) != nil {
+            self.time = time;
+        }
+        self.time = "00:00";
+    }
+    
     public var time: String;
 }
 
@@ -16,6 +91,11 @@ public struct BSPeriod {
     public var endTime: BSTime;
     public var name: String;
     public var key: String;
+    public var isCurrent: Bool {
+        let date = Date.now;
+        let dateTime = BSTime(date: date);
+        return dateTime >= startTime && dateTime < endTime;
+    };
 }
 
 public struct BSScheduleTable {

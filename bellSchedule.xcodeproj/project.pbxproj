@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		021432B22A202B8600549DF9 /* BSSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021432B12A202B8600549DF9 /* BSSymbol.swift */; };
 		021432B42A202B9C00549DF9 /* BSSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021432B32A202B9C00549DF9 /* BSSchedule.swift */; };
 		021432B82A202BDE00549DF9 /* BSPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021432B72A202BDE00549DF9 /* BSPersistence.swift */; };
 		021432BA2A21921100549DF9 /* BSCompatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021432B92A21921100549DF9 /* BSCompatibility.swift */; };
@@ -15,11 +14,11 @@
 		021432BE2A21944800549DF9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 021432BD2A21944800549DF9 /* GoogleService-Info.plist */; };
 		021432CA2A219CCA00549DF9 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 021432C92A219CCA00549DF9 /* FirebaseDatabase */; };
 		021432CC2A219CD500549DF9 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 021432CB2A219CD500549DF9 /* FirebaseAnalyticsWithoutAdIdSupport */; };
+		026CC76C2A22D593005A0808 /* BSSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026CC76B2A22D593005A0808 /* BSSymbol.swift */; };
 		0299C1302A1A7F8C00CA2AB6 /* libBellScheduleKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 029C67CB2A117744004484F4 /* libBellScheduleKit.a */; };
 		029C67C22A116975004484F4 /* TodayScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029C67C12A116975004484F4 /* TodayScheduleView.swift */; };
 		029C67C42A116AB4004484F4 /* AllScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029C67C32A116AB4004484F4 /* AllScheduleView.swift */; };
 		029C67C62A11764A004484F4 /* AccessoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029C67C52A11764A004484F4 /* AccessoriesView.swift */; };
-		02A0E8A02A22CC4600C06C89 /* BSCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A0E89F2A22CC4600C06C89 /* BSCalendar.swift */; };
 		02A0E8A22A22CC5400C06C89 /* BSCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A0E8A12A22CC5400C06C89 /* BSCalendar.swift */; };
 		02A0E8A42A22CC7200C06C89 /* BSKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A0E8A32A22CC7100C06C89 /* BSKit.swift */; };
 		02E502682A10624A008FCD1F /* BellScheduleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E502672A10624A008FCD1F /* BellScheduleApp.swift */; };
@@ -53,18 +52,17 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		021432B12A202B8600549DF9 /* BSSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSSymbol.swift; sourceTree = "<group>"; };
 		021432B32A202B9C00549DF9 /* BSSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSSchedule.swift; sourceTree = "<group>"; };
 		021432B72A202BDE00549DF9 /* BSPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSPersistence.swift; sourceTree = "<group>"; };
 		021432B92A21921100549DF9 /* BSCompatibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSCompatibility.swift; sourceTree = "<group>"; };
 		021432BB2A21924100549DF9 /* BSNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSNetwork.swift; sourceTree = "<group>"; };
 		021432BD2A21944800549DF9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		026CC76B2A22D593005A0808 /* BSSymbol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSSymbol.swift; sourceTree = "<group>"; };
 		0299C12E2A1A7F2E00CA2AB6 /* bellSchedule.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = bellSchedule.entitlements; sourceTree = "<group>"; };
 		029C67C12A116975004484F4 /* TodayScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayScheduleView.swift; sourceTree = "<group>"; };
 		029C67C32A116AB4004484F4 /* AllScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllScheduleView.swift; sourceTree = "<group>"; };
 		029C67C52A11764A004484F4 /* AccessoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessoriesView.swift; sourceTree = "<group>"; };
 		029C67CB2A117744004484F4 /* libBellScheduleKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBellScheduleKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		02A0E89F2A22CC4600C06C89 /* BSCalendar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSCalendar.swift; sourceTree = "<group>"; };
 		02A0E8A12A22CC5400C06C89 /* BSCalendar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSCalendar.swift; sourceTree = "<group>"; };
 		02A0E8A32A22CC7100C06C89 /* BSKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSKit.swift; sourceTree = "<group>"; };
 		02E502642A10624A008FCD1F /* BellSchedule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BellSchedule.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -111,9 +109,8 @@
 				021432BB2A21924100549DF9 /* BSNetwork.swift */,
 				02A0E8A32A22CC7100C06C89 /* BSKit.swift */,
 				021432B92A21921100549DF9 /* BSCompatibility.swift */,
-				02A0E89F2A22CC4600C06C89 /* BSCalendar.swift */,
 				02A0E8A12A22CC5400C06C89 /* BSCalendar.swift */,
-				021432B12A202B8600549DF9 /* BSSymbol.swift */,
+				026CC76B2A22D593005A0808 /* BSSymbol.swift */,
 				021432B32A202B9C00549DF9 /* BSSchedule.swift */,
 			);
 			path = BellScheduleKit;
@@ -267,9 +264,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				021432B22A202B8600549DF9 /* BSSymbol.swift in Sources */,
+				026CC76C2A22D593005A0808 /* BSSymbol.swift in Sources */,
 				02A0E8A22A22CC5400C06C89 /* BSCalendar.swift in Sources */,
-				02A0E8A02A22CC4600C06C89 /* BSCalendar.swift in Sources */,
 				02A0E8A42A22CC7200C06C89 /* BSKit.swift in Sources */,
 				021432B82A202BDE00549DF9 /* BSPersistence.swift in Sources */,
 				021432B42A202B9C00549DF9 /* BSSchedule.swift in Sources */,

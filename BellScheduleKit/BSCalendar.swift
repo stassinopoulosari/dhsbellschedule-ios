@@ -28,6 +28,19 @@ public struct BSCalendar {
     public var scheduleTable: BSScheduleTable;
     public var calendar: [String: String];
     
+    public var currentSchedule: BSSchedule? {
+        let dateFormatter = DateFormatter();
+        dateFormatter.dateFormat = "YYYY/MM/d"
+        let date = Date.now;
+        let dateString = dateFormatter.string(from: date)
+        if let scheduleKey = calendar[dateString],
+           let schedule = scheduleTable.schedules[scheduleKey] {
+            return schedule;
+        }
+        
+        return nil;
+    };
+    
     public func export() -> BSCalendarExportable? {
         return BSCalendarExportable.from(calendar: self);
     }
