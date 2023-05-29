@@ -34,11 +34,13 @@ Thank you for using the Bell Schedule App!
             Button(action: continueToApp) {
                 Text("Continue")
                     .frame(maxWidth:.infinity)
+                    .accessibilityHint("Continue to app");
 
             }
             .buttonStyle(.borderedProminent)
-            .tint(Color("AppColors"))
+            .tint(Color("AccentColor"))
         }
+        .accessibilityElement(children: .contain)
         .padding()
     }
     

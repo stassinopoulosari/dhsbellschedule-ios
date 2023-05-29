@@ -14,6 +14,11 @@
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
+		<key>BellScheduleWidget.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>5</integer>
+		</dict>
 		<key>Promises (Playground) 1.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -34,6 +39,24 @@
 			<false/>
 			<key>orderHint</key>
 			<integer>2</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>02899A3B2A2442E800BCCCAE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>029C67CA2A117744004484F4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>02E502632A10624A008FCD1F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

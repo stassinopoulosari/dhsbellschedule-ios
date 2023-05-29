@@ -10,10 +10,23 @@ import FirebaseCore
 import FirebaseDatabase
 import BellScheduleKit
 
-class AppDelegate: NSObject, UIApplicationDelegate {
+class AppDelegate: NSObject, UIApplicationDelegate,
+UNUserNotificationCenterDelegate{
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        UNUserNotificationCenter.current().delegate = self
         FirebaseApp.configure()
         return true
+    }
+    func userNotificationCenter(
+        _ center: UNUserNotificationCenter,
+        willPresent notification: UNNotification,
+        withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void)
+    {
+        // Update the app interface directly.
+        
+        // Show a banner
+        completionHandler(.banner)
+
     }
 }
 
@@ -43,7 +56,7 @@ struct BellScheduleAppView: View {
                     .interactiveDismissDisabled()
             }
             .preferredColorScheme(.dark)
-            .background(Rectangle().foregroundColor(Color("AppColors")))
+            .background(Rectangle().foregroundColor(Color("AppColor")))
         
     }
     

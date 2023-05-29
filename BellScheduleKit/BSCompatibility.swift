@@ -13,7 +13,6 @@ public struct BSCompatibility {
         if let defaults = BSPersistence.defaults {
             // Check for key lastVersionUsed
             if let lastVersionUsed = defaults.string(forKey: BSPersistence.lastVersionUsedKey) {
-                print(lastVersionUsed == "3.0.0")
                 if(lastVersionUsed == "3.0.0") {
                     return;
                 }

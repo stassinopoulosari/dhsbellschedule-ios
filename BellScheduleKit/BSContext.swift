@@ -72,6 +72,13 @@ public class BSContext: ObservableObject {
         self.lastUpdated = lastUpdated;
     }
     
+    public static var fromDefaults: BSContext? {
+        if let savedContext = BSPersistence.loadContext() {
+            return savedContext;
+        }
+        return nil
+    }
+    
     public func saveCustomSchedules() {
         BSPersistence.save(softUpdateOfContext: self);
     }
@@ -113,7 +120,6 @@ public class BSContextWrapper: ObservableObject {
         let returnValue = BSContextWrapper(state: .loading);
         BSCompatibility.convert();
         BSKit.getNewestContext(withDatabaseReference: databaseReference) { currentContext, errors in
-            print("In context");
             if let currentContext = currentContext {
                 DispatchQueue.main.async {
                     returnValue.context = currentContext;
@@ -133,7 +139,6 @@ public class BSContextWrapper: ObservableObject {
                 DispatchQueue.main.async {
                     returnValue.state = .failed(errors);
                 }
-                print(errors);
                 return onload();
             }
         }

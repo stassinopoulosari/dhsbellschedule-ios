@@ -25,5 +25,7 @@ struct SchedulePeriodView: View {
                 Text(period.endTime.localString)
                     .bold(isCurrent);
             }.listRowBackground(isCurrent ? Color.black : nil)
+            .accessibilityElement(children: .combine)
+            .accessibilityLabel("\(context.symbolTable.render(templateString: period.name)). Start \(period.startTime.localString). End \(period.endTime.localString)");
     }
 }

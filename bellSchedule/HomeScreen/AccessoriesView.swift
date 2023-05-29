@@ -17,8 +17,13 @@ struct AccessoriesView: View {
         HStack {
             Button (action: showSettings) {
                 Image("baseline_settings_black_24pt")
+                    .accessibilityHidden(false)
+                    .accessibilityLabel("Settings")
+                    .accessibilityHint("View Settings")
             }
             .disabled(contextWrapper.done)
+            .accessibilitySortPriority(8)
+            .accessibilityElement(children: .combine)
             .sheet(isPresented: $settingsShown) {
                 NavigationStack {
                     if let context = contextWrapper.context {
@@ -43,7 +48,8 @@ struct AccessoriesView: View {
             case .loadedWithErrors(_), .loadedWithoutErrors:
                 if let context = contextWrapper.context {
                     @ObservedObject var contextObserver = BSContextObserver(withContext: context);
-                    ClassNameTextView(contextObserver: contextObserver);
+                    ClassNameTextView(contextObserver: contextObserver)
+                        .accessibilityElement(children: .contain);
                 } else {
                     Text("");
                 }
@@ -53,7 +59,12 @@ struct AccessoriesView: View {
             Spacer()
             Button(action: getInfo) {
                 Image("baseline_info_black_24pt")
+                    .accessibilityHidden(false)
+                    .accessibilityHint("View Today's Schedule")
+                    .accessibilityLabel("Today's Schedule")
             }
+            .accessibilityElement(children: .combine)
+            .accessibilitySortPriority(10)
             .disabled(contextWrapper.done)
             .sheet(isPresented: $infoShown) {
                 NavigationStack {
@@ -65,22 +76,30 @@ struct AccessoriesView: View {
                                     Button("Done") {
                                         infoShown = false;
                                     }
+                                    .accessibilityLabel("Close today's schedule")
+                                    .accessibilityHint("Close")
                                     .fontWeight(.bold)
                                 }
                                 ToolbarItem(placement:.navigationBarTrailing) {
                                     NavigationLink("All Schedules") {
                                         AllScheduleView(context: context)
                                             .navigationTitle("All schedules")
+                                            .accessibilityElement(children: .contain);
                                     }
+                                    .accessibilityLabel("All schedules")
+                                    .accessibilityHint("View all schedules")
                                 }
-                            }
+                            }.accessibilityElement(children: .contain)
                     }
                 }
+                .accessibilityElement(children: .contain)
             }
             .tint(.white)
         }
         .padding()
+        .accessibilityElement(children: .contain)
     }
+    
     func getInfo() -> Void {
         infoShown = true;
     }

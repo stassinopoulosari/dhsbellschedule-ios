@@ -16,7 +16,9 @@ struct AllScheduleView: View {
         let schedules = context.calendar.scheduleTable.schedules;
         let currentSchedule = context.calendar.currentSchedule;
         
-        let scheduleKeys = schedules.keys.sorted { leftKey, rightKey in
+        let scheduleKeys = schedules.filter({ schedule in
+            return schedule.value.periods.count > 0;
+        }).keys.sorted { leftKey, rightKey in
             if let leftSchedule = schedules[leftKey], let rightSchedule = schedules[rightKey] {
                 if let currentSchedule = currentSchedule {
                     if leftSchedule.name == currentSchedule.name {
@@ -40,9 +42,13 @@ struct AllScheduleView: View {
                             SchedulePeriodView(period: periods[periodIdx], context: context, isCurrent: currentSchedule != nil && currentSchedule!.name == schedule.name && periods[periodIdx].isCurrent);
                         }
                     }
+//                    .accessibilityLabel("Schedule for \(schedule.displayName)")
+                    .accessibilityElement(children: .contain);
                 }
-            }
-        }.listStyle(.grouped)
+            }.accessibilityElement(children: .contain)
+        }
+        .accessibilityElement(children: .contain)
+        .listStyle(.grouped)
     }
 }
 

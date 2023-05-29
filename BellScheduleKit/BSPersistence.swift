@@ -15,7 +15,8 @@ public struct BSPersistence {
     static let lastUpdatedKey = "bs3-persistance-lastUpdated";
     static let lastVersionUsedKey = "bs3-compatibilityLastVersionUsed";
     static let firstTimeUserKey = "bs3-firstTimeUser3.0.0-debug1";
-
+    static let notificationsOnKey = "bs3-notificationsOn";
+    static let notificationsIntervalKey = "bs3-notificationsInterval";
     
     public static var contextLastUpdated: Date? {
         if let defaults = defaults {
@@ -26,6 +27,33 @@ public struct BSPersistence {
         }
     }
     static let defaults: UserDefaults? = UserDefaults.init(suiteName: "group.com.Stassinopoulos.ari.bellGroup");
+    
+    public struct NotificationsSettings {
+        public var notificationsOn: Bool;
+        public var notificationsInterval: Double;
+    }
+    
+    public static func loadUserNotificationsSettings() -> NotificationsSettings {
+        if let defaults = defaults
+           {
+            let notificationsOn = defaults.bool(forKey: notificationsOnKey)
+            let notificationsInterval = defaults.double(forKey: notificationsIntervalKey);
+            if(notificationsInterval == 0) {
+                return NotificationsSettings(notificationsOn: false, notificationsInterval: 5.0)
+            }
+            return NotificationsSettings(notificationsOn: notificationsOn, notificationsInterval: notificationsInterval)
+        }
+        return NotificationsSettings(notificationsOn: false, notificationsInterval: 5.0);
+    }
+    
+    public static func save(userNotificationsSettings notificationsSettings: NotificationsSettings) {
+        if let defaults = defaults {
+            let notificationsOn = notificationsSettings.notificationsOn;
+            let notificationsInterval = notificationsSettings.notificationsInterval;
+            defaults.set(notificationsOn, forKey: notificationsOnKey);
+            defaults.set(notificationsInterval, forKey: notificationsIntervalKey);
+        }
+    }
     
     public static func save(hardUpdateOfContext context: BSContext) {
         if let defaults = defaults {
@@ -59,7 +87,6 @@ public struct BSPersistence {
     public static func save(softUpdateOfContext context: BSContext) {
         if let defaults = defaults {
             if let symbolTableExportable = context.symbolTable.export() {
-//                print(symbolTableExportable.customSymbolsString)
                 save(customSymbolsString: symbolTableExportable.customSymbolsString, toDefaults: defaults);
             }
         }
@@ -109,7 +136,7 @@ public struct BSPersistence {
            var symbolTable = BSSymbolTable.from(string: symbolTableString) {
             // Load custom symbols
             if let customSymbols = loadCustomSymbols() {
-                print(customSymbols)
+//                print(customSymbols)
                 symbolTable.register(customSymbols: customSymbols)
             }
             return symbolTable;

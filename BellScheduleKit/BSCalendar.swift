@@ -54,10 +54,9 @@ public struct BSCalendar {
     public var scheduleTable: BSScheduleTable;
     public var calendar: [String: String];
     
-    public var currentSchedule: BSSchedule? {
+    public func currentSchedule(forDate date: Date) -> BSSchedule? {
         let dateFormatter = DateFormatter();
         dateFormatter.dateFormat = "YYYY/MM/d"
-        let date = Date.now;
         let dateString = dateFormatter.string(from: date)
         if let scheduleKey = calendar[dateString],
            let schedule = scheduleTable.schedules[scheduleKey] {
@@ -65,6 +64,10 @@ public struct BSCalendar {
         }
         
         return nil;
+    }
+    
+    public var currentSchedule: BSSchedule? {
+        return currentSchedule(forDate: Date.now)
     };
     
     public func export() -> BSCalendarExportable? {

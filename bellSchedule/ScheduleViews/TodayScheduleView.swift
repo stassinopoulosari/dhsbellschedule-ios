@@ -18,12 +18,17 @@ struct TodayScheduleView: View {
                 pright.startTime > pleft.startTime;
             });
             List (Array(0...currentSchedulePeriods.count - 1), id: \.self) { key in
-                SchedulePeriodView(period: currentSchedulePeriods[key], context: context, isCurrent: currentSchedulePeriods[key].isCurrent);
-            }.listStyle(.plain)
+                let period = currentSchedulePeriods[key]
+                SchedulePeriodView(period: period, context: context, isCurrent: currentSchedulePeriods[key].isCurrent)
+            }
+            .listStyle(.plain)
+            .accessibilityElement(children: .contain);
+            
         } else {
             List([0], id: \.self) { _ in
                 Text("No schedule.")
-            }.listStyle(.grouped)
+            }.listStyle(.grouped).accessibilityElement(children: .combine)
+                .accessibilityValue("No schedule for today.");
         }
         
     }

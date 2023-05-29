@@ -12,6 +12,9 @@ public struct BSSymbol {
     public var defaultValue: String;
     public var configurable: Bool;
     private var realConfiguredValue: String?;
+    public var isConfigured: Bool {
+        return realConfiguredValue != nil;
+    }
     
     public init(key: String, defaultValue: String, configurable: Bool, realConfiguredValue: String? = nil) {
         self.key = key
