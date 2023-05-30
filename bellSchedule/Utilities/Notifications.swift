@@ -106,11 +106,11 @@ struct Notifications {
 //                        print(dateComponents)
                         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
                         let content = UNMutableNotificationContent()
-                        content.title = "\(context.symbolTable.render(templateString: period.name)) is ending soon!";
-                        if abs(interval) < 1 {
-                            content.body = "\(Int(abs(interval))) seconds remain."
+                        content.title = "\(context.symbolTable.render(templateString: period.name)) is ending soon";
+                        if abs(interval) < 60 {
+                            content.body = "\(Int(abs(interval))) seconds remain"
                         } else {
-                            content.body = "\(Int(abs(interval) / 60)) minutes remain."
+                            content.body = "\(String(Int(abs(interval) / 60)) + " minute\(Int(abs(interval) / 60) == 1 ? "" : "s")") remain\(Int(abs(interval) / 60) == 1 ? "s" : "")"
                         }
                         content.sound = .default
                         content.interruptionLevel = .timeSensitive;

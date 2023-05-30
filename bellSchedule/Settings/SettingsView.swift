@@ -73,12 +73,14 @@ struct SettingsView: View {
 struct AboutView: View {
     var aboutText = [
         "This app is an open-source product.",
+        "**[Tap here to view the source code.](https://github.com/stassinopoulosari/bellSchedule3)**",
         "DHS Bell Schedule App 3.0.0 was written in 2023 by Ari Stassinopoulos.",
         "This app is a gift from the Dublin High School class of 2020.",
         "The Bell Schedule App is funded thanks to generous contributions by the Parent-Student-Faculty-Organization (PFSO).",
         "Libraries:",
-        "- Firebase \n https://firebase.google.com",
-        "- UBSAKit \n https://github.com/stassinopoulosari/UBSA",
+        "- Firebase",
+        "\t**[https://firebase.google.com](https://firebase.google.com)**",
+        "- BellScheduleKit (Included in the source code for this project)\n\n",
         "Hello from beautiful San Diego, California!"
     ]
     var body: some View {
