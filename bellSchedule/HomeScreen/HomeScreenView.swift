@@ -47,8 +47,6 @@ struct HomeScreenView: View {
                         HomeScreenSmallText(text: Binding.constant(""));
                         HomeScreenLargeText(text: Binding.constant("Loading")).accessibilityLabel("The bell schedule app is loading.");
                         HomeScreenSmallText(text: Binding.constant(""));
-                    default:
-                        let _ = print(contextWrapper.state)
                     }
                         
                 }.accessibilityElement(children: .contain).accessibilitySortPriority(10)

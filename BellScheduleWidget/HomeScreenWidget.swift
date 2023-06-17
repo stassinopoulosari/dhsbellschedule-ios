@@ -60,18 +60,19 @@ struct HomeScreenWidgetEntryView : View {
     var body: some View {
         ZStack {
             Color("AppColor").ignoresSafeArea()
+            let date = entry.date;
+            var size: Int {
+                switch entry.family {
+                case .systemLarge, .systemExtraLarge:
+                    return 1;
+                default:
+                    return 0;
+                }
+            };
             VStack {
-                let date = entry.date;
-                var size: Int {
-                    switch entry.family {
-                    case .systemLarge, .systemExtraLarge:
-                        return 1;
-                    default:
-                        return 0;
-                    }
-                };
+                
                 if let context = BSContext.fromDefaults {
-                    if let currentSchedule = context.calendar.currentSchedule(forDate: date){
+                    if let currentSchedule = context.calendar.currentSchedule(forDate: date) {
                         if let currentPeriod = currentSchedule.currentPeriod(forDate: date)
                         {
                             Text(context.symbolTable.render(templateString: currentPeriod.name))
@@ -88,6 +89,7 @@ struct HomeScreenWidgetEntryView : View {
                         } else {
                             Spacer()
                             Text("No class")
+                                .padding(size == 1 ? .bottom : [])
                                 .foregroundColor(.white)
                                 .fontWeight(.black)
                                 .font(.system(size: 25))
@@ -118,16 +120,27 @@ struct HomeScreenWidgetEntryView : View {
                             }.padding()
                         }
                         Spacer()
+                    } else {
+                        Spacer()
+                        Text("No schedule")
+                            .foregroundColor(.white)
+                            .fontWeight(.black)
+                            .font(.system(size: size == 0 ? 17 : 35))
+                            .padding(.bottom)
+                        Spacer()
+
                     }
                 } else {
                     Spacer()
                     Text("Failed to load")
                         .foregroundColor(.white)
                         .font(.system(size: 17))
+                        .padding(.bottom)
                     Spacer()
                 }
-            }.padding([.leading, .trailing],3.0)
-                .padding([.top])
+            }
+            .padding([.leading, .trailing],3.0)
+            .padding([.top])
         }
     }
 }
