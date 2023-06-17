@@ -49,12 +49,19 @@ public class BSContextObserver: ObservableObject {
                 self.endTimeString = currentPeriod.endTime.localString;
                 self.classNameString = context.symbolTable.render(templateString: currentPeriod.name);
             } else {
+                
                 self.countdownTime = -1;
                 self.countdownTimeString = "";
                 self.startTimeString = "";
                 self.endTimeString = "No class";
                 self.classNameString = "";
             }
+        } else {
+            self.countdownTime = -1;
+            self.countdownTimeString = "";
+            self.startTimeString = "";
+            self.endTimeString = "No schedule";
+            self.classNameString = "";
         }
     }
 }
@@ -120,6 +127,7 @@ public class BSContextWrapper: ObservableObject {
         let returnValue = BSContextWrapper(state: .loading);
         BSCompatibility.convert();
         BSKit.getNewestContext(withDatabaseReference: databaseReference) { currentContext, errors in
+//            print(currentContext, errors);
             if let currentContext = currentContext {
                 DispatchQueue.main.async {
                     returnValue.context = currentContext;

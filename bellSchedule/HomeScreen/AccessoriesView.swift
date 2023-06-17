@@ -1,20 +1,27 @@
-//
-//  AccessoriesView.swift
-//  bellSchedule
-//
-//  Created by Ari Stassinopoulos on 2023-05-14.
-//
-
 import SwiftUI
 import BellScheduleKit
 
+/// Accessories View
+/// ==========
+/// Display the top buttons and class name.
 struct AccessoriesView: View {
     @ObservedObject public var contextWrapper: BSContextWrapper;
+    
+    ///SettingsShown
+    ///==========
+    ///True if the settings screen is currently up
     @State var settingsShown =  false
+    /// InfoShown
+    /// ==========
+    /// True if the schedules or all schedules screen is up
     @State var infoShown = false
     
+    /// Body
+    /// ==========
+    /// Show the aforementioned views
     var body: some View {
         HStack {
+            /// Show settings button (2nd in a11y order)
             Button (action: showSettings) {
                 Image("baseline_settings_black_24pt")
                     .accessibilityHidden(false)
@@ -42,6 +49,7 @@ struct AccessoriesView: View {
             }
             .tint(.white)
             Spacer()
+            /// Class title (last in a11y order)
             switch(contextWrapper.state) {
             case .loading:
                 Text("")
@@ -57,6 +65,7 @@ struct AccessoriesView: View {
                 Text("")
             }
             Spacer()
+            /// Information button (first in a11y order)
             Button(action: getInfo) {
                 Image("baseline_info_black_24pt")
                     .accessibilityHidden(false)
@@ -100,11 +109,12 @@ struct AccessoriesView: View {
         .accessibilityElement(children: .contain)
     }
     
-    func getInfo() -> Void {
+    private func getInfo() -> Void {
         infoShown = true;
     }
     
-    func showSettings() -> Void {
+    
+    private func showSettings() -> Void {
         settingsShown = true;
     }
 }
