@@ -33,7 +33,7 @@
 		02899A612A246C5D00BCCCAE /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02899A602A246C5D00BCCCAE /* Notifications.swift */; };
 		0295F95D2A23AAC400B3A4DB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0295F95C2A23AAC400B3A4DB /* LaunchScreen.storyboard */; };
 		0295F95F2A23D09C00B3A4DB /* BSContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0295F95E2A23D09C00B3A4DB /* BSContext.swift */; };
-		0299C1302A1A7F8C00CA2AB6 /* libBellScheduleKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 029C67CB2A117744004484F4 /* libBellScheduleKit.a */; };
+		0299C1302A1A7F8C00CA2AB6 /* libBellScheduleKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 029C67CB2A117744004484F4 /* libBellScheduleKit.a */; platformFilter = ios; };
 		029C67C22A116975004484F4 /* TodayScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029C67C12A116975004484F4 /* TodayScheduleView.swift */; };
 		029C67C42A116AB4004484F4 /* AllScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029C67C32A116AB4004484F4 /* AllScheduleView.swift */; };
 		029C67C62A11764A004484F4 /* AccessoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029C67C52A11764A004484F4 /* AccessoriesView.swift */; };
@@ -483,6 +483,7 @@
 		};
 		0299C1322A1A7F8C00CA2AB6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = 029C67CA2A117744004484F4 /* BellScheduleKit */;
 			targetProxy = 0299C1312A1A7F8C00CA2AB6 /* PBXContainerItemProxy */;
 		};
@@ -719,6 +720,7 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -756,6 +758,7 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
