@@ -38,7 +38,7 @@ public struct BSCalendar {
                         calendarRepresentation[year]![month] = value.joined(separator: ",");
                     }
                 }
-//                print(calendarRepresentation);
+                //                print(calendarRepresentation);
                 if let calendarString = String(data:try JSONSerialization.data(withJSONObject: calendarRepresentation), encoding: .utf8),
                    let scheduleTableString = calendar.scheduleTable.toString() {
                     return BSCalendarExportable(scheduleTableString: scheduleTableString, calendarString: calendarString);
@@ -53,6 +53,30 @@ public struct BSCalendar {
     
     public var scheduleTable: BSScheduleTable;
     public var calendar: [String: String];
+    
+    public func monthSchedule(forDate date: Date) -> [Int: String]? {
+        let dateFormatter = DateFormatter();
+        dateFormatter.dateFormat = "YYYY/MM"
+        let dateString = dateFormatter.string(from: date)
+        var returnValue = [Int:String]();
+        calendar.enumerated().filter { element in
+            return element.element.key.starts(with: dateString)
+        }.sorted { element0, element1 in
+            if let element0day = Int(element0.element.key.split(separator: "/")[2]),
+               let element1day = Int(element1.element.key.split(separator: "/")[2]) {
+                return element1day > element0day;
+            } else {
+                return false;
+            }
+        }.map { element in
+            return (Int(element.element.key.split(separator:"/")[2]), element.element.value);
+        }.forEach {element in
+            if let key = element.0 {
+                returnValue[key] = element.1;
+            }
+        }
+        return returnValue;
+    }
     
     public func currentSchedule(forDate date: Date) -> BSSchedule? {
         let dateFormatter = DateFormatter();
@@ -84,7 +108,7 @@ public struct BSCalendar {
                         let monthStringComponents = monthString.split(separator: ",", omittingEmptySubsequences: false);
                         monthStringComponents.enumerated().forEach { (index, component) in
                             if (component != "" && scheduleTable.schedules.keys.contains(String(component))) {
-//                                print("component");
+                                //                                print("component");
                                 calendar["\(year)/\(month)/\(index)"] = String(component);
                             }
                         }
@@ -94,7 +118,6 @@ public struct BSCalendar {
         }
         return BSCalendar(scheduleTable: scheduleTable, calendar: calendar);
     }
-    
     
     public static func from(string calendarString: String, withScheduleTable scheduleTable:BSScheduleTable) -> BSCalendar? {
         do {

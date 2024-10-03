@@ -74,7 +74,7 @@ struct AboutView: View {
     var aboutText = [
         "This app is an open-source product.",
         "**[Tap here to view the source code.](https://github.com/stassinopoulosari/bellSchedule3)**",
-        "DHS Bell Schedule App 3.0.1 was updated in 2024 by Ari Stassinopoulos.",
+        "DHS Bell Schedule App 3.1.0 was updated in 2024 by Ari Stassinopoulos.",
         "This app is a gift from the Dublin High School class of 2020.",
         "The Bell Schedule App is funded thanks to generous contributions by the Parent-Student-Faculty-Organization (PFSO).",
         "Libraries:",

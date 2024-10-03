@@ -18,6 +18,7 @@
 		023C0BE92A24FAB3004B18CD /* BSPeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023C0BE82A24FAB3004B18CD /* BSPeriod.swift */; };
 		023C0BEC2A24FCEE004B18CD /* SettingsNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023C0BEA2A24FCBB004B18CD /* SettingsNotifications.swift */; };
 		023C0BEE2A24FD2D004B18CD /* SettingsSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023C0BED2A24FD2D004B18CD /* SettingsSymbols.swift */; };
+		026C7EE82CAF5ACC0032E442 /* shimmerBell.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 026C7EE72CAF5ACC0032E442 /* shimmerBell.m4a */; };
 		026CC76C2A22D593005A0808 /* BSSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026CC76B2A22D593005A0808 /* BSSymbol.swift */; };
 		026CC76F2A2317EF005A0808 /* SchedulePeriodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026CC76D2A2317CA005A0808 /* SchedulePeriodView.swift */; };
 		02899A3E2A2442E800BCCCAE /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02899A3D2A2442E800BCCCAE /* WidgetKit.framework */; };
@@ -39,6 +40,7 @@
 		029C67C62A11764A004484F4 /* AccessoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029C67C52A11764A004484F4 /* AccessoriesView.swift */; };
 		02A0E8A22A22CC5400C06C89 /* BSCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A0E8A12A22CC5400C06C89 /* BSCalendar.swift */; };
 		02A0E8A42A22CC7200C06C89 /* BSKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A0E8A32A22CC7100C06C89 /* BSKit.swift */; };
+		02C1ED4B2CA70C0F00039D54 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C1ED4A2CA70C0F00039D54 /* CalendarView.swift */; };
 		02E502682A10624A008FCD1F /* BellScheduleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E502672A10624A008FCD1F /* BellScheduleApp.swift */; };
 		02E5026A2A10624A008FCD1F /* HomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E502692A10624A008FCD1F /* HomeScreenView.swift */; };
 		02E5026C2A10624A008FCD1F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02E5026B2A10624A008FCD1F /* Assets.xcassets */; };
@@ -104,6 +106,7 @@
 		023C0BE82A24FAB3004B18CD /* BSPeriod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSPeriod.swift; sourceTree = "<group>"; };
 		023C0BEA2A24FCBB004B18CD /* SettingsNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNotifications.swift; sourceTree = "<group>"; };
 		023C0BED2A24FD2D004B18CD /* SettingsSymbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSymbols.swift; sourceTree = "<group>"; };
+		026C7EE72CAF5ACC0032E442 /* shimmerBell.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = shimmerBell.m4a; sourceTree = "<group>"; };
 		026CC76B2A22D593005A0808 /* BSSymbol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSSymbol.swift; sourceTree = "<group>"; };
 		026CC76D2A2317CA005A0808 /* SchedulePeriodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulePeriodView.swift; sourceTree = "<group>"; };
 		02899A3C2A2442E800BCCCAE /* BellScheduleWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = BellScheduleWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -124,6 +127,7 @@
 		029C67CB2A117744004484F4 /* libBellScheduleKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBellScheduleKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		02A0E8A12A22CC5400C06C89 /* BSCalendar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSCalendar.swift; sourceTree = "<group>"; };
 		02A0E8A32A22CC7100C06C89 /* BSKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSKit.swift; sourceTree = "<group>"; };
+		02C1ED4A2CA70C0F00039D54 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		02E502642A10624A008FCD1F /* BellSchedule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BellSchedule.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02E502672A10624A008FCD1F /* BellScheduleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BellScheduleApp.swift; sourceTree = "<group>"; };
 		02E502692A10624A008FCD1F /* HomeScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenView.swift; sourceTree = "<group>"; };
@@ -181,6 +185,7 @@
 				029C67C12A116975004484F4 /* TodayScheduleView.swift */,
 				029C67C32A116AB4004484F4 /* AllScheduleView.swift */,
 				026CC76D2A2317CA005A0808 /* SchedulePeriodView.swift */,
+				02C1ED4A2CA70C0F00039D54 /* CalendarView.swift */,
 			);
 			path = ScheduleViews;
 			sourceTree = "<group>";
@@ -266,6 +271,7 @@
 		02E502662A10624A008FCD1F /* bellSchedule */ = {
 			isa = PBXGroup;
 			children = (
+				026C7EE72CAF5ACC0032E442 /* shimmerBell.m4a */,
 				0299C12E2A1A7F2E00CA2AB6 /* bellSchedule.entitlements */,
 				021432BD2A21944800549DF9 /* GoogleService-Info.plist */,
 				02E5026B2A10624A008FCD1F /* Assets.xcassets */,
@@ -416,6 +422,7 @@
 				0295F95D2A23AAC400B3A4DB /* LaunchScreen.storyboard in Resources */,
 				02E5026C2A10624A008FCD1F /* Assets.xcassets in Resources */,
 				021432BE2A21944800549DF9 /* GoogleService-Info.plist in Resources */,
+				026C7EE82CAF5ACC0032E442 /* shimmerBell.m4a in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -460,6 +467,7 @@
 				02E5026A2A10624A008FCD1F /* HomeScreenView.swift in Sources */,
 				02E502942A1078E5008FCD1F /* SettingsView.swift in Sources */,
 				02899A4D2A2442E900BCCCAE /* HomeScreenWidget.intentdefinition in Sources */,
+				02C1ED4B2CA70C0F00039D54 /* CalendarView.swift in Sources */,
 				02E502922A107680008FCD1F /* NewUserView.swift in Sources */,
 				026CC76F2A2317EF005A0808 /* SchedulePeriodView.swift in Sources */,
 				023C0BE52A24F8F4004B18CD /* HomeScreenUtilities.swift in Sources */,
@@ -508,7 +516,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 3.0.1;
+				MARKETING_VERSION = 3.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Stassinopoulos.Ari.bellSchedule.HomeScreenWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -536,7 +544,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 3.0.1;
+				MARKETING_VERSION = 3.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Stassinopoulos.Ari.bellSchedule.HomeScreenWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -710,11 +718,12 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.0.1;
+				MARKETING_VERSION = 3.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Stassinopoulos.Ari.bellSchedule;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -748,11 +757,12 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.0.1;
+				MARKETING_VERSION = 3.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Stassinopoulos.Ari.bellSchedule;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

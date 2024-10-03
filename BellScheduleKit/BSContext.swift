@@ -72,11 +72,12 @@ public class BSContext: ObservableObject {
         case cache
     }
     
-    public init(calendar: BSCalendar, symbolTable: BSSymbolTable, type: BSContextType, lastUpdated: Date) {
+    public init(calendar: BSCalendar, symbolTable: BSSymbolTable, type: BSContextType, lastUpdated: Date, zeroPeriodSymbol: String) {
         self.calendar = calendar;
         self.symbolTable = symbolTable;
         self.type = type;
         self.lastUpdated = lastUpdated;
+        self.zeroPeriodSymbol = zeroPeriodSymbol
     }
     
     public static var fromDefaults: BSContext? {
@@ -94,6 +95,7 @@ public class BSContext: ObservableObject {
     @Published public var symbolTable: BSSymbolTable;
     @Published public var type: BSContextType;
     @Published public var lastUpdated: Date;
+    @Published public var zeroPeriodSymbol: String;
 }
 
 public class BSContextWrapper: ObservableObject {

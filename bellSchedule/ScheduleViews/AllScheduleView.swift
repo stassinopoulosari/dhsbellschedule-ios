@@ -42,7 +42,6 @@ struct AllScheduleView: View {
                             SchedulePeriodView(period: periods[periodIdx], context: context, isCurrent: currentSchedule != nil && currentSchedule!.name == schedule.name && periods[periodIdx].isCurrent);
                         }
                     }
-//                    .accessibilityLabel("Schedule for \(schedule.displayName)")
                     .accessibilityElement(children: .contain);
                 }
             }.accessibilityElement(children: .contain)

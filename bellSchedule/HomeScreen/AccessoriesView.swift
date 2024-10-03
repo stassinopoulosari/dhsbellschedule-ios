@@ -37,7 +37,7 @@ struct AccessoriesView: View {
                         SettingsView(context: context)
                             .navigationTitle("Settings")
                             .toolbar {
-                                ToolbarItem(placement: .navigationBarLeading) {
+                                ToolbarItem(placement: .topBarLeading) {
                                     Button("Done") {
                                         settingsShown.toggle();
                                     }
@@ -81,7 +81,7 @@ struct AccessoriesView: View {
                         TodayScheduleView(context: context)
                             .navigationTitle("Today's schedule")
                             .toolbar {
-                                ToolbarItem(placement: .navigationBarLeading) {
+                                ToolbarItem(placement: .topBarLeading) {
                                     Button("Done") {
                                         infoShown = false;
                                     }
@@ -89,15 +89,27 @@ struct AccessoriesView: View {
                                     .accessibilityHint("Close")
                                     .fontWeight(.bold)
                                 }
-                                ToolbarItem(placement:.navigationBarTrailing) {
-                                    NavigationLink("All Schedules") {
-                                        AllScheduleView(context: context)
-                                            .navigationTitle("All schedules")
-                                            .accessibilityElement(children: .contain);
+                                ToolbarItemGroup(placement:.topBarTrailing) {
+                                        NavigationLink {
+                                            CalendarView(context: context)
+                                                .navigationTitle("Calendar")
+                                                .accessibilityElement(children: .contain)
+                                        } label: {
+                                            Image("calendar_month_black")
+                                        }
+                                        .accessibilityLabel("Calendar")
+                                        .accessibilityHint("View the calendar")
+                                    NavigationLink {
+                                        AllScheduleView(context: context).navigationTitle("All schedules")
+                                            .accessibilityElement(children: .contain)
+                                    } label: {
+                                        Image("view_list_black")
                                     }
                                     .accessibilityLabel("All schedules")
                                     .accessibilityHint("View all schedules")
                                 }
+                                
+                                
                             }.accessibilityElement(children: .contain)
                     }
                 }

@@ -14,13 +14,16 @@ public struct BSPersistence {
     static let calendarKey = "bs3-persistence-calendar";
     static let lastUpdatedKey = "bs3-persistance-lastUpdated";
     static let lastVersionUsedKey = "bs3-compatibilityLastVersionUsed";
-    static let firstTimeUserKey = "bs3-firstTimeUser3.0.0-debug1";
+    static let firstTimeUserKey = "bs3-firstTimeUser3.1.0";
     static let notificationsOnKey = "bs3-notificationsOn";
     static let notificationsIntervalKey = "bs3-notificationsInterval";
+    static let skipZeroPeriodNotificationsKey = "bs3-skipZeroPeriodNotifications";
+    static let zeroPeriodSymbolKey = "bs3-zeroPeriodSymbol";
     
     public static var contextLastUpdated: Date? {
         if let defaults = defaults {
             let lastUpdatedInterval = defaults.double(forKey: BSPersistence.lastUpdatedKey)
+            print(Date(timeIntervalSince1970: lastUpdatedInterval))
             return Date(timeIntervalSince1970: lastUpdatedInterval)
         } else {
             return nil;
@@ -30,6 +33,7 @@ public struct BSPersistence {
     
     public struct NotificationsSettings {
         public var notificationsOn: Bool;
+        public var skipZeroPeriod: Bool;
         public var notificationsInterval: Double;
     }
     
@@ -38,20 +42,23 @@ public struct BSPersistence {
            {
             let notificationsOn = defaults.bool(forKey: notificationsOnKey)
             let notificationsInterval = defaults.double(forKey: notificationsIntervalKey);
+            let skipZeroPeriod = defaults.bool(forKey: skipZeroPeriodNotificationsKey);
             if(notificationsInterval == 0) {
-                return NotificationsSettings(notificationsOn: false, notificationsInterval: 5.0)
+                return NotificationsSettings(notificationsOn: false, skipZeroPeriod: false, notificationsInterval: 5.0)
             }
-            return NotificationsSettings(notificationsOn: notificationsOn, notificationsInterval: notificationsInterval)
+            return NotificationsSettings(notificationsOn: notificationsOn, skipZeroPeriod: skipZeroPeriod, notificationsInterval: notificationsInterval)
         }
-        return NotificationsSettings(notificationsOn: false, notificationsInterval: 5.0);
+        return NotificationsSettings(notificationsOn: false, skipZeroPeriod: false, notificationsInterval: 5.0);
     }
     
     public static func save(userNotificationsSettings notificationsSettings: NotificationsSettings) {
         if let defaults = defaults {
             let notificationsOn = notificationsSettings.notificationsOn;
             let notificationsInterval = notificationsSettings.notificationsInterval;
+            let skipZeroPeriod = notificationsSettings.skipZeroPeriod;
             defaults.set(notificationsOn, forKey: notificationsOnKey);
             defaults.set(notificationsInterval, forKey: notificationsIntervalKey);
+            defaults.set(skipZeroPeriod, forKey: skipZeroPeriodNotificationsKey);
         }
     }
     
@@ -67,6 +74,7 @@ public struct BSPersistence {
                 save(calendarString: calendarExportable.calendarString, toDefaults: defaults);
                 save(scheduleTableString: calendarExportable.scheduleTableString, toDefaults: defaults);
                 save(symbolTableString: symbolTableExportable.symbolTableString, toDefaults: defaults);
+                save(zeroPeriodSymbol: context.zeroPeriodSymbol, toDefaults: defaults)
 //                save(customSymbolsString: symbolTableExportable.symbolTableString, toDefaults: defaults)
             }
             
@@ -108,11 +116,20 @@ public struct BSPersistence {
         defaults.set(customSymbolsString, forKey: customSymbolsKey);
     }
     
+    private static func save(zeroPeriodSymbol: String, toDefaults defaults: UserDefaults) {
+        defaults.set(zeroPeriodSymbol, forKey: zeroPeriodSymbolKey);
+    }
+    
+    private static func loadZeroPeriodSymbol(fromDefaults defaults: UserDefaults) -> String? {
+        if let zeroPeriodSymbol = defaults.string(forKey: zeroPeriodSymbolKey) {
+            return zeroPeriodSymbol;
+        }
+        return nil;
+    }
+    
     private static func loadCalendar(fromDefaults defaults: UserDefaults) -> BSCalendar? {
         if let scheduleTable = loadScheduleTable(fromDefaults: defaults) {
-//            print("calendar string \(defaults.string(forKey: calendarKey))")
             if let calendarString = defaults.string(forKey: calendarKey) {
-//                print("calendar string \(calendarString)")
                 return BSCalendar.from(string: calendarString, withScheduleTable: scheduleTable)
             } else {
                 // Could not load calendar
@@ -170,6 +187,13 @@ public struct BSPersistence {
         return nil;
     }
     
+    public static func loadZeroPeriodSymbol() -> String? {
+        if let defaults = defaults {
+            return loadZeroPeriodSymbol(fromDefaults: defaults);
+        }
+        return nil;
+    }
+    
     public static func loadContext() -> BSContext? {
         if let defaults = defaults {
             // Load calendar
@@ -177,12 +201,14 @@ public struct BSPersistence {
 //            print("Loaded calendar \(loadedCalendar)");
             // Load symbols
             let loadedSymbolTable = loadSymbolTable(fromDefaults: defaults)
+            let loadedZeroPeriodSymbol = loadZeroPeriodSymbol(fromDefaults: defaults)
 //            print("Loaded symbol table \(loadedSymbolTable)");
             // Load custom symbols
             if let calendar = loadedCalendar,
                let symbolTable = loadedSymbolTable,
-               let lastUpdated = contextLastUpdated{
-                return BSContext(calendar: calendar, symbolTable: symbolTable, type: .cache, lastUpdated: lastUpdated)
+               let lastUpdated = contextLastUpdated,
+               let zeroPeriodSymbol = loadedZeroPeriodSymbol{
+                return BSContext(calendar: calendar, symbolTable: symbolTable, type: .cache, lastUpdated: lastUpdated, zeroPeriodSymbol: zeroPeriodSymbol)
             } else {
                 // Incomplete data
                 return nil
