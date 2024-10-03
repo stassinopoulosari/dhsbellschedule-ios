@@ -37,6 +37,18 @@ struct NotificationsView: View {
                         }
                         .accessibilityHint("Enable notifications for period ends")
                         .accessibilityValue(notificationsSettingsModel.notificationsOn ? "Notifications On" : "Notifications Off");
+                    Toggle("Silence Zero Period notifications", isOn: $notificationsSettingsModel.skipZeroPeriod)
+                        .toggleStyle(.switch)
+                        .onChange(of: notificationsSettingsModel.skipZeroPeriod) { newValue in
+                            notificationsModel.request();
+                            BSPersistence.save(userNotificationsSettings: notificationsSettingsModel)
+                            if(notificationsSettingsModel.notificationsOn) {
+                                Notifications(context: context, settings: notificationsSettingsModel).scheduleNotifications();
+                            }
+                        }
+                        .disabled(!notificationsSettingsModel.notificationsOn)
+                        .accessibilityHint("Skip Zero Period notifications")
+                        .accessibilityValue(notificationsSettingsModel.skipZeroPeriod ? "Zero Period Notifications Off" : "Notifications On");
                     Picker("Notification warning", selection: $notificationsSettingsModel.notificationsInterval) {
                         ForEach([0.5, 1, 2, 5, 10, 15], id: \.self) { timeInterval in
                             if(timeInterval < 1) {

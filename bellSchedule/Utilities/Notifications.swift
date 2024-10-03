@@ -68,7 +68,7 @@ struct Notifications {
             content.title = "Test notification"
             content.body = "This is a test notification"
             content.interruptionLevel = .timeSensitive;
-            content.sound = .default;
+            content.sound = UNNotificationSound(named: UNNotificationSoundName("shimmerBell.m4a"))
             let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.1, repeats: false);
             center.add(UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger))
         }
@@ -116,6 +116,9 @@ struct Notifications {
                     if(context.symbolTable.render(templateString: period.name) == "Passing Period") {
                         continue;
                     }
+                    if(period.name.range(of: context.zeroPeriodSymbol) != nil && settings.skipZeroPeriod) {
+                        continue;
+                    }
                     if let endDate = period.endTime.date, let startDate = period.startTime.date {
                         let interval = settings.notificationsInterval * 60 * -1;
                         let notificationDate = endDate.addingTimeInterval(interval + dateAdjustmentInterval);
@@ -126,6 +129,7 @@ struct Notifications {
                         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
                         let content = UNMutableNotificationContent()
                         content.title = "\(context.symbolTable.render(templateString: period.name)) is ending soon";
+                        content.sound = UNNotificationSound(named: UNNotificationSoundName("shimmerBell.m4a"))
                         if abs(interval) < 60 {
                             content.body = "\(Int(abs(interval))) seconds remain"
                         } else {

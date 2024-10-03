@@ -15,6 +15,7 @@ public struct BSNetwork {
     private let scheduleTablePath = "schools/dublinHS/schedules"
     private let symbolsPath = "schools/dublinHS/symbols"
     private let lastUpdatedPath = "schools/dublinHS/lastUpdated"
+    private let zeroPeriodSymbolPath = "schools/dublinHS/zeroPeriodSymbol"
     
     enum BSNetworkError: Error {
         case databaseReferenceIsNil
@@ -50,6 +51,7 @@ public struct BSNetwork {
             var scheduleTableObject: [String: Any]?;
             var calendarObject: [String: Any]?;
             var symbolsObject: [String: Any]?;
+            var zeroPeriodSymbol: String?;
             var errors = [Error]();
             
             group.enter()
@@ -100,6 +102,23 @@ public struct BSNetwork {
                 return group.leave()
             }
             
+            group.enter()
+            databaseReference.child(zeroPeriodSymbolPath).getData { (error, snapshot) in
+                if let error = error {
+                    errors.append(error);
+                    return group.leave();
+                }
+                if let snapshot = snapshot,
+                   let value = snapshot.value,
+                   let valueObject = value as? String{
+                    zeroPeriodSymbol = valueObject;
+                } else {
+                    errors.append(BSNetworkError.unexpectedValueType);
+                }
+                return group.leave()
+            }
+            
+            
             group.notify(queue: .global()) {
                 if(errors.count > 0) {
                     return errorCallback(errors);
@@ -107,13 +126,14 @@ public struct BSNetwork {
                 
                 if let scheduleTableObject = scheduleTableObject,
                    let calendarObject = calendarObject,
-                   let symbolsObject = symbolsObject {
+                   let symbolsObject = symbolsObject,
+                   let zeroPeriodSymbol = zeroPeriodSymbol {
                     var symbolTable = BSSymbolTable.from(dictionary: symbolsObject);
                     if let customSymbols = BSPersistence.loadCustomSymbols() {
                         symbolTable.register(customSymbols: customSymbols);
                     }
                     let scheduleTable = BSScheduleTable.from(dictionary: scheduleTableObject)
-                    return callback(BSContext(calendar: BSCalendar.from(dictionary: calendarObject, withScheduleTable: scheduleTable), symbolTable: symbolTable, type: .network, lastUpdated: Date.now));
+                    return callback(BSContext(calendar: BSCalendar.from(dictionary: calendarObject, withScheduleTable: scheduleTable), symbolTable: symbolTable, type: .network, lastUpdated: Date.now, zeroPeriodSymbol: zeroPeriodSymbol));
                 } else {
                     return errorCallback([BSNetworkError.unableToConstructContext]);
                 }
