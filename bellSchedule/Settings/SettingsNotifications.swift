@@ -25,6 +25,7 @@ struct NotificationsView: View {
                 List {
                     Toggle("Enable notifications", isOn: $notificationsSettingsModel.notificationsOn)
                         .toggleStyle(.switch)
+                        .tint(Color("AppColor"))
                         .onChange(of: notificationsSettingsModel.notificationsOn) {
                             notificationsModel.request();
                             BSPersistence.save(userNotificationsSettings: notificationsSettingsModel)
@@ -39,6 +40,7 @@ struct NotificationsView: View {
                         .accessibilityValue(notificationsSettingsModel.notificationsOn ? "Notifications On" : "Notifications Off");
                     Toggle("Silence Zero Period notifications", isOn: $notificationsSettingsModel.skipZeroPeriod)
                         .toggleStyle(.switch)
+                        .tint(Color("AppColor"))
                         .onChange(of: notificationsSettingsModel.skipZeroPeriod) {
                             notificationsModel.request();
                             BSPersistence.save(userNotificationsSettings: notificationsSettingsModel)

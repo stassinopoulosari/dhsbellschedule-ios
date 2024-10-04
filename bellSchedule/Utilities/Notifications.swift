@@ -68,9 +68,12 @@ struct Notifications {
             content.title = "Test notification"
             content.body = "This is a test notification"
             content.interruptionLevel = .timeSensitive;
-            content.sound = UNNotificationSound(named: UNNotificationSoundName("shimmerBell.m4a"))
+            content.sound = UNNotificationSound(named: UNNotificationSoundName("shimmerBell.caf"))
             let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.1, repeats: false);
             center.add(UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger))
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                scheduleNotifications()
+            }
         }
     }
     
@@ -78,10 +81,6 @@ struct Notifications {
     /// ==========
     /// If the user has notifications enabled, schedule them. Otherwise, don't.
     public func scheduleNotifications() {
-        
-        if !settings.notificationsOn {
-            return;
-        }
         
         let maximumNotifications = 63;
         
@@ -94,6 +93,12 @@ struct Notifications {
             }
             center.removeAllPendingNotificationRequests();
             center.removeAllDeliveredNotifications();
+            center.getPendingNotificationRequests { requests in
+                print(requests.count)
+            }
+            if !settings.notificationsOn {
+                return;
+            }
             var numberScheduled = 0;
             var date = Date.now
             let calendar = context.calendar;
@@ -101,7 +106,7 @@ struct Notifications {
             var dateAdjustmentInterval = 0.0;
             var periodIndex = 0;
             var daysWithoutSchedule = 0
-            while(numberScheduled <= maximumNotifications) {
+            while(numberScheduled < maximumNotifications) {
                 if let currentSchedule = schedule {
                     daysWithoutSchedule = 0;
                     if(periodIndex >= currentSchedule.periods.count) {
@@ -129,13 +134,12 @@ struct Notifications {
                         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
                         let content = UNMutableNotificationContent()
                         content.title = "\(context.symbolTable.render(templateString: period.name)) is ending soon";
-                        content.sound = UNNotificationSound(named: UNNotificationSoundName("shimmerBell.m4a"))
+                        content.sound = UNNotificationSound(named: UNNotificationSoundName("shimmerBell.caf"))
                         if abs(interval) < 60 {
                             content.body = "\(Int(abs(interval))) seconds remain"
                         } else {
                             content.body = "\(String(Int(abs(interval) / 60)) + " minute\(Int(abs(interval) / 60) == 1 ? "" : "s")") remain\(Int(abs(interval) / 60) == 1 ? "s" : "")"
                         }
-                        content.sound = .default
                         content.interruptionLevel = .timeSensitive;
                         center.add(UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger))
                         numberScheduled += 1;
@@ -153,7 +157,7 @@ struct Notifications {
                 }
             }
             center.getPendingNotificationRequests { requests in
-                print(requests.count);
+                print(requests.count)
             }
         }
     }

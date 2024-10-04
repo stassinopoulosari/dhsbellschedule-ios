@@ -40,6 +40,7 @@
 		029C67C62A11764A004484F4 /* AccessoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029C67C52A11764A004484F4 /* AccessoriesView.swift */; };
 		02A0E8A22A22CC5400C06C89 /* BSCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A0E8A12A22CC5400C06C89 /* BSCalendar.swift */; };
 		02A0E8A42A22CC7200C06C89 /* BSKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A0E8A32A22CC7100C06C89 /* BSKit.swift */; };
+		02A5D5F82CB0593E008CD3A1 /* shimmerBell.caf in Resources */ = {isa = PBXBuildFile; fileRef = 02A5D5F72CB0593E008CD3A1 /* shimmerBell.caf */; };
 		02C1ED4B2CA70C0F00039D54 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C1ED4A2CA70C0F00039D54 /* CalendarView.swift */; };
 		02E502682A10624A008FCD1F /* BellScheduleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E502672A10624A008FCD1F /* BellScheduleApp.swift */; };
 		02E5026A2A10624A008FCD1F /* HomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E502692A10624A008FCD1F /* HomeScreenView.swift */; };
@@ -127,6 +128,7 @@
 		029C67CB2A117744004484F4 /* libBellScheduleKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBellScheduleKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		02A0E8A12A22CC5400C06C89 /* BSCalendar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSCalendar.swift; sourceTree = "<group>"; };
 		02A0E8A32A22CC7100C06C89 /* BSKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSKit.swift; sourceTree = "<group>"; };
+		02A5D5F72CB0593E008CD3A1 /* shimmerBell.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = shimmerBell.caf; path = bellSchedule/shimmerBell.caf; sourceTree = SOURCE_ROOT; };
 		02C1ED4A2CA70C0F00039D54 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		02E502642A10624A008FCD1F /* BellSchedule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BellSchedule.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02E502672A10624A008FCD1F /* BellScheduleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BellScheduleApp.swift; sourceTree = "<group>"; };
@@ -272,6 +274,7 @@
 			isa = PBXGroup;
 			children = (
 				026C7EE72CAF5ACC0032E442 /* shimmerBell.m4a */,
+				02A5D5F72CB0593E008CD3A1 /* shimmerBell.caf */,
 				0299C12E2A1A7F2E00CA2AB6 /* bellSchedule.entitlements */,
 				021432BD2A21944800549DF9 /* GoogleService-Info.plist */,
 				02E5026B2A10624A008FCD1F /* Assets.xcassets */,
@@ -368,7 +371,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1600;
 				TargetAttributes = {
 					02899A3B2A2442E800BCCCAE = {
 						CreatedOnToolsVersion = 14.3;
@@ -421,6 +424,7 @@
 				02E5026F2A10624A008FCD1F /* Preview Assets.xcassets in Resources */,
 				0295F95D2A23AAC400B3A4DB /* LaunchScreen.storyboard in Resources */,
 				02E5026C2A10624A008FCD1F /* Assets.xcassets in Resources */,
+				02A5D5F82CB0593E008CD3A1 /* shimmerBell.caf in Resources */,
 				021432BE2A21944800549DF9 /* GoogleService-Info.plist in Resources */,
 				026C7EE82CAF5ACC0032E442 /* shimmerBell.m4a in Resources */,
 			);
@@ -505,7 +509,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = BellScheduleWidget/BellScheduleWidget.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = Z44L282QM9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BellScheduleWidget/Info.plist;
@@ -534,7 +538,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = BellScheduleWidget/BellScheduleWidget.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = Z44L282QM9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BellScheduleWidget/Info.plist;
@@ -621,6 +625,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -681,6 +686,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -702,12 +708,11 @@
 		02E502892A10624A008FCD1F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = bellSchedule/bellSchedule.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"bellSchedule/Preview Content\"";
 				DEVELOPMENT_TEAM = Z44L282QM9;
 				ENABLE_PREVIEWS = YES;
@@ -741,12 +746,11 @@
 		02E5028A2A10624A008FCD1F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = bellSchedule/bellSchedule.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"bellSchedule/Preview Content\"";
 				DEVELOPMENT_TEAM = Z44L282QM9;
 				ENABLE_PREVIEWS = YES;
