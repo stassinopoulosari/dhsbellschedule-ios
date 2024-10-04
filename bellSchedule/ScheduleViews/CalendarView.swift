@@ -29,18 +29,23 @@ struct CalendarButton: View {
     @Binding var currentSelectedDate: Int?;
     
     var body: some View {
-        if(currentSelectedDate != date) {
-            Button(String(date)) {
-                chooseDate(date);
-            }.buttonStyle(.bordered).tint(hasSchedule ? .primary : .secondary)
-                .accessibilityHint("Select schedule for the \(date)");
-            
-        } else {
-            Button(String(date).padding(toLength: 2, withPad: " ", startingAt: 0)) {
-                chooseDate(date);
-            }.buttonStyle(.borderedProminent).tint(Color("AppColor"))
-                .accessibilityHint("Select schedule for the \(date). Currently selected.");
-        }
+        ZStack {
+            if(currentSelectedDate != date) {
+                Color(.clear)
+                Button(String(date)) {
+                    chooseDate(date);
+                }.buttonStyle(.borderless).tint(hasSchedule ? .primary : .secondary)
+                    .accessibilityHint("Select schedule for the \(date)")
+                
+            } else {
+                Color("AppColor")
+                Button(String(date).padding(toLength: 2, withPad: " ", startingAt: 0)) {
+                    chooseDate(date);
+                }
+                .buttonStyle(.borderless).tint(.primary)
+                    .accessibilityHint("Select schedule for the \(date). Currently selected.")
+            }
+        }.frame(minHeight:30.0).clipShape(.circle)
     }
 }
 
@@ -59,10 +64,11 @@ struct CalendarButtonRow: View {
             ForEach(0..<7) {dayIndex in
                 let date = index * 7 + dayIndex - firstWeekday + 2;
                 if(date > 0 && date <= lastDate) {
-                    CalendarButton(date: date, chooseDate: chooseDate, hasSchedule: currentCalendar[date] != nil, currentSelectedDate: $currentSelectedDate).frame(maxWidth: .infinity)
+                    CalendarButton(date: date, chooseDate: chooseDate, hasSchedule: currentCalendar[date] != nil, currentSelectedDate: $currentSelectedDate)
                         .accessibilityElement(children:.combine)
                         .accessibilityLabel("\(date)")
-                        .accessibilityHint("Select the \(date)\(CalendarConvenience.ending(date))");
+                        .accessibilityHint("Select the \(date)\(CalendarConvenience.ending(date))")
+                        .frame(maxWidth: .infinity, maxHeight:.infinity);
                 } else {
                     Text("").accessibilityHidden(true).frame(maxWidth:.infinity);
                 }
@@ -96,18 +102,16 @@ struct CalendarView: View {
             List {
                 Section("\(monthName) \(String(year))") {
                     Group {
-                        Grid {
+                        Grid(horizontalSpacing: 0) {
                             ForEach(0..<5) {weekNumber in
-                                let firstDay = weekNumber * 7 - firstWeekday + 2 < 1 ? 1 : weekNumber * 7 - firstWeekday + 2
-                                let lastDay = weekNumber * 7 - firstWeekday + 8 > lastDate ? lastDate : weekNumber * 7 - firstWeekday + 8
                                 Group {
                                     CalendarButtonRow(index: weekNumber, currentSelectedDate: $selectedDate, firstWeekday: firstWeekday, lastDate: lastDate, currentCalendar: currentCalendar, chooseDate: { date in
                                         withAnimation {
                                             selectedDate = date;
                                         }
-                                    }).frame(maxWidth: .infinity).padding(.bottom)
+                                    })
                                 }
-//                                    .accessibilityLabel("\(firstDay)\(CalendarConvenience.ending(firstDay)) through \(lastDay)\(CalendarConvenience.ending(lastDay)) of \(monthName)")
+                                
                             }
                         }
                     }.accessibilityElement(children: .contain)
@@ -138,13 +142,13 @@ struct CalendarScheduleView: View {
     public let today: Int;
     
     var body: some View {
-
+        
         if let currentSelectedDate = selectedDate, let currentScheduleID = currentCalendar[currentSelectedDate], let currentSchedule = context.calendar.scheduleTable.schedules[currentScheduleID], currentSchedule.periods.count > 0 {
             let currentSchedulePeriods = currentSchedule.periods.sorted(by: { pleft, pright in
                 pright.startTime > pleft.startTime;
             });
             
-            Section("Schedule for \(monthName) \(currentSelectedDate)\(CalendarConvenience.ending(currentSelectedDate)) - \(currentSchedule.displayName)") {
+            Section("Schedule for \(monthName) \(currentSelectedDate)\(CalendarConvenience.ending(currentSelectedDate))") {
                 
                 CalendarDateControlsView(selectedDate: $selectedDate, lastDate: lastDate);
                 

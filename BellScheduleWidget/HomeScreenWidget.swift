@@ -58,92 +58,93 @@ struct HomeScreenWidgetEntryView : View {
     var entry: Provider.Entry
     
     var body: some View {
-        ZStack {
-            Color("AppColor").ignoresSafeArea()
-            let date = entry.date;
-            var size: Int {
-                switch entry.family {
-                case .systemLarge, .systemExtraLarge:
-                    return 1;
-                default:
-                    return 0;
-                }
-            };
-            VStack {
-                
-                if let context = BSContext.fromDefaults {
-                    if let currentSchedule = context.calendar.currentSchedule(forDate: date) {
-                        if let currentPeriod = currentSchedule.currentPeriod(forDate: date)
-                        {
-                            Text(context.symbolTable.render(templateString: currentPeriod.name))
-                                .foregroundColor(.white)
-                                .font(.system(size: 12))
-                            Spacer()
-                            Text(currentPeriod.startTime.localString)
-                                .foregroundColor(.white)
-                                .font(.system(size: 17))
-                            Text(currentPeriod.endTime.localString)
-                                .foregroundColor(.white)
-                                .fontWeight(.black)
-                                .font(.system(size: size == 0 ? (BSTime.usesAMPM ? 25 : 35) : 40))
-                        } else {
-                            Spacer()
-                            Text("No class")
-                                .padding(size == 1 ? .bottom : [])
-                                .foregroundColor(.white)
-                                .fontWeight(.black)
-                                .font(.system(size: 25))
-                        }
+        let date = entry.date;
+        var size: Int {
+            switch entry.family {
+            case .systemLarge, .systemExtraLarge:
+                return 1;
+            default:
+                return 0;
+            }
+        };
+        VStack {
+            
+            if let context = BSContext.fromDefaults {
+                if let currentSchedule = context.calendar.currentSchedule(forDate: date) {
+                    if let currentPeriod = currentSchedule.currentPeriod(forDate: date)
+                    {
+                        Text(context.symbolTable.render(templateString: currentPeriod.name))
+                            .foregroundColor(.white)
+                            .font(.system(size: 12))
                         Spacer()
-                        if(size == 1) {
-                            let periods = currentSchedule.periods.sorted { leftPeriod, rightPeriod in
-                                rightPeriod.startTime > leftPeriod.startTime;
-                            }.filter { period in
-                                if let startDate = period.startTime.date {
-                                    return startDate > Date.now;
-                                }
-                                return false;
-                            }.prefix(5);
-                            VStack {
-                                ForEach(periods, id: \.self) { period in
-                                    let periodName = context.symbolTable.render(templateString: period.name)
-                                    HStack {
-                                        Text(periodName);
-                                        Spacer();
-                                        Text(period.startTime.localString);
-                                        Text("-");
-                                        Text(period.endTime.localString);
-                                    }.padding([.top, .bottom], 1.0)
-                                        .foregroundColor(periodName == "Passing Period" ? .gray : .white)
-                                        .font(.system(size: 15))
-                                }.accessibilityElement(children: .contain)
-                            }.padding()
-                        }
-                        Spacer()
-                    } else {
-                        Spacer()
-                        Text("No schedule")
+                        Text(currentPeriod.startTime.localString)
+                            .foregroundColor(.white)
+                            .font(.system(size: 17))
+                        Text(currentPeriod.endTime.localString)
                             .foregroundColor(.white)
                             .fontWeight(.black)
-                            .font(.system(size: size == 0 ? 17 : 35))
-                            .padding(.bottom)
+                            .font(.system(size: size == 0 ? (BSTime.usesAMPM ? 25 : 35) : 40))
+                    } else {
                         Spacer()
-
+                        Text("No class")
+                            .padding(size == 1 ? .bottom : [])
+                            .foregroundColor(.white)
+                            .fontWeight(.black)
+                            .font(.system(size: 25))
                     }
+                    Spacer()
+                    if(size == 1) {
+                        let periods = currentSchedule.periods.sorted { leftPeriod, rightPeriod in
+                            rightPeriod.startTime > leftPeriod.startTime;
+                        }.filter { period in
+                            if let startDate = period.startTime.date {
+                                return startDate > Date.now;
+                            }
+                            return false;
+                        }.prefix(5);
+                        VStack {
+                            ForEach(periods, id: \.self) { period in
+                                let periodName = context.symbolTable.render(templateString: period.name)
+                                HStack {
+                                    Text(periodName);
+                                    Spacer();
+                                    Text(period.startTime.localString);
+                                    Text("-");
+                                    Text(period.endTime.localString);
+                                }.padding([.top, .bottom], 1.0)
+                                    .foregroundColor(periodName == "Passing Period" ? .gray : .white)
+                                    .font(.system(size: 15))
+                            }.accessibilityElement(children: .contain)
+                        }.padding()
+                    }
+                    Spacer()
                 } else {
                     Spacer()
-                    Text("Failed to load")
+                    Text("No schedule")
                         .foregroundColor(.white)
-                        .font(.system(size: 17))
+                        .fontWeight(.black)
+                        .font(.system(size: size == 0 ? 17 : 35))
                         .padding(.bottom)
                     Spacer()
+                    
                 }
+            } else {
+                Spacer()
+                Text("Failed to load")
+                    .foregroundColor(.white)
+                    .font(.system(size: 17))
+                    .padding(.bottom)
+                Spacer()
             }
-            .padding([.leading, .trailing],3.0)
-            .padding([.top])
+        }
+        .padding([.leading, .trailing],3.0)
+        .padding([.top])
+        .containerBackground(for: .widget) {
+            Color("AppColor")
         }
     }
 }
+
 
 struct HomeScreenWidget: Widget {
     let kind: String = "HomeScreenWidget"

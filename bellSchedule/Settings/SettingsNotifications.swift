@@ -25,7 +25,7 @@ struct NotificationsView: View {
                 List {
                     Toggle("Enable notifications", isOn: $notificationsSettingsModel.notificationsOn)
                         .toggleStyle(.switch)
-                        .onChange(of: notificationsSettingsModel.notificationsOn) { newValue in
+                        .onChange(of: notificationsSettingsModel.notificationsOn) {
                             notificationsModel.request();
                             BSPersistence.save(userNotificationsSettings: notificationsSettingsModel)
                             if(notificationsSettingsModel.notificationsOn) {
@@ -39,7 +39,7 @@ struct NotificationsView: View {
                         .accessibilityValue(notificationsSettingsModel.notificationsOn ? "Notifications On" : "Notifications Off");
                     Toggle("Silence Zero Period notifications", isOn: $notificationsSettingsModel.skipZeroPeriod)
                         .toggleStyle(.switch)
-                        .onChange(of: notificationsSettingsModel.skipZeroPeriod) { newValue in
+                        .onChange(of: notificationsSettingsModel.skipZeroPeriod) {
                             notificationsModel.request();
                             BSPersistence.save(userNotificationsSettings: notificationsSettingsModel)
                             if(notificationsSettingsModel.notificationsOn) {
@@ -60,7 +60,7 @@ struct NotificationsView: View {
                     }
                     .accessibilityHint("Change how long before a period ends the notification is received")
                     .disabled(!notificationsSettingsModel.notificationsOn)
-                    .onChange(of: notificationsSettingsModel.notificationsInterval) { newValue in
+                    .onChange(of: notificationsSettingsModel.notificationsInterval) {
                         notificationsModel.request();
                         BSPersistence.save(userNotificationsSettings: notificationsSettingsModel)
                         if(notificationsSettingsModel.notificationsOn) {
@@ -85,9 +85,8 @@ struct NotificationsView: View {
                 .tint(Color("AccentColor"))
             } else if notificationsModel.loaded {
                 Text("Notifications permission not granted. Please click the button below to grant notifications permission.")
-                    .onChange(of: scenePhase) { newValue in
-                        print(newValue)
-                        if newValue == .active {
+                    .onChange(of: scenePhase) {
+                        if scenePhase == .active {
                             notificationsModel.request();
                         }
                     };

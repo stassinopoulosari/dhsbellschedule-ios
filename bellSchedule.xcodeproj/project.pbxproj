@@ -511,6 +511,7 @@
 				INFOPLIST_FILE = BellScheduleWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Bell Schedule";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -539,6 +540,7 @@
 				INFOPLIST_FILE = BellScheduleWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Bell Schedule";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
