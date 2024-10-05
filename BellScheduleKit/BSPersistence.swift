@@ -20,6 +20,7 @@ public struct BSPersistence {
     static let skipZeroPeriodNotificationsKey = "bs3-skipZeroPeriodNotifications";
     static let zeroPeriodSymbolKey = "bs3-zeroPeriodSymbol";
     
+    /// Date the saved context was last updated
     public static var contextLastUpdated: Date? {
         if let defaults = defaults {
             let lastUpdatedInterval = defaults.double(forKey: BSPersistence.lastUpdatedKey)
@@ -29,14 +30,19 @@ public struct BSPersistence {
             return nil;
         }
     }
-    static let defaults: UserDefaults? = UserDefaults.init(suiteName: "group.com.Stassinopoulos.ari.bellGroup");
     
+    /// The defaults we are using for persistence
+    static let defaults: UserDefaults? = UserDefaults(suiteName: "group.com.Stassinopoulos.ari.bellGroup");
+    
+    /// Representation of Notification Settings
     public struct NotificationsSettings {
         public var notificationsOn: Bool;
         public var skipZeroPeriod: Bool;
         public var notificationsInterval: Double;
     }
     
+    /// Load the user's notification settings
+    /// - Returns: the user's notification settings, or the default settings if none are saved
     public static func loadUserNotificationsSettings() -> NotificationsSettings {
         if let defaults = defaults
            {
@@ -51,6 +57,8 @@ public struct BSPersistence {
         return NotificationsSettings(notificationsOn: false, skipZeroPeriod: false, notificationsInterval: 5.0);
     }
     
+    /// Save the user's notification settings
+    /// - Parameter userNotificationSettings: The user's notification settings to save
     public static func save(userNotificationsSettings notificationsSettings: NotificationsSettings) {
         if let defaults = defaults {
             let notificationsOn = notificationsSettings.notificationsOn;
@@ -62,6 +70,8 @@ public struct BSPersistence {
         }
     }
     
+    /// Save a hard update of the context from the network
+    /// - Parameter context: The context with the user's new settings
     public static func save(hardUpdateOfContext context: BSContext) {
         if let defaults = defaults {
             let lastUpdatedInterval = Date.now.timeIntervalSince1970;
@@ -75,12 +85,12 @@ public struct BSPersistence {
                 save(scheduleTableString: calendarExportable.scheduleTableString, toDefaults: defaults);
                 save(symbolTableString: symbolTableExportable.symbolTableString, toDefaults: defaults);
                 save(zeroPeriodSymbol: context.zeroPeriodSymbol, toDefaults: defaults)
-//                save(customSymbolsString: symbolTableExportable.symbolTableString, toDefaults: defaults)
             }
             
         }
     }
     
+    /// - Returns: `true` if the user has not opened up the mobile app before
     public static func firstTimeUser() -> Bool {
         if let defaults = defaults {
             let firstTimeUser = !defaults.bool(forKey: firstTimeUserKey)
@@ -92,7 +102,9 @@ public struct BSPersistence {
         return true;
     }
     
-    public static func save(softUpdateOfContext context: BSContext) {
+    /// Save an update of the custom symbols string
+    /// - Parameter contextWithUpdatedCustomSymbols: The context with custom symbols
+    public static func save(contextWithUpdatedCustomSymbols context: BSContext) {
         if let defaults = defaults {
             if let symbolTableExportable = context.symbolTable.export() {
                 save(customSymbolsString: symbolTableExportable.customSymbolsString, toDefaults: defaults);
@@ -100,32 +112,41 @@ public struct BSPersistence {
         }
     }
     
+    /// Save the calendar string (used internally)
+    /// - Parameter calendarString: The content to save
+    /// - Parameter toDefaults: the defaults to which we are saving
     private static func save(calendarString: String, toDefaults defaults: UserDefaults) {
         defaults.set(calendarString, forKey: calendarKey);
     }
     
+    /// Save the symbol table string (used internally)
+    /// - Parameter symbolTableString: The content to save
+    /// - Parameter toDefaults: the defaults to which we are saving
     private static func save(symbolTableString: String, toDefaults defaults: UserDefaults) {
         defaults.set(symbolTableString, forKey: symbolTableKey);
     }
     
+    /// Save the schedule table string (used internally)
+    /// - Parameter symbolTableString: The content to save
+    /// - Parameter toDefaults: the defaults to which we are saving
     private static func save(scheduleTableString: String, toDefaults defaults: UserDefaults) {
         defaults.set(scheduleTableString, forKey: scheduleTableKey);
     }
     
+    /// Save the custom symbols string (used internally)
+    /// - Parameter symbolTableString: The content to save
+    /// - Parameter toDefaults: the defaults to which we are saving
     private static func save(customSymbolsString: String, toDefaults defaults: UserDefaults) {
         defaults.set(customSymbolsString, forKey: customSymbolsKey);
     }
     
+    /// Save the zero period symbol (used internally)
+    /// - Parameter symbolTableString: The content to save
+    /// - Parameter toDefaults: the defaults to which we are saving
     private static func save(zeroPeriodSymbol: String, toDefaults defaults: UserDefaults) {
         defaults.set(zeroPeriodSymbol, forKey: zeroPeriodSymbolKey);
     }
     
-    private static func loadZeroPeriodSymbol(fromDefaults defaults: UserDefaults) -> String? {
-        if let zeroPeriodSymbol = defaults.string(forKey: zeroPeriodSymbolKey) {
-            return zeroPeriodSymbol;
-        }
-        return nil;
-    }
     
     private static func loadCalendar(fromDefaults defaults: UserDefaults) -> BSCalendar? {
         if let scheduleTable = loadScheduleTable(fromDefaults: defaults) {
@@ -153,7 +174,6 @@ public struct BSPersistence {
            var symbolTable = BSSymbolTable.from(string: symbolTableString) {
             // Load custom symbols
             if let customSymbols = loadCustomSymbols() {
-//                print(customSymbols)
                 symbolTable.register(customSymbols: customSymbols)
             }
             return symbolTable;
@@ -178,6 +198,13 @@ public struct BSPersistence {
             print(error);
         }
         return customSymbolsDictionary;
+    }
+    
+    private static func loadZeroPeriodSymbol(fromDefaults defaults: UserDefaults) -> String? {
+        if let zeroPeriodSymbol = defaults.string(forKey: zeroPeriodSymbolKey) {
+            return zeroPeriodSymbol;
+        }
+        return nil;
     }
     
     public static func loadCustomSymbols() -> [String: String]? {

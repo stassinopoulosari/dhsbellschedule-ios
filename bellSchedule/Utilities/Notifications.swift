@@ -71,7 +71,8 @@ struct Notifications {
             content.sound = UNNotificationSound(named: UNNotificationSoundName("shimmerBell.caf"))
             let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.1, repeats: false);
             center.add(UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger))
-            DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5.1) {
                 scheduleNotifications()
             }
         }
@@ -82,7 +83,7 @@ struct Notifications {
     /// If the user has notifications enabled, schedule them. Otherwise, don't.
     public func scheduleNotifications() {
         
-        let maximumNotifications = 63;
+        let maximumNotifications = 62;
         
         center.requestAuthorization(options:[.alert,.sound]) { granted, error in
             if error != nil {
@@ -93,9 +94,7 @@ struct Notifications {
             }
             center.removeAllPendingNotificationRequests();
             center.removeAllDeliveredNotifications();
-            center.getPendingNotificationRequests { requests in
-                print(requests.count)
-            }
+            // Cancel scheduling if notifications are off
             if !settings.notificationsOn {
                 return;
             }
@@ -106,6 +105,7 @@ struct Notifications {
             var dateAdjustmentInterval = 0.0;
             var periodIndex = 0;
             var daysWithoutSchedule = 0
+            var lastNotificationDate: Date?;
             while(numberScheduled < maximumNotifications) {
                 if let currentSchedule = schedule {
                     daysWithoutSchedule = 0;
@@ -118,22 +118,27 @@ struct Notifications {
                     }
                     let period = currentSchedule.periods[periodIndex];
                     periodIndex += 1;
+                    // Do not notify for passing period
                     if(context.symbolTable.render(templateString: period.name) == "Passing Period") {
                         continue;
                     }
+                    // Do not notify for Zero Period or Zero Period final if that is disabled
                     if(period.name.range(of: context.zeroPeriodSymbol) != nil && settings.skipZeroPeriod) {
                         continue;
                     }
                     if let endDate = period.endTime.date, let startDate = period.startTime.date {
                         let interval = settings.notificationsInterval * 60 * -1;
                         let notificationDate = endDate.addingTimeInterval(interval + dateAdjustmentInterval);
+                        // Do not notify for a period of a length less than the interval or for past notifications
                         if(startDate.addingTimeInterval(dateAdjustmentInterval) > notificationDate || notificationDate < Date.now) {
                             continue;
                         }
+                        lastNotificationDate = notificationDate;
                         let dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: notificationDate)
                         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
                         let content = UNMutableNotificationContent()
                         content.title = "\(context.symbolTable.render(templateString: period.name)) is ending soon";
+                        // Add shimmer bell sound
                         content.sound = UNNotificationSound(named: UNNotificationSoundName("shimmerBell.caf"))
                         if abs(interval) < 60 {
                             content.body = "\(Int(abs(interval))) seconds remain"
@@ -145,6 +150,7 @@ struct Notifications {
                         numberScheduled += 1;
                     }
                 } else {
+                    // Do not schedule notifications past 7 days of no schedules
                     daysWithoutSchedule += 1;
                     if(daysWithoutSchedule >= 7) {
                         break;
@@ -155,7 +161,22 @@ struct Notifications {
                     periodIndex = 0;
                     continue;
                 }
+
             }
+            
+            if numberScheduled == maximumNotifications, var notificationDate = lastNotificationDate {
+                // Notify the user they are out of notifications
+                notificationDate = notificationDate.addingTimeInterval(5);
+                let dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: notificationDate)
+                let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+                let content = UNMutableNotificationContent()
+                content.title = "Notifications exhausted";
+                content.sound = .default;
+                content.body = "Please open the Bell Schedule app to schedule more notifications.";
+                content.interruptionLevel = .active;
+                center.add(UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger))
+            }
+            
             center.getPendingNotificationRequests { requests in
                 print(requests.count)
             }

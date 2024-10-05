@@ -25,9 +25,7 @@ struct HomeScreenView: View {
                 VStack {
                     switch contextWrapper.state {
                     case .loadedWithoutErrors, .loadedWithErrors:
-                        let _ = print("Loaded without errors");
                         if let context = contextWrapper.context {
-                            let _ = print(context)
                             @ObservedObject var contextObserver = BSContextObserver(withContext: context);
                             StartTimeTextView(contextObserver: contextObserver).accessibilitySortPriority(8);
                             EndTimeTextView(contextObserver: contextObserver).accessibilityLabel("Class end time").accessibilitySortPriority(10).onAppear() {

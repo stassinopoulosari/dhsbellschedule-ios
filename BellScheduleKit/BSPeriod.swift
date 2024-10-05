@@ -7,7 +7,13 @@
 
 import Foundation
 
+/// Time representation
 public struct BSTime: Comparable {
+    
+    /// Compare two times
+    /// - Parameter lhs: The left time to compare
+    /// - Parameter rhs: The right time to compare
+    /// - Returns: Whether the time on the left is less than the time on the right
     public static func < (lhs: BSTime, rhs: BSTime) -> Bool {
         if let ldate = lhs.date, let rdate = rhs.date {
             return ldate < rdate;
@@ -15,6 +21,10 @@ public struct BSTime: Comparable {
         return false;
     }
     
+    /// Compare two times
+    /// - Parameter lhs: The left time to compare
+    /// - Parameter rhs: The right time to compare
+    /// - Returns: Whether the time on the left is greater than the time on the right
     public static func > (lhs: BSTime, rhs: BSTime) -> Bool {
         if let ldate = lhs.date, let rdate = rhs.date {
             return ldate > rdate;
@@ -23,6 +33,10 @@ public struct BSTime: Comparable {
         
     }
     
+    /// Compare two times
+    /// - Parameter lhs: The left time to compare
+    /// - Parameter rhs: The right time to compare
+    /// - Returns: Whether the time on the left is equal to the time on the right
     public static func == (lhs: BSTime, rhs: BSTime) -> Bool {
         if let ldate = lhs.date, let rdate = rhs.date {
             return ldate == rdate;
@@ -75,7 +89,6 @@ public struct BSTime: Comparable {
     
     private static func hours(fromString time: String) -> Int {
         let hoursString = String(time.split(separator: ":", maxSplits: 1)[0])
-        //        print(hoursString)
         if let hoursInt = Int(hoursString) {
             return hoursInt;
         }
@@ -83,8 +96,6 @@ public struct BSTime: Comparable {
     }
     private static func minutes(fromString time: String) -> Int {
         let minutesString = String(time.split(separator: ":", maxSplits: 1)[1])
-        //        print("time: \(time); minutesString: \(minutesString)")
-        //        print(minutesString)
         if let minutesInt = Int(minutesString) {
             return minutesInt;
         }

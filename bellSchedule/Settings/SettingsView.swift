@@ -5,10 +5,8 @@
 //  Created by Ari Stassinopoulos on 2023-05-13.
 //
 
-import Foundation
 import SwiftUI
 import BellScheduleKit
-import WidgetKit
 
 enum Setting {
     case editClassNames
@@ -18,15 +16,10 @@ enum Setting {
 }
 
 struct SettingsView: View {
-    //    @Binding var settingsShown: Bool;
     
     public var context: BSContext;
     
-    public init(context: BSContext) {
-        self.context = context
-    }
-    
-    private var settings: [Setting] = [
+    private let settings: [Setting] = [
         .editClassNames,
         .notifications,
         .about,
@@ -68,32 +61,6 @@ struct SettingsView: View {
             }
         }.listStyle(.plain)
         
-    }
-}
-struct AboutView: View {
-    var aboutText = [
-        "This app is an open-source product.",
-        "**[Tap here to view the source code.](https://github.com/stassinopoulosari/bellSchedule3)**",
-        "DHS Bell Schedule App 3.1.0 was updated in 2024 by Ari Stassinopoulos.",
-        "This app is a gift from the Dublin High School class of 2020.",
-        "The Bell Schedule App is funded thanks to generous contributions by the Parent-Student-Faculty-Organization (PFSO).",
-        "Libraries:",
-        "- Firebase",
-        "\t**[https://firebase.google.com](https://firebase.google.com)**",
-        "- BellScheduleKit (Included in the source code for this project)\n\n",
-        "Hello from beautiful Portland, Oregon!"
-    ]
-    var body: some View {
-        List {
-            VStack {
-                ForEach(aboutText, id: \.self) {text in
-                    Text(.init(text))
-                        .frame(maxWidth: .infinity, alignment: .leading )
-                        .padding([.bottom])
-
-                }
-            }
-        }
     }
 }
 

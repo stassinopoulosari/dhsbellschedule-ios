@@ -18,6 +18,7 @@
 		023C0BE92A24FAB3004B18CD /* BSPeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023C0BE82A24FAB3004B18CD /* BSPeriod.swift */; };
 		023C0BEC2A24FCEE004B18CD /* SettingsNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023C0BEA2A24FCBB004B18CD /* SettingsNotifications.swift */; };
 		023C0BEE2A24FD2D004B18CD /* SettingsSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023C0BED2A24FD2D004B18CD /* SettingsSymbols.swift */; };
+		026111722CB1ADC60086046A /* SettingsAbout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026111712CB1ADC60086046A /* SettingsAbout.swift */; };
 		026C7EE82CAF5ACC0032E442 /* shimmerBell.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 026C7EE72CAF5ACC0032E442 /* shimmerBell.m4a */; };
 		026CC76C2A22D593005A0808 /* BSSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026CC76B2A22D593005A0808 /* BSSymbol.swift */; };
 		026CC76F2A2317EF005A0808 /* SchedulePeriodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026CC76D2A2317CA005A0808 /* SchedulePeriodView.swift */; };
@@ -107,6 +108,7 @@
 		023C0BE82A24FAB3004B18CD /* BSPeriod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSPeriod.swift; sourceTree = "<group>"; };
 		023C0BEA2A24FCBB004B18CD /* SettingsNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNotifications.swift; sourceTree = "<group>"; };
 		023C0BED2A24FD2D004B18CD /* SettingsSymbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSymbols.swift; sourceTree = "<group>"; };
+		026111712CB1ADC60086046A /* SettingsAbout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAbout.swift; sourceTree = "<group>"; };
 		026C7EE72CAF5ACC0032E442 /* shimmerBell.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = shimmerBell.m4a; sourceTree = "<group>"; };
 		026CC76B2A22D593005A0808 /* BSSymbol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSSymbol.swift; sourceTree = "<group>"; };
 		026CC76D2A2317CA005A0808 /* SchedulePeriodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulePeriodView.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				02E502932A1078E5008FCD1F /* SettingsView.swift */,
+				026111712CB1ADC60086046A /* SettingsAbout.swift */,
 				023C0BED2A24FD2D004B18CD /* SettingsSymbols.swift */,
 				023C0BEA2A24FCBB004B18CD /* SettingsNotifications.swift */,
 			);
@@ -463,6 +466,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				026111722CB1ADC60086046A /* SettingsAbout.swift in Sources */,
 				02899A612A246C5D00BCCCAE /* Notifications.swift in Sources */,
 				023C0BEC2A24FCEE004B18CD /* SettingsNotifications.swift in Sources */,
 				029C67C22A116975004484F4 /* TodayScheduleView.swift in Sources */,
@@ -509,7 +513,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = BellScheduleWidget/BellScheduleWidget.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = Z44L282QM9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BellScheduleWidget/Info.plist;
@@ -538,7 +542,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = BellScheduleWidget/BellScheduleWidget.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = Z44L282QM9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BellScheduleWidget/Info.plist;
@@ -712,7 +716,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = bellSchedule/bellSchedule.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"bellSchedule/Preview Content\"";
 				DEVELOPMENT_TEAM = Z44L282QM9;
 				ENABLE_PREVIEWS = YES;
@@ -750,7 +754,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = bellSchedule/bellSchedule.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"bellSchedule/Preview Content\"";
 				DEVELOPMENT_TEAM = Z44L282QM9;
 				ENABLE_PREVIEWS = YES;

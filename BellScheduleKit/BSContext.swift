@@ -88,7 +88,7 @@ public class BSContext: ObservableObject {
     }
     
     public func saveCustomSchedules() {
-        BSPersistence.save(softUpdateOfContext: self);
+        BSPersistence.save(contextWithUpdatedCustomSymbols: self);
     }
     
     @Published public var calendar: BSCalendar;
@@ -109,7 +109,7 @@ public class BSContextWrapper: ObservableObject {
     @Published public var context: BSContext?;
     @Published public var state: BSContextWrapperState;
     
-    public var done: Bool {
+    public var hasNoValidContext: Bool {
         switch state {
         case .loading:
             return true;
@@ -129,7 +129,6 @@ public class BSContextWrapper: ObservableObject {
         let returnValue = BSContextWrapper(state: .loading);
         BSCompatibility.convert();
         BSKit.getNewestContext(withDatabaseReference: databaseReference) { currentContext, errors in
-//            print(currentContext, errors);
             if let currentContext = currentContext {
                 DispatchQueue.main.async {
                     returnValue.context = currentContext;

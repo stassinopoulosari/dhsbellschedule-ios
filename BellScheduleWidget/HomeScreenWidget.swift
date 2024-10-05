@@ -36,8 +36,6 @@ struct Provider: IntentTimelineProvider {
                     }
                     let entryDate = startDate.addingTimeInterval(1);
                     let entry = HomeScreenEntry(date: entryDate, configuration: configuration, family: context.family)
-                    
-                    print(entry)
                     entries.append(entry)
                 }
             }

@@ -1,11 +1,9 @@
-import Foundation
 import SwiftUI
 import BellScheduleKit
 import WidgetKit
 
 /// Home Screen Small Text
-/// ==========
-/// Display small text for the home screen.
+/// - Display small text for the home screen.
 struct HomeScreenSmallText: View {
     @Binding var text: String;
     
@@ -17,8 +15,7 @@ struct HomeScreenSmallText: View {
 }
 
 /// Home Screen Large Text
-/// ==========
-/// Display large text for the home screen.
+/// - Display large text for the home screen.
 struct HomeScreenLargeText: View {
     @Binding var text: String;
     
@@ -31,8 +28,7 @@ struct HomeScreenLargeText: View {
 }
 
 /// Start TIme Text View
-/// ==========
-/// Display a real-time start time from a ContextObserver
+/// - Display a real-time start time from a ContextObserver
 struct StartTimeTextView: View {
     @ObservedObject var contextObserver: BSContextObserver;
     
@@ -44,8 +40,7 @@ struct StartTimeTextView: View {
 }
 
 /// End TIme Text View
-/// ==========
-/// Display a real-time end time from a ContextObserver
+/// - Display a real-time end time from a ContextObserver
 struct EndTimeTextView: View {
     @ObservedObject var contextObserver: BSContextObserver;
     
@@ -58,8 +53,7 @@ struct EndTimeTextView: View {
 }
 
 /// Countdown Text View
-/// ==========
-/// Display a real-time countdown from a ContextObserver
+/// - Display a real-time countdown from a ContextObserver
 struct CountdownTextView: View {
     @ObservedObject var contextObserver: BSContextObserver;
     
@@ -79,9 +73,8 @@ struct CountdownTextView: View {
     }
 }
 
-/// Class Name Text View
-/// ==========
-/// Display a real-time class name from a ContextObserver
+/// Class name
+/// - Display a real-time class name from a ContextObserver
 struct ClassNameTextView: View {
     @ObservedObject var contextObserver: BSContextObserver;
     

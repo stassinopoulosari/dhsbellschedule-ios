@@ -7,30 +7,29 @@ import BellScheduleKit
 struct AccessoriesView: View {
     @ObservedObject public var contextWrapper: BSContextWrapper;
     
-    ///SettingsShown
-    ///==========
+    ///# SettingsShown
     ///True if the settings screen is currently up
     @State var settingsShown =  false
-    /// InfoShown
-    /// ==========
+    /// # InfoShown
     /// True if the schedules or all schedules screen is up
     @State var infoShown = false
     
-    /// Body
-    /// ==========
+    /// # Body
     /// Show the aforementioned views
     var body: some View {
         HStack {
-            /// Show settings button (2nd in a11y order)
+            // Show settings button (2nd in a11y order)
             Button (action: showSettings) {
                 Image("baseline_settings_black_24pt")
                     .accessibilityHidden(false)
                     .accessibilityLabel("Settings")
                     .accessibilityHint("View Settings")
             }
-            .disabled(contextWrapper.done)
+            // Disable the buttons if the context is not valid
+            .disabled(contextWrapper.hasNoValidContext)
             .accessibilitySortPriority(8)
             .accessibilityElement(children: .combine)
+            // Present settings when pressing the button
             .sheet(isPresented: $settingsShown) {
                 NavigationStack {
                     if let context = contextWrapper.context {
@@ -49,7 +48,7 @@ struct AccessoriesView: View {
             }
             .tint(.white)
             Spacer()
-            /// Class title (last in a11y order)
+            // Class title (last in a11y order)
             switch(contextWrapper.state) {
             case .loading:
                 Text("")
@@ -65,7 +64,7 @@ struct AccessoriesView: View {
                 Text("")
             }
             Spacer()
-            /// Information button (first in a11y order)
+            // Information button (first in a11y order)
             Button(action: getInfo) {
                 Image("baseline_info_black_24pt")
                     .accessibilityHidden(false)
@@ -74,7 +73,7 @@ struct AccessoriesView: View {
             }
             .accessibilityElement(children: .combine)
             .accessibilitySortPriority(10)
-            .disabled(contextWrapper.done)
+            .disabled(contextWrapper.hasNoValidContext)
             .sheet(isPresented: $infoShown) {
                 NavigationStack {
                     if let context = contextWrapper.context {
@@ -90,15 +89,15 @@ struct AccessoriesView: View {
                                     .fontWeight(.bold)
                                 }
                                 ToolbarItemGroup(placement:.topBarTrailing) {
-                                        NavigationLink {
-                                            CalendarView(context: context)
-                                                .navigationTitle("Calendar")
-                                                .accessibilityElement(children: .contain)
-                                        } label: {
-                                            Image("calendar_month_black")
-                                        }
-                                        .accessibilityLabel("Calendar")
-                                        .accessibilityHint("View the calendar")
+                                    NavigationLink {
+                                        CalendarView(context: context)
+                                            .navigationTitle("Calendar")
+                                            .accessibilityElement(children: .contain)
+                                    } label: {
+                                        Image("calendar_month_black")
+                                    }
+                                    .accessibilityLabel("Calendar")
+                                    .accessibilityHint("View the calendar")
                                     NavigationLink {
                                         AllScheduleView(context: context).navigationTitle("All schedules")
                                             .accessibilityElement(children: .contain)

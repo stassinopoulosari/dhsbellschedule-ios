@@ -38,7 +38,6 @@ public struct BSCalendar {
                         calendarRepresentation[year]![month] = value.joined(separator: ",");
                     }
                 }
-                //                print(calendarRepresentation);
                 if let calendarString = String(data:try JSONSerialization.data(withJSONObject: calendarRepresentation), encoding: .utf8),
                    let scheduleTableString = calendar.scheduleTable.toString() {
                     return BSCalendarExportable(scheduleTableString: scheduleTableString, calendarString: calendarString);
@@ -108,7 +107,6 @@ public struct BSCalendar {
                         let monthStringComponents = monthString.split(separator: ",", omittingEmptySubsequences: false);
                         monthStringComponents.enumerated().forEach { (index, component) in
                             if (component != "" && scheduleTable.schedules.keys.contains(String(component))) {
-                                //                                print("component");
                                 calendar["\(year)/\(month)/\(index)"] = String(component);
                             }
                         }
