@@ -1,5 +1,6 @@
 # Bell Schedule App
 **Ari Stassinopoulos**
+
 **Version 3.1.0**
 
 ## what is this?
