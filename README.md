@@ -23,8 +23,25 @@ Please download the mobile app from the App Store at https://appstore.com/adonis
 
 I aimed for a usable and accessible mobile app with a design to emphasize the most important element: when the current class ends.
 
-![IMG_5146-mv-2024 10 07-15-41](https://github.com/user-attachments/assets/1e1c87ce-eca3-429d-b5ab-d860f3c1efe3)
-![IMG_5147-mv-2024 10 07-15-41](https://github.com/user-attachments/assets/a779fdc4-fc9b-4658-b7a9-aae6b774f7b0)
-![IMG_5148-mv-2024 10 07-15-41](https://github.com/user-attachments/assets/1675171e-ac0d-4773-ae0f-9e68c9907055)
-![IMG_5149-mv-2024 10 07-15-41](https://github.com/user-attachments/assets/19f9dc58-5a45-4dcd-ae81-dfe38e3ec820)
-![IMG_5150](https://github.com/user-attachments/assets/3c12b994-007e-43be-82b1-ca9321fce6f1)
+<table>
+  <tr>
+    <th>
+      Home Screen
+    </th>
+    <th>Notification Settings</th>
+    <th>"Today's Schedule" View</th>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/1e1c87ce-eca3-429d-b5ab-d860f3c1efe3" alt="Homescreen"/></td>
+    <td><img src="https://github.com/user-attachments/assets/a779fdc4-fc9b-4658-b7a9-aae6b774f7b0" alt="Notification Settings"/></td>
+    <td><img src="https://github.com/user-attachments/assets/1675171e-ac0d-4773-ae0f-9e68c9907055" alt="&quot;Today's Schedule&quot; View"/></td>
+  </tr>
+  <tr>
+    <th>Calendar View</th>
+    <th>Notification &amp; Home Screen Widget Demo</th>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/19f9dc58-5a45-4dcd-ae81-dfe38e3ec820" alt="Calendar View"/></td>
+    <td><img src="https://github.com/user-attachments/assets/3c12b994-007e-43be-82b1-ca9321fce6f1" alt="Notification &amp; Home Screen Demo"/></td>
+  </tr>
+</table>
