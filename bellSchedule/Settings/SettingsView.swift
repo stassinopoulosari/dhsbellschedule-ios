@@ -33,14 +33,14 @@ struct SettingsView: View {
             switch settingsLink {
             case .editClassNames:
                 NavigationLink{
-                    EditClassNamesView(context: context)
+                    SettingsSymbolsView(context: context)
                         .navigationTitle("Edit class names")
                 } label: {
                     Text("Edit class names")
                 }
             case .about:
                 NavigationLink {
-                    AboutView()
+                    SettingsAboutView()
                         .navigationTitle("About")
                 } label: {
                     Text("About")
@@ -53,7 +53,7 @@ struct SettingsView: View {
                 }
             case .notifications:
                 NavigationLink {
-                    NotificationsView(context: context)
+                    SettingsNotificationsView(context: context)
                         .navigationTitle("Notifications")
                 } label: {
                     Text("Notifications")

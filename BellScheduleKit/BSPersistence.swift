@@ -147,7 +147,9 @@ public struct BSPersistence {
         defaults.set(zeroPeriodSymbol, forKey: zeroPeriodSymbolKey);
     }
     
-    
+    /// Load the calendar from the defaults (used internally)
+    /// - Parameter fromDefaults: the defaults from which we are loading
+    /// - Returns: nil if no calendar exists in the defaults, otherwise the saved calendar
     private static func loadCalendar(fromDefaults defaults: UserDefaults) -> BSCalendar? {
         if let scheduleTable = loadScheduleTable(fromDefaults: defaults) {
             if let calendarString = defaults.string(forKey: calendarKey) {
@@ -161,14 +163,21 @@ public struct BSPersistence {
             return nil;
         }
     }
+    
+    /// Load the schedule table from the defaults (used internally)
+    /// - Parameter fromDefaults: the defaults from which we are loading
+    /// - Returns: nil if no schedule table exists in the defaults, otherwise the saved schedule table
     private static func loadScheduleTable(fromDefaults defaults: UserDefaults) -> BSScheduleTable? {
-//        print("schedule table string \(defaults.string(forKey: scheduleTableKey))")
         if let scheduleTableString = defaults.string(forKey: scheduleTableKey) {
             return BSScheduleTable.from(string: scheduleTableString);
         } else {
             return nil;
         }
     }
+    
+    /// Load the symbol table from the defaults (used internally)
+    /// - Parameter fromDefaults: the defaults from which we are loading
+    /// - Returns: nil if no symbol table exists in the defaults, otherwise the saved symbol table
     private static func loadSymbolTable(fromDefaults defaults: UserDefaults) -> BSSymbolTable? {
         if let symbolTableString = defaults.string(forKey: symbolTableKey),
            var symbolTable = BSSymbolTable.from(string: symbolTableString) {
@@ -181,6 +190,10 @@ public struct BSPersistence {
             return nil;
         }
     }
+    
+    /// Load the custom symbols from the defaults (used internally)
+    /// - Parameter fromDefaults: the defaults from which we are loading
+    /// - Returns: nil if no custom symbols exist in the defaults, otherwise the custom symbols
     private static func loadCustomSymbols(fromDefaults defaults: UserDefaults) -> [String: String] {
         var customSymbolsDictionary = [String: String]();
         do {
@@ -200,6 +213,9 @@ public struct BSPersistence {
         return customSymbolsDictionary;
     }
     
+    /// Load the zero period symbol from the defaults (used internally)
+    /// - Parameter fromDefaults: the defaults from which we are loading
+    /// - Returns: nil if no zero period symbol exists in the defaults, otherwise the saved zero period symbol
     private static func loadZeroPeriodSymbol(fromDefaults defaults: UserDefaults) -> String? {
         if let zeroPeriodSymbol = defaults.string(forKey: zeroPeriodSymbolKey) {
             return zeroPeriodSymbol;
@@ -207,6 +223,8 @@ public struct BSPersistence {
         return nil;
     }
     
+    /// Load custom symbols
+    /// - Returns: A `[String:String]` with the custom symbols if they exist, otherwise `nil`.
     public static func loadCustomSymbols() -> [String: String]? {
         if let defaults = defaults {
             return loadCustomSymbols(fromDefaults: defaults);
@@ -214,6 +232,8 @@ public struct BSPersistence {
         return nil;
     }
     
+    /// Load zero period symbol
+    /// - Returns: A `String` with the zero period symbol if it exists, otherwise `nil`.
     public static func loadZeroPeriodSymbol() -> String? {
         if let defaults = defaults {
             return loadZeroPeriodSymbol(fromDefaults: defaults);
@@ -221,21 +241,21 @@ public struct BSPersistence {
         return nil;
     }
     
-    public static func loadContext() -> BSContext? {
+    /// Load context
+    /// - Returns: The saved `BSContext` if it exists
+   public static func loadContext() -> BSContext? {
         if let defaults = defaults {
             // Load calendar
             let loadedCalendar = loadCalendar(fromDefaults: defaults);
-//            print("Loaded calendar \(loadedCalendar)");
             // Load symbols
             let loadedSymbolTable = loadSymbolTable(fromDefaults: defaults)
             let loadedZeroPeriodSymbol = loadZeroPeriodSymbol(fromDefaults: defaults)
-//            print("Loaded symbol table \(loadedSymbolTable)");
             // Load custom symbols
             if let calendar = loadedCalendar,
                let symbolTable = loadedSymbolTable,
                let lastUpdated = contextLastUpdated,
                let zeroPeriodSymbol = loadedZeroPeriodSymbol{
-                return BSContext(calendar: calendar, symbolTable: symbolTable, type: .cache, lastUpdated: lastUpdated, zeroPeriodSymbol: zeroPeriodSymbol)
+                return BSContext(calendar: calendar, symbolTable: symbolTable, origin: .cache, lastUpdated: lastUpdated, zeroPeriodSymbol: zeroPeriodSymbol)
             } else {
                 // Incomplete data
                 return nil

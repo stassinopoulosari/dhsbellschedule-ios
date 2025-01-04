@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Keep compatibility with UBSA
 public struct BSCompatibility {
     
     /// Convert previous defaults from UBSA to the new Bell Schedule

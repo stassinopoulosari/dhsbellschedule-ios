@@ -8,9 +8,13 @@
 import Foundation
 import SwiftUI
 
+/// View to show to users who are new to this app or update
 struct NewUserView: View {
+    
+    /// Parent view
     var app: BellScheduleAppView
     
+    /// Body of the popover
     var body: some View {
         VStack(alignment: .leading) {
             Text("Welcome to the DHS Bell Schedule App, Version 3.1.0")
@@ -53,8 +57,3 @@ Dublin High School Class of 2020
     }
 }
 
-//struct NewUserView_Preview: PreviewProvider {
-//    static var previews: some View {
-//        BellScheduleAppView(firstTimeUser: true)
-//    }
-//}

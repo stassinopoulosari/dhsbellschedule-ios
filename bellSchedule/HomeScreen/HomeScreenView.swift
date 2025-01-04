@@ -6,7 +6,7 @@ struct HomeScreenView: View {
     /// Context wrapper
     /// ==========
     /// Display placeholder values until the context is loaded
-    @ObservedObject public var contextWrapper: BSContextWrapper;
+    @ObservedObject public var contextWrapper: BSContextLoader;
     
     /// View body
     var body: some View {
@@ -33,18 +33,18 @@ struct HomeScreenView: View {
                             };
                             CountdownTextView(contextObserver: contextObserver).accessibilityLabel("Countdown to next class").accessibilitySortPriority(9);
                         } else {
-                            HomeScreenSmallText(text: Binding.constant(""));
-                            HomeScreenLargeText(text: Binding.constant("Unknown error")).accessibilityLabel("The bell schedule app failed to load. Please try again.").accessibilitySortPriority(10);
-                            HomeScreenSmallText(text: Binding.constant(""));
+                            HomeScreenSmallTextView(text: Binding.constant(""));
+                            HomeScreenLargeTextView(text: Binding.constant("Unknown error")).accessibilityLabel("The bell schedule app failed to load. Please try again.").accessibilitySortPriority(10);
+                            HomeScreenSmallTextView(text: Binding.constant(""));
                         }
                     case .failed:
-                        HomeScreenSmallText(text: Binding.constant(""));
-                        HomeScreenLargeText(text: Binding.constant("Failed to load")).accessibilityLabel("The bell schedule app failed to load. Please try again.").accessibilitySortPriority(10);
-                        HomeScreenSmallText(text: Binding.constant(""));
+                        HomeScreenSmallTextView(text: Binding.constant(""));
+                        HomeScreenLargeTextView(text: Binding.constant("Failed to load")).accessibilityLabel("The bell schedule app failed to load. Please try again.").accessibilitySortPriority(10);
+                        HomeScreenSmallTextView(text: Binding.constant(""));
                     case .loading:
-                        HomeScreenSmallText(text: Binding.constant(""));
-                        HomeScreenLargeText(text: Binding.constant("Loading")).accessibilityLabel("The bell schedule app is loading.");
-                        HomeScreenSmallText(text: Binding.constant(""));
+                        HomeScreenSmallTextView(text: Binding.constant(""));
+                        HomeScreenLargeTextView(text: Binding.constant("Loading")).accessibilityLabel("The bell schedule app is loading.");
+                        HomeScreenSmallTextView(text: Binding.constant(""));
                     }
                         
                 }.accessibilityElement(children: .contain).accessibilitySortPriority(10)

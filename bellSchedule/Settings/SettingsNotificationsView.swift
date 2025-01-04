@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import BellScheduleKit
 
-struct NotificationsView: View {
+struct SettingsNotificationsView: View {
     @ObservedObject public var context: BSContext;
     @ObservedObject public var notificationsModel = NotificationsModel();
     

@@ -12,13 +12,11 @@
 		021432BA2A21921100549DF9 /* BSCompatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021432B92A21921100549DF9 /* BSCompatibility.swift */; };
 		021432BC2A21924100549DF9 /* BSNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021432BB2A21924100549DF9 /* BSNetwork.swift */; };
 		021432BE2A21944800549DF9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 021432BD2A21944800549DF9 /* GoogleService-Info.plist */; };
-		021432CA2A219CCA00549DF9 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 021432C92A219CCA00549DF9 /* FirebaseDatabase */; };
-		021432CC2A219CD500549DF9 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 021432CB2A219CD500549DF9 /* FirebaseAnalyticsWithoutAdIdSupport */; };
-		023C0BE52A24F8F4004B18CD /* HomeScreenUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023C0BE42A24F8F4004B18CD /* HomeScreenUtilities.swift */; };
+		023C0BE52A24F8F4004B18CD /* HomeScreenUtilityViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023C0BE42A24F8F4004B18CD /* HomeScreenUtilityViews.swift */; };
 		023C0BE92A24FAB3004B18CD /* BSPeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023C0BE82A24FAB3004B18CD /* BSPeriod.swift */; };
-		023C0BEC2A24FCEE004B18CD /* SettingsNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023C0BEA2A24FCBB004B18CD /* SettingsNotifications.swift */; };
-		023C0BEE2A24FD2D004B18CD /* SettingsSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023C0BED2A24FD2D004B18CD /* SettingsSymbols.swift */; };
-		026111722CB1ADC60086046A /* SettingsAbout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026111712CB1ADC60086046A /* SettingsAbout.swift */; };
+		023C0BEC2A24FCEE004B18CD /* SettingsNotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023C0BEA2A24FCBB004B18CD /* SettingsNotificationsView.swift */; };
+		023C0BEE2A24FD2D004B18CD /* SettingsSymbolsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023C0BED2A24FD2D004B18CD /* SettingsSymbolsView.swift */; };
+		026111722CB1ADC60086046A /* SettingsAboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026111712CB1ADC60086046A /* SettingsAboutView.swift */; };
 		026C7EE82CAF5ACC0032E442 /* shimmerBell.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 026C7EE72CAF5ACC0032E442 /* shimmerBell.m4a */; };
 		026CC76C2A22D593005A0808 /* BSSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026CC76B2A22D593005A0808 /* BSSymbol.swift */; };
 		026CC76F2A2317EF005A0808 /* SchedulePeriodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026CC76D2A2317CA005A0808 /* SchedulePeriodView.swift */; };
@@ -30,7 +28,6 @@
 		02899A4D2A2442E900BCCCAE /* HomeScreenWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 02899A482A2442E800BCCCAE /* HomeScreenWidget.intentdefinition */; };
 		02899A502A2442E900BCCCAE /* BellScheduleWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 02899A3C2A2442E800BCCCAE /* BellScheduleWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		02899A592A2446B800BCCCAE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02E5026B2A10624A008FCD1F /* Assets.xcassets */; };
-		02899A5B2A24494600BCCCAE /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 02899A5A2A24494600BCCCAE /* FirebaseDatabase */; };
 		02899A5C2A24495800BCCCAE /* libBellScheduleKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 029C67CB2A117744004484F4 /* libBellScheduleKit.a */; };
 		02899A612A246C5D00BCCCAE /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02899A602A246C5D00BCCCAE /* Notifications.swift */; };
 		0295F95D2A23AAC400B3A4DB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0295F95C2A23AAC400B3A4DB /* LaunchScreen.storyboard */; };
@@ -104,11 +101,11 @@
 		021432B92A21921100549DF9 /* BSCompatibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSCompatibility.swift; sourceTree = "<group>"; };
 		021432BB2A21924100549DF9 /* BSNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSNetwork.swift; sourceTree = "<group>"; };
 		021432BD2A21944800549DF9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		023C0BE42A24F8F4004B18CD /* HomeScreenUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenUtilities.swift; sourceTree = "<group>"; };
+		023C0BE42A24F8F4004B18CD /* HomeScreenUtilityViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenUtilityViews.swift; sourceTree = "<group>"; };
 		023C0BE82A24FAB3004B18CD /* BSPeriod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSPeriod.swift; sourceTree = "<group>"; };
-		023C0BEA2A24FCBB004B18CD /* SettingsNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNotifications.swift; sourceTree = "<group>"; };
-		023C0BED2A24FD2D004B18CD /* SettingsSymbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSymbols.swift; sourceTree = "<group>"; };
-		026111712CB1ADC60086046A /* SettingsAbout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAbout.swift; sourceTree = "<group>"; };
+		023C0BEA2A24FCBB004B18CD /* SettingsNotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNotificationsView.swift; sourceTree = "<group>"; };
+		023C0BED2A24FD2D004B18CD /* SettingsSymbolsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSymbolsView.swift; sourceTree = "<group>"; };
+		026111712CB1ADC60086046A /* SettingsAboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAboutView.swift; sourceTree = "<group>"; };
 		026C7EE72CAF5ACC0032E442 /* shimmerBell.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = shimmerBell.m4a; sourceTree = "<group>"; };
 		026CC76B2A22D593005A0808 /* BSSymbol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSSymbol.swift; sourceTree = "<group>"; };
 		026CC76D2A2317CA005A0808 /* SchedulePeriodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulePeriodView.swift; sourceTree = "<group>"; };
@@ -146,7 +143,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				02899A5B2A24494600BCCCAE /* FirebaseDatabase in Frameworks */,
 				02899A402A2442E800BCCCAE /* SwiftUI.framework in Frameworks */,
 				02899A5C2A24495800BCCCAE /* libBellScheduleKit.a in Frameworks */,
 				02899A3E2A2442E800BCCCAE /* WidgetKit.framework in Frameworks */,
@@ -157,8 +153,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				021432CA2A219CCA00549DF9 /* FirebaseDatabase in Frameworks */,
-				021432CC2A219CD500549DF9 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,9 +171,9 @@
 			isa = PBXGroup;
 			children = (
 				02E502932A1078E5008FCD1F /* SettingsView.swift */,
-				026111712CB1ADC60086046A /* SettingsAbout.swift */,
-				023C0BED2A24FD2D004B18CD /* SettingsSymbols.swift */,
-				023C0BEA2A24FCBB004B18CD /* SettingsNotifications.swift */,
+				026111712CB1ADC60086046A /* SettingsAboutView.swift */,
+				023C0BED2A24FD2D004B18CD /* SettingsSymbolsView.swift */,
+				023C0BEA2A24FCBB004B18CD /* SettingsNotificationsView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -198,7 +192,7 @@
 		023C0BE32A24F8E6004B18CD /* HomeScreen */ = {
 			isa = PBXGroup;
 			children = (
-				023C0BE42A24F8F4004B18CD /* HomeScreenUtilities.swift */,
+				023C0BE42A24F8F4004B18CD /* HomeScreenUtilityViews.swift */,
 				029C67C52A11764A004484F4 /* AccessoriesView.swift */,
 				02E502692A10624A008FCD1F /* HomeScreenView.swift */,
 				02E502912A107680008FCD1F /* NewUserView.swift */,
@@ -317,7 +311,6 @@
 			);
 			name = BellScheduleWidget;
 			packageProductDependencies = (
-				02899A5A2A24494600BCCCAE /* FirebaseDatabase */,
 			);
 			productName = HomeScreenWidgetExtension;
 			productReference = 02899A3C2A2442E800BCCCAE /* BellScheduleWidget.appex */;
@@ -337,8 +330,6 @@
 			);
 			name = BellScheduleKit;
 			packageProductDependencies = (
-				021432C92A219CCA00549DF9 /* FirebaseDatabase */,
-				021432CB2A219CD500549DF9 /* FirebaseAnalyticsWithoutAdIdSupport */,
 			);
 			productName = bellScheduleKit;
 			productReference = 029C67CB2A117744004484F4 /* libBellScheduleKit.a */;
@@ -398,7 +389,6 @@
 			);
 			mainGroup = 02E5025B2A10624A008FCD1F;
 			packageReferences = (
-				021432C02A21962F00549DF9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 02E502652A10624A008FCD1F /* Products */;
 			projectDirPath = "";
@@ -466,9 +456,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				026111722CB1ADC60086046A /* SettingsAbout.swift in Sources */,
+				026111722CB1ADC60086046A /* SettingsAboutView.swift in Sources */,
 				02899A612A246C5D00BCCCAE /* Notifications.swift in Sources */,
-				023C0BEC2A24FCEE004B18CD /* SettingsNotifications.swift in Sources */,
+				023C0BEC2A24FCEE004B18CD /* SettingsNotificationsView.swift in Sources */,
 				029C67C22A116975004484F4 /* TodayScheduleView.swift in Sources */,
 				029C67C62A11764A004484F4 /* AccessoriesView.swift in Sources */,
 				029C67C42A116AB4004484F4 /* AllScheduleView.swift in Sources */,
@@ -478,8 +468,8 @@
 				02C1ED4B2CA70C0F00039D54 /* CalendarView.swift in Sources */,
 				02E502922A107680008FCD1F /* NewUserView.swift in Sources */,
 				026CC76F2A2317EF005A0808 /* SchedulePeriodView.swift in Sources */,
-				023C0BE52A24F8F4004B18CD /* HomeScreenUtilities.swift in Sources */,
-				023C0BEE2A24FD2D004B18CD /* SettingsSymbols.swift in Sources */,
+				023C0BE52A24F8F4004B18CD /* HomeScreenUtilityViews.swift in Sources */,
+				023C0BEE2A24FD2D004B18CD /* SettingsSymbolsView.swift in Sources */,
 				02E502682A10624A008FCD1F /* BellScheduleApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -825,35 +815,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		021432C02A21962F00549DF9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 10.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		021432C92A219CCA00549DF9 /* FirebaseDatabase */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 021432C02A21962F00549DF9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseDatabase;
-		};
-		021432CB2A219CD500549DF9 /* FirebaseAnalyticsWithoutAdIdSupport */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 021432C02A21962F00549DF9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalyticsWithoutAdIdSupport;
-		};
-		02899A5A2A24494600BCCCAE /* FirebaseDatabase */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 021432C02A21962F00549DF9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseDatabase;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 02E5025C2A10624A008FCD1F /* Project object */;
 }
