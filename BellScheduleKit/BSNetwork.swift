@@ -7,7 +7,7 @@
 
 import Foundation
 
-private struct BSDatabaseAbstraction {
+public struct BSDatabaseAbstraction {
     enum BSDatabaseAbstractionError: Error {
         case nilDataError
     }
@@ -16,34 +16,24 @@ private struct BSDatabaseAbstraction {
         case int
         case dict
     }
-    private static let baseURL = "https://ubsa-fb.firebaseio.com";
     
-    private static func constructNetworkPath(withPath path: String) -> String {
-        return "\(baseURL)/\(path).json?ts=\(Date().timeIntervalSince1970)";
+    private let abstractionData: [String: Any];
+    
+    private init(withData data: [String: Any]) {
+        self.abstractionData = data;
     }
     
-    static func getData(withPath path: String, expectedType: BSDatabaseExpectedDataType = .dict,_ callback: @escaping ((any Error)?, Any?) -> Void) {
-        let networkPath: String = constructNetworkPath(withPath: path)
+    static func create(_ callback: @escaping((any Error)?, BSDatabaseAbstraction?) -> Void) {
+        let networkPath = "https://ubsa-replicate.ari-s.com/dublinHS.json";
         if let networkURL = URL(string: networkPath) {
-            print("Creating network task with url \(networkURL)")
             let networkTask = URLSession.shared.dataTask(with: networkURL) { data, response, error in
-                print("Network task completed \(data != nil ? "with data" : "without data"), \(error != nil ? "with error" : "without error")")
                 if let error = error {
                     return callback(error, nil);
                 }
-                if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                if let data = data {
                     do {
-                        print("Data: \(dataString)")
-                        switch expectedType {
-                        case .dict:
-                            let parsedData = try JSONSerialization.jsonObject(with: data)
-                            return callback(nil, parsedData);
-                        case .int:
-                            let parsedData = Int(dataString)
-                            return callback(nil, parsedData);
-                        case .string:
-                            return callback(nil, dataString.trimmingCharacters(in: CharacterSet(charactersIn: "\"")))
-                        }
+                        let parsedData = try JSONSerialization.jsonObject(with: data)
+                        return callback(nil, BSDatabaseAbstraction(withData: parsedData as! [String: Any]));
                     } catch let parseError {
                         return callback(parseError, nil)
                     }
@@ -54,15 +44,22 @@ private struct BSDatabaseAbstraction {
             networkTask.resume()
         }
     }
+    
+    func getData(withPath: String) -> Any? {
+        if let data = abstractionData[withPath] {
+            return data;
+        }
+        return nil;
+    }
 }
 
 public struct BSNetwork {
     
-    private let calendarPath = "schools/dublinHS/calendars"
-    private let scheduleTablePath = "schools/dublinHS/schedules"
-    private let symbolsPath = "schools/dublinHS/symbols"
-    private let lastUpdatedPath = "schools/dublinHS/lastUpdated"
-    private let zeroPeriodSymbolPath = "schools/dublinHS/zeroPeriodSymbol"
+    private let calendarPath = "calendars"
+    private let scheduleTablePath = "schedules"
+    private let symbolsPath = "symbols"
+    private let lastUpdatedPath = "lastUpdated"
+    private let zeroPeriodSymbolPath = "zeroPeriodSymbol"
     
     enum BSNetworkError: Error {
         case databaseReferenceIsNil
@@ -70,26 +67,30 @@ public struct BSNetwork {
         case databaseFailToAccess
         case unableToConstructContext
     }
-        
+    
     /// Check last updated
     /// - Parameter callback: Callback to call if the check succeeds, with a `Date` representation of the last update.
     /// - Parameter fail: Callback to call if the check fails, with an `Error` describing what happened.
     func checkLastUpdated(callback: @escaping (Date) -> Void,  fail errorCallback: @escaping (Error) -> Void) {
-        BSDatabaseAbstraction.getData(withPath: lastUpdatedPath, expectedType: .int) { (error, data) in
+        BSDatabaseAbstraction.create { (error, abstraction) in
             if let error = error {
-                return errorCallback(error);
+                return errorCallback(error)
             }
-            if let valueInt = data as? Int {
-                print(Date(
-                    timeIntervalSince1970: TimeInterval(valueInt)
-                ))
-                return callback(
-                    Date(
+            if let abstraction = abstraction {
+                if let valueInt = abstraction.getData(withPath: lastUpdatedPath) as? Int {
+                    print(Date(
                         timeIntervalSince1970: TimeInterval(valueInt)
-                    )
-                );
+                    ))
+                    return callback(
+                        Date(
+                            timeIntervalSince1970: TimeInterval(valueInt)
+                        )
+                    );
+                } else {
+                    return errorCallback(BSNetworkError.unexpectedValueType);
+                }
             } else {
-                return errorCallback(BSNetworkError.unexpectedValueType);
+                return errorCallback(BSNetworkError.databaseFailToAccess)
             }
         }
     }
@@ -101,102 +102,85 @@ public struct BSNetwork {
         callback: @escaping (BSContext) -> Void,
         fail errorCallback: @escaping ([Error]) -> Void
     ) {
-        // Use a DispatchGroup to dispatch all of these at the same time
-        let group = DispatchGroup()
-        var scheduleTableObject: [String: Any]?;
-        var calendarObject: [String: Any]?;
-        var symbolsObject: [String: Any]?;
-        var zeroPeriodSymbol: String?;
-        var errors = [Error]();
-        
-        group.enter()
-        BSDatabaseAbstraction.getData(withPath: symbolsPath) {(error, value) in
+        BSDatabaseAbstraction.create { (error, abstraction) in
             if let error = error {
-                errors.append(error);
-                return group.leave();
+                return errorCallback([error]);
             }
-            if let value = value,
-               let valueObject = value as? [String: Any]{
-                symbolsObject = valueObject;
-            } else {
-                errors.append(BSNetworkError.unexpectedValueType);
-            }
-            return group.leave()
-        }
-        
-        group.enter()
-        BSDatabaseAbstraction.getData(withPath: scheduleTablePath) {(error, value) in
-            if let error = error {
-                errors.append(error);
-                return group.leave();
-            }
-            if let value = value,
-               let valueObject = value as? [String: Any]{
-                scheduleTableObject = valueObject;
-            } else {
-                errors.append(BSNetworkError.unexpectedValueType);
-            }
-            return group.leave()
-        }
-        
-        group.enter()
-        BSDatabaseAbstraction.getData(withPath: calendarPath) {(error, value) in
-            if let error = error {
-                errors.append(error);
-                return group.leave();
-            }
-            if let value = value,
-               let valueObject = value as? [String: Any]{
-                calendarObject = valueObject;
-            } else {
-                errors.append(BSNetworkError.unexpectedValueType);
-            }
-            return group.leave()
-        }
-        
-        group.enter()
-        BSDatabaseAbstraction.getData(withPath: zeroPeriodSymbolPath, expectedType: .string) {(error, value) in
-            if let error = error {
-                errors.append(error);
-                return group.leave();
-            }
-            if let value = value,
-               let valueObject = value as? String{
-                zeroPeriodSymbol = valueObject;
-            } else {
-                errors.append(BSNetworkError.unexpectedValueType);
-            }
-            return group.leave()
-        }
-        
-        group.notify(queue: .global()) {
-            if(errors.count > 0) {
-                return errorCallback(errors);
-            }
-            
-            if let scheduleTableObject = scheduleTableObject,
-               let calendarObject = calendarObject,
-               let symbolsObject = symbolsObject,
-               let zeroPeriodSymbol = zeroPeriodSymbol {
-                var symbolTable = BSSymbolTable.from(dictionary: symbolsObject);
-                if let customSymbols = BSPersistence.loadCustomSymbols() {
-                    symbolTable.register(customSymbols: customSymbols);
+            if let abstraction = abstraction {
+                var scheduleTableObject: [String: Any]?;
+                var calendarObject: [String: Any]?;
+                var symbolsObject: [String: Any]?;
+                var zeroPeriodSymbol: String?;
+                var errors = [Error]();
+                
+                //        group.enter()
+                if let value = abstraction.getData(withPath: symbolsPath),
+                   let valueObject = value as? [String: Any]{
+                    symbolsObject = valueObject;
+                } else {
+                    errors.append(BSNetworkError.unexpectedValueType);
                 }
-                let scheduleTable = BSScheduleTable.from(dictionary: scheduleTableObject)
-                return callback(
-                    BSContext(
-                        calendar: BSCalendar.from(
-                            dictionary: calendarObject,
-                            withScheduleTable: scheduleTable
-                        ),
-                        symbolTable: symbolTable,
-                        origin: .network,
-                        lastUpdated: Date.now,
-                        zeroPeriodSymbol: zeroPeriodSymbol
-                    )
-                );
+                //            return group.leave()
+                
+                //        group.enter()
+                if let value = abstraction.getData(withPath: scheduleTablePath),
+                   let valueObject = value as? [String: Any]{
+                    scheduleTableObject = valueObject;
+                } else {
+                    errors.append(BSNetworkError.unexpectedValueType);
+                }
+                //            return group.leave()
+                
+                //        group.enter()
+                if let value = abstraction.getData(withPath: calendarPath),
+                   let valueObject = value as? [String: Any]{
+                    calendarObject = valueObject;
+                } else {
+                    errors.append(BSNetworkError.unexpectedValueType);
+                }
+                //            return group.leave()
+                
+                //        group.enter()
+                
+                if let value = abstraction.getData(withPath: zeroPeriodSymbolPath),
+                   let valueObject = value as? String{
+                    zeroPeriodSymbol = valueObject;
+                } else {
+                    errors.append(BSNetworkError.unexpectedValueType);
+                }
+                
+                
+                //        group.notify(queue: .global()) {
+                if(errors.count > 0) {
+                    return errorCallback(errors);
+                }
+                
+                if let scheduleTableObject = scheduleTableObject,
+                   let calendarObject = calendarObject,
+                   let symbolsObject = symbolsObject,
+                   let zeroPeriodSymbol = zeroPeriodSymbol {
+                    var symbolTable = BSSymbolTable.from(dictionary: symbolsObject);
+                    if let customSymbols = BSPersistence.loadCustomSymbols() {
+                        symbolTable.register(customSymbols: customSymbols);
+                    }
+                    let scheduleTable = BSScheduleTable.from(dictionary: scheduleTableObject)
+                    return callback(
+                        BSContext(
+                            calendar: BSCalendar.from(
+                                dictionary: calendarObject,
+                                withScheduleTable: scheduleTable
+                            ),
+                            symbolTable: symbolTable,
+                            origin: .network,
+                            lastUpdated: Date.now,
+                            zeroPeriodSymbol: zeroPeriodSymbol
+                        )
+                    );
+                } else {
+                    return errorCallback([BSNetworkError.unableToConstructContext]);
+                }
             } else {
-                return errorCallback([BSNetworkError.unableToConstructContext]);
+                return errorCallback([BSNetworkError.databaseFailToAccess])
             }
         }
     }
