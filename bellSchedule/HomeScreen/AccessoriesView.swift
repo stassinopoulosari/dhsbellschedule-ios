@@ -5,16 +5,14 @@ import BellScheduleKit
 /// ==========
 /// Display the top buttons and class name.
 struct AccessoriesView: View {
-    @ObservedObject public var contextWrapper: BSContextWrapper;
+    @ObservedObject public var contextWrapper: BSContextLoader;
     
-    ///# SettingsShown
     ///True if the settings screen is currently up
     @State var settingsShown =  false
-    /// # InfoShown
+    
     /// True if the schedules or all schedules screen is up
     @State var infoShown = false
     
-    /// # Body
     /// Show the aforementioned views
     var body: some View {
         HStack {
@@ -107,8 +105,6 @@ struct AccessoriesView: View {
                                     .accessibilityLabel("All schedules")
                                     .accessibilityHint("View all schedules")
                                 }
-                                
-                                
                             }.accessibilityElement(children: .contain)
                     }
                 }

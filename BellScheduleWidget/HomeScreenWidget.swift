@@ -8,8 +8,6 @@
 import WidgetKit
 import SwiftUI
 import BellScheduleKit
-import FirebaseCore
-import FirebaseDatabase
 import Intents
 
 struct Provider: IntentTimelineProvider {

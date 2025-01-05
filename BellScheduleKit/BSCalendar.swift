@@ -7,12 +7,20 @@
 
 import Foundation
 
+/// Representation of the schedule calendar
 public struct BSCalendar {
+    /// Exportable version of the `BSCalendar` for persistence purposes
     public struct BSCalendarExportable {
+        /// String representation of the Schedule Table
         public var scheduleTableString: String;
+        /// String representation of the Calendar
         public var calendarString: String;
+        /// Make an exportable Calendar
+        /// - Parameter calendar: Calendar to export
+        /// - Returns `nil` if the calendar is not exportable, an ExportableCalendar otherwise.
         public static func from(calendar: BSCalendar) -> BSCalendarExportable? {
             do {
+                // I don't even want to think about what black magic we work here
                 var calendarObject = [String: [String: [String]]]();
                 calendar.calendar.forEach { (key: String, scheduleKey: String) in
                     let keyComponents = key.split(separator: "/");
@@ -50,9 +58,14 @@ public struct BSCalendar {
         }
     }
     
+    /// Schedule table for this calendar
     public var scheduleTable: BSScheduleTable;
+    /// Mapping of schedules to date strings
     public var calendar: [String: String];
     
+    /// Get the schedule for a month
+    /// - Parameter forDate: Date to get the schedules for
+    /// - Returns: `nil` if no calendar can be generated, a mapping of day of month to schedule key otherwise.
     public func monthSchedule(forDate date: Date) -> [Int: String]? {
         let dateFormatter = DateFormatter();
         dateFormatter.dateFormat = "YYYY/MM"
@@ -77,6 +90,9 @@ public struct BSCalendar {
         return returnValue;
     }
     
+    /// Get the schedule for a specific date
+    /// - Parameter forDate: Date for which we are getting the schedule
+    /// - Returns `nil` if none exists, a BSSchedule otherwise.
     public func currentSchedule(forDate date: Date) -> BSSchedule? {
         let dateFormatter = DateFormatter();
         dateFormatter.dateFormat = "YYYY/MM/d"
@@ -89,14 +105,17 @@ public struct BSCalendar {
         return nil;
     }
     
+    /// Get the current schedule for, like, right now.
     public var currentSchedule: BSSchedule? {
         return currentSchedule(forDate: Date.now)
     };
     
+    /// Build an exportable Calendar for persistence purposes
     public func export() -> BSCalendarExportable? {
         return BSCalendarExportable.from(calendar: self);
     }
     
+    /// Make a calendar from a Dictionary representation
     public static func from(dictionary calendarDictionary: [String: Any], withScheduleTable scheduleTable: BSScheduleTable) -> BSCalendar {
         var calendar = [String: String]();
         calendarDictionary.forEach { (year: String, yearObject: Any) in

@@ -39,7 +39,7 @@ struct SymbolEditTextField: View {
     
 }
 
-struct EditClassNamesView: View {
+struct SettingsSymbolsView: View {
     @ObservedObject public var context: BSContext;
     private var symbols: [String] {
         return Array(

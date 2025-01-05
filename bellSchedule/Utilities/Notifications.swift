@@ -8,17 +8,14 @@ import BellScheduleKit
 class NotificationsModel: ObservableObject {
     private var center = UNUserNotificationCenter.current();
     
-    /// Loaded
-    /// ==========
+
     /// Tell the parent view if the authorization dialog has been answered
     @Published public var loaded = false;
-    /// Granted
-    /// =========
+
+    
     /// Tell the parent view if the authorization has been granted
     @Published public var granted = false;
-    
-    /// Request
-    /// =========
+
     /// Request authorization. The first time this is called, it will show a dialog.
     public func request() {
         self.loaded = false;
@@ -31,29 +28,23 @@ class NotificationsModel: ObservableObject {
     }
 }
 
-/// Notifications
-/// ==========
 /// Handle notifications for the app
 struct Notifications {
     private var center: UNUserNotificationCenter;
     private var settings: BSPersistence.NotificationsSettings;
     
-    /// Context
-    /// =========
     /// BSContext representing the app (for use in symbols and schedules)
     public var context: BSContext;
     
-    /// Initializer
-    /// =========
     /// Create a NotificationCenter and set instance variables
+    /// - Parameter context: The context used for schedules and symbols
+    /// - Parameter settings: The Notifications Settings we are basing our notifications off of
     public init(context: BSContext, settings: BSPersistence.NotificationsSettings) {
         self.center = UNUserNotificationCenter.current();
         self.context = context;
         self.settings = settings;
     }
-    
-    /// Test Notification
-    /// ==========
+
     /// Display a test notification to the user
     public func testNotifications() {
         scheduleNotifications();
@@ -78,8 +69,6 @@ struct Notifications {
         }
     }
     
-    /// Schedule Notifications
-    /// ==========
     /// If the user has notifications enabled, schedule them. Otherwise, don't.
     public func scheduleNotifications() {
         
