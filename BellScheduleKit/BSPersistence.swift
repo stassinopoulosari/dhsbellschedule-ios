@@ -14,7 +14,7 @@ public struct BSPersistence {
     static let calendarKey = "bs3-persistence-calendar";
     static let lastUpdatedKey = "bs3-persistance-lastUpdated";
     static let lastVersionUsedKey = "bs3-compatibilityLastVersionUsed";
-    static let firstTimeUserKey = "bs3-firstTimeUser3.1.0";
+    static let firstTimeUserKey = "bs3-firstTimeUser3.2.0";
     static let notificationsOnKey = "bs3-notificationsOn";
     static let notificationsIntervalKey = "bs3-notificationsInterval";
     static let skipZeroPeriodNotificationsKey = "bs3-skipZeroPeriodNotifications";
@@ -24,7 +24,6 @@ public struct BSPersistence {
     public static var contextLastUpdated: Date? {
         if let defaults = defaults {
             let lastUpdatedInterval = defaults.double(forKey: BSPersistence.lastUpdatedKey)
-            print(Date(timeIntervalSince1970: lastUpdatedInterval))
             return Date(timeIntervalSince1970: lastUpdatedInterval)
         } else {
             return nil;
@@ -45,7 +44,7 @@ public struct BSPersistence {
     /// - Returns: the user's notification settings, or the default settings if none are saved
     public static func loadUserNotificationsSettings() -> NotificationsSettings {
         if let defaults = defaults
-           {
+        {
             let notificationsOn = defaults.bool(forKey: notificationsOnKey)
             let notificationsInterval = defaults.double(forKey: notificationsIntervalKey);
             let skipZeroPeriod = defaults.bool(forKey: skipZeroPeriodNotificationsKey);
@@ -243,7 +242,8 @@ public struct BSPersistence {
     
     /// Load context
     /// - Returns: The saved `BSContext` if it exists
-   public static func loadContext() -> BSContext? {
+    
+    public static func loadContext() -> BSContext? {
         if let defaults = defaults {
             // Load calendar
             let loadedCalendar = loadCalendar(fromDefaults: defaults);

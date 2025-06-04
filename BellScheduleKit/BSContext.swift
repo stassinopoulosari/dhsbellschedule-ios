@@ -34,7 +34,11 @@ public class BSContextObserver: ObservableObject {
         self.context = context;
         // Schedule a timer for every second for the refresh
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { _ in
-            self.refresh();
+            DispatchQueue.main.async {
+                self.refresh();
+                print(self.endTimeString)
+                self.objectWillChange.send()
+            }
         })
         // Refresh now
         self.refresh();
@@ -46,6 +50,7 @@ public class BSContextObserver: ObservableObject {
     func refresh() {
         // Pull all of our values from the context
         if let schedule = context.calendar.currentSchedule {
+            print("Current schedule successful")
             currentPeriod = schedule.currentPeriod;
             if let currentPeriod = currentPeriod,
                let endDate = currentPeriod.endTime.date {
@@ -64,6 +69,7 @@ public class BSContextObserver: ObservableObject {
                 self.startTimeString = currentPeriod.startTime.localString;
                 self.endTimeString = currentPeriod.endTime.localString;
                 self.classNameString = context.symbolTable.render(templateString: currentPeriod.name);
+            } else {
                 self.countdownTime = -1;
                 self.countdownTimeString = "";
                 self.startTimeString = "";
@@ -149,11 +155,13 @@ public class BSContextLoader: ObservableObject {
     
     /// `true` if the context is not yet renderable
     public var hasNoValidContext: Bool {
+        print("Checking for valid context")
+        print("State", state)
         switch state {
-        case .loadedWithoutErrors, .loadedWithErrors(_):
-            return false;
-        case .failed(_), .loading:
-            return true;
+            case .loadedWithoutErrors, .loadedWithErrors(_):
+                return false;
+            case .failed(_), .loading:
+                return true;
         }
     };
     
@@ -171,6 +179,8 @@ public class BSContextLoader: ObservableObject {
         let returnValue = BSContextLoader(state: .loading);
         BSCompatibility.convert();
         BSKit.getNewestContext { currentContext, errors in
+            print("Got newest context successfully")
+            print(currentContext, errors)
             if let currentContext = currentContext {
                 DispatchQueue.main.async {
                     returnValue.context = currentContext;
@@ -179,18 +189,24 @@ public class BSContextLoader: ObservableObject {
                 if errors.count == 0 {
                     DispatchQueue.main.async {
                         returnValue.state = .loadedWithoutErrors
+                        returnValue.objectWillChange.send()
+                        print(returnValue)
+                        return onload();
+
                     }
-                    return onload();
+                } else {
+                    DispatchQueue.main.async {
+                        returnValue.state = .loadedWithErrors(errors);
+                        returnValue.objectWillChange.send()
+                        return onload();
+                    }
                 }
-                DispatchQueue.main.async {
-                    returnValue.state = .loadedWithErrors(errors);
-                }
-                return onload();
             } else {
                 DispatchQueue.main.async {
                     returnValue.state = .failed(errors);
+                    returnValue.objectWillChange.send()
+                    return onload();
                 }
-                return onload();
             }
         }
         return returnValue;

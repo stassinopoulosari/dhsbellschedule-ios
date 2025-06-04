@@ -86,15 +86,20 @@ public struct BSSymbolTable {
             }
         }
     }
-        
+    /// Export the symbol table to a format which can be saved to the Defaults
     public func export() -> BSSymbolTableExportable? {
         return BSSymbolTableExportable.from(symbolTable: self);
     }
     
+    /// Dictionary of symbols
     public var symbolsDict: [String: BSSymbol];
+    
+    /// Get array of symbols
     private var symbols: [BSSymbol] {
         return Array(symbolsDict.values);
     }
+    
+    /// Render a given template string using the saved symbols
     public func render(templateString: String) -> String {
         var renderedString = templateString;
         symbols.forEach { symbol in

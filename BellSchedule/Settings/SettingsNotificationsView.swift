@@ -79,7 +79,6 @@ struct SettingsNotificationsView: View {
             }
             if notificationsModel.granted {
                 Button("Test push notifications", action: {
-                    print("Test push notifications");
                     notificationsModel.request();
                     Notifications(context: context, settings: notificationsSettingsModel).testNotifications();
                 })

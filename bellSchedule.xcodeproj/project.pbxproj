@@ -11,7 +11,6 @@
 		021432B82A202BDE00549DF9 /* BSPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021432B72A202BDE00549DF9 /* BSPersistence.swift */; };
 		021432BA2A21921100549DF9 /* BSCompatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021432B92A21921100549DF9 /* BSCompatibility.swift */; };
 		021432BC2A21924100549DF9 /* BSNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021432BB2A21924100549DF9 /* BSNetwork.swift */; };
-		021432BE2A21944800549DF9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 021432BD2A21944800549DF9 /* GoogleService-Info.plist */; };
 		023C0BE52A24F8F4004B18CD /* HomeScreenUtilityViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023C0BE42A24F8F4004B18CD /* HomeScreenUtilityViews.swift */; };
 		023C0BE92A24FAB3004B18CD /* BSPeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023C0BE82A24FAB3004B18CD /* BSPeriod.swift */; };
 		023C0BEC2A24FCEE004B18CD /* SettingsNotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023C0BEA2A24FCBB004B18CD /* SettingsNotificationsView.swift */; };
@@ -100,7 +99,6 @@
 		021432B72A202BDE00549DF9 /* BSPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSPersistence.swift; sourceTree = "<group>"; };
 		021432B92A21921100549DF9 /* BSCompatibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSCompatibility.swift; sourceTree = "<group>"; };
 		021432BB2A21924100549DF9 /* BSNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSNetwork.swift; sourceTree = "<group>"; };
-		021432BD2A21944800549DF9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		023C0BE42A24F8F4004B18CD /* HomeScreenUtilityViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenUtilityViews.swift; sourceTree = "<group>"; };
 		023C0BE82A24FAB3004B18CD /* BSPeriod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSPeriod.swift; sourceTree = "<group>"; };
 		023C0BEA2A24FCBB004B18CD /* SettingsNotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNotificationsView.swift; sourceTree = "<group>"; };
@@ -249,7 +247,7 @@
 		02E5025B2A10624A008FCD1F = {
 			isa = PBXGroup;
 			children = (
-				02E502662A10624A008FCD1F /* bellSchedule */,
+				02E502662A10624A008FCD1F /* BellSchedule */,
 				029C67CC2A117744004484F4 /* BellScheduleKit */,
 				02899A412A2442E800BCCCAE /* BellScheduleWidget */,
 				02E502652A10624A008FCD1F /* Products */,
@@ -267,13 +265,12 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		02E502662A10624A008FCD1F /* bellSchedule */ = {
+		02E502662A10624A008FCD1F /* BellSchedule */ = {
 			isa = PBXGroup;
 			children = (
 				026C7EE72CAF5ACC0032E442 /* shimmerBell.m4a */,
 				02A5D5F72CB0593E008CD3A1 /* shimmerBell.caf */,
 				0299C12E2A1A7F2E00CA2AB6 /* bellSchedule.entitlements */,
-				021432BD2A21944800549DF9 /* GoogleService-Info.plist */,
 				02E5026B2A10624A008FCD1F /* Assets.xcassets */,
 				02E5026D2A10624A008FCD1F /* Preview Content */,
 				023C0BE62A24F929004B18CD /* Utilities */,
@@ -282,7 +279,7 @@
 				023C0BE02A24F8B0004B18CD /* Settings */,
 				0295F95C2A23AAC400B3A4DB /* LaunchScreen.storyboard */,
 			);
-			path = bellSchedule;
+			path = BellSchedule;
 			sourceTree = "<group>";
 		};
 		02E5026D2A10624A008FCD1F /* Preview Content */ = {
@@ -418,7 +415,6 @@
 				0295F95D2A23AAC400B3A4DB /* LaunchScreen.storyboard in Resources */,
 				02E5026C2A10624A008FCD1F /* Assets.xcassets in Resources */,
 				02A5D5F82CB0593E008CD3A1 /* shimmerBell.caf in Resources */,
-				021432BE2A21944800549DF9 /* GoogleService-Info.plist in Resources */,
 				026C7EE82CAF5ACC0032E442 /* shimmerBell.m4a in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

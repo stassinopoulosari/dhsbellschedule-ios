@@ -72,8 +72,10 @@ struct Notifications {
     /// If the user has notifications enabled, schedule them. Otherwise, don't.
     public func scheduleNotifications() {
         
+        /// In case the user does a sample notification, we don't want to bump off any notifications (We also want to make sure we
         let maximumNotifications = 62;
         
+        /// Request permission for notifications
         center.requestAuthorization(options:[.alert,.sound]) { granted, error in
             if error != nil {
                 return;
@@ -81,7 +83,9 @@ struct Notifications {
             if !granted {
                 return;
             }
+            // Remove any pending notifications so we avoid doubles
             center.removeAllPendingNotificationRequests();
+            // Delivered notifications will bring us to that 64-notification limit real quick
             center.removeAllDeliveredNotifications();
             // Cancel scheduling if notifications are off
             if !settings.notificationsOn {
@@ -91,7 +95,9 @@ struct Notifications {
             var date = Date.now
             let calendar = context.calendar;
             var schedule = calendar.currentSchedule;
+            /// Seconds in the future
             var dateAdjustmentInterval = 0.0;
+            let interval = settings.notificationsInterval * 60 * -1;
             var periodIndex = 0;
             var daysWithoutSchedule = 0
             var lastNotificationDate: Date?;
@@ -116,7 +122,7 @@ struct Notifications {
                         continue;
                     }
                     if let endDate = period.endTime.date, let startDate = period.startTime.date {
-                        let interval = settings.notificationsInterval * 60 * -1;
+                        // Calculate notification date
                         let notificationDate = endDate.addingTimeInterval(interval + dateAdjustmentInterval);
                         // Do not notify for a period of a length less than the interval or for past notifications
                         if(startDate.addingTimeInterval(dateAdjustmentInterval) > notificationDate || notificationDate < Date.now) {
@@ -132,6 +138,7 @@ struct Notifications {
                         if abs(interval) < 60 {
                             content.body = "\(Int(abs(interval))) seconds remain"
                         } else {
+                            // Mind our Ps and Qs
                             content.body = "\(String(Int(abs(interval) / 60)) + " minute\(Int(abs(interval) / 60) == 1 ? "" : "s")") remain\(Int(abs(interval) / 60) == 1 ? "s" : "")"
                         }
                         content.interruptionLevel = .timeSensitive;
@@ -164,10 +171,6 @@ struct Notifications {
                 content.body = "Please open the Bell Schedule app to schedule more notifications.";
                 content.interruptionLevel = .active;
                 center.add(UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger))
-            }
-            
-            center.getPendingNotificationRequests { requests in
-                print(requests.count)
             }
         }
     }

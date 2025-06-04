@@ -17,18 +17,16 @@ struct NewUserView: View {
     /// Body of the popover
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Welcome to the DHS Bell Schedule App, Version 3.1.0")
+            Text("Welcome to the DHS Bell Schedule App, Version 3.2.0")
                 .font(.largeTitle.weight(.heavy))
                 .multilineTextAlignment(.leading)
-            Text("8 years later, it's still getting updates")
+            Text("9 years later, it's still getting updates")
                 .padding([.top,.bottom], 1.0)
                 .padding(.bottom, 10.0)
             Text("What's New?")
                 .font(.headline)
             Text("""
-- There is now a calendar view for you to view all the schedules in the current month
-- I have added a custom notification sound
-- You may now silence the notifications for Zero Period if you so choose
+- I have made some backend changes to reduce the file size of the app binary and to improve the speed & reliability of the app experience.
 
 Thank you for using the Bell Schedule App!
 

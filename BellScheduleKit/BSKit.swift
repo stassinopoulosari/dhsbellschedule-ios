@@ -34,7 +34,7 @@ public struct BSKit {
     ) {
         // Create an instance of the Network class to download the remote values
         let network = BSNetwork();
-        network.checkLastUpdated(callback: {networkLastUpdated in
+        network.checkLastUpdated(success: {networkLastUpdated in
             print(networkLastUpdated);
             // If we have downloaded the Context since the last update on the remote end, we don't need to do it again
             if let persistenceLastUpdated = BSPersistence.contextLastUpdated,
@@ -47,7 +47,7 @@ public struct BSKit {
                 );
             }
             // If we do need to download the context, now would be a good time to do it
-            network.remoteContext(callback: { networkContext in
+            network.remoteContext(success: { networkContext in
                 // Save the remote context so we don't download it again until the next update
                 BSPersistence.save(hardUpdateOfContext: networkContext)
                 print("Downloaded context");

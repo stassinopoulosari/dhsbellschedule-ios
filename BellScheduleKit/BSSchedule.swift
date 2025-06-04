@@ -121,7 +121,7 @@ public struct BSSchedule {
                 if(key == "name") {
                     return;
                 }
-
+                
                 if let period = scheduleObject[key] as? [String: Any],
                    let startString = period["start"] as? String,
                    let endString = period["end"] as? String,

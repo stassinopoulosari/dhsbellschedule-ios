@@ -71,16 +71,13 @@ public struct BSNetwork {
     /// Check last updated
     /// - Parameter callback: Callback to call if the check succeeds, with a `Date` representation of the last update.
     /// - Parameter fail: Callback to call if the check fails, with an `Error` describing what happened.
-    func checkLastUpdated(callback: @escaping (Date) -> Void,  fail errorCallback: @escaping (Error) -> Void) {
+    func checkLastUpdated(success callback: @escaping (Date) -> Void,  fail errorCallback: @escaping (Error) -> Void) {
         BSDatabaseAbstraction.create { (error, abstraction) in
             if let error = error {
                 return errorCallback(error)
             }
             if let abstraction = abstraction {
                 if let valueInt = abstraction.getData(withPath: lastUpdatedPath) as? Int {
-                    print(Date(
-                        timeIntervalSince1970: TimeInterval(valueInt)
-                    ))
                     return callback(
                         Date(
                             timeIntervalSince1970: TimeInterval(valueInt)
@@ -99,7 +96,7 @@ public struct BSNetwork {
     /// - Parameter callback: Callback to call if the download succeeds, with the `BSContext` from the server.
     /// - Parameter fail: Callback to call if the download fails, with an `Error` describing what happened.
     func remoteContext(
-        callback: @escaping (BSContext) -> Void,
+        success callback: @escaping (BSContext) -> Void,
         fail errorCallback: @escaping ([Error]) -> Void
     ) {
         BSDatabaseAbstraction.create { (error, abstraction) in
@@ -113,34 +110,26 @@ public struct BSNetwork {
                 var zeroPeriodSymbol: String?;
                 var errors = [Error]();
                 
-                //        group.enter()
                 if let value = abstraction.getData(withPath: symbolsPath),
                    let valueObject = value as? [String: Any]{
                     symbolsObject = valueObject;
                 } else {
                     errors.append(BSNetworkError.unexpectedValueType);
                 }
-                //            return group.leave()
                 
-                //        group.enter()
                 if let value = abstraction.getData(withPath: scheduleTablePath),
                    let valueObject = value as? [String: Any]{
                     scheduleTableObject = valueObject;
                 } else {
                     errors.append(BSNetworkError.unexpectedValueType);
                 }
-                //            return group.leave()
                 
-                //        group.enter()
                 if let value = abstraction.getData(withPath: calendarPath),
                    let valueObject = value as? [String: Any]{
                     calendarObject = valueObject;
                 } else {
                     errors.append(BSNetworkError.unexpectedValueType);
                 }
-                //            return group.leave()
-                
-                //        group.enter()
                 
                 if let value = abstraction.getData(withPath: zeroPeriodSymbolPath),
                    let valueObject = value as? String{
@@ -149,8 +138,6 @@ public struct BSNetwork {
                     errors.append(BSNetworkError.unexpectedValueType);
                 }
                 
-                
-                //        group.notify(queue: .global()) {
                 if(errors.count > 0) {
                     return errorCallback(errors);
                 }
